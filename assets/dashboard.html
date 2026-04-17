@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLEND+ Operator Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: #2A3F5A; border-radius: 3px; }
+.period-btn { padding: 6px 13px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.15s; font-family: inherit; }
+.tab-btn { padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.machine-card { border-radius: 10px; padding: 14px 16px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
+.fault-bar { padding: 11px 15px; border-radius: 8px; margin-bottom: 9px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.card { border-radius: 12px; padding: 20px 24px; }
+.bar-bg { height: 5px; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+.stat-card { flex: 1; min-width: 120px; border-radius: 12px; padding: 18px 20px; }
+.section-divider { display: flex; align-items: center; gap: 14px; margin: 28px 0 18px; }
+.section-divider span { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; }
+.section-divider::after { content: ''; flex: 1; height: 1px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const DARK={bg:"#080C10",surface:"#0F1520",surfaceAlt:"#141C2A",border:"#1E2D42",borderStrong:"#2A3F5A",text:"#E8F0FC",sub:"#C8D8F0",muted:"#8AAACE",cyan:"#00E5FF",cyanDim:"rgba(0,229,255,0.12)",green:"#00D084",greenDim:"rgba(0,208,132,0.12)",yellow:"#FFB800",yellowDim:"rgba(255,184,0,0.12)",orange:"#FF6B2B",orangeDim:"rgba(255,107,43,0.12)",red:"#FF3B5C",redDim:"rgba(255,59,92,0.12)"};
+const LIGHT={bg:"#F0F4FA",surface:"#FFFFFF",surfaceAlt:"#F8FAFD",border:"#D8E3F0",borderStrong:"#B8CDE0",text:"#0A1525",sub:"#3A5070",muted:"#5A7090",cyan:"#0077BB",cyanDim:"rgba(0,119,187,0.10)",green:"#009955",greenDim:"rgba(0,153,85,0.10)",yellow:"#BB7700",yellowDim:"rgba(187,119,0,0.10)",orange:"#BB4400",orangeDim:"rgba(187,68,0,0.10)",red:"#BB1133",redDim:"rgba(187,17,51,0.10)"};
+const STATUS={green:{label:"Operational",color:"#00D084"},yellow:{label:"Attention Needed",color:"#FFB800"},orange:{label:"Intervention Required",color:"#FF6B2B"},red:{label:"Offline",color:"#FF3B5C"}};
+const PERIODS=["today","week","month","quarter","year"];
+const PLABEL={today:"Today",week:"This Week",month:"This Month",quarter:"This Quarter",year:"This Year"};
+
+// Hourly order data (orders per hour of day, averaged)
+const HOURLY=[0,0,0,0,2,4,8,14,18,22,19,16,11,9,12,14,18,20,16,12,8,5,3,0];
+const HOURLY_LABELS=["12a","1a","2a","3a","4a","5a","6a","7a","8a","9a","10a","11a","12p","1p","2p","3p","4p","5p","6p","7p","8p","9p","10p","11p"];
+const HAPPY_HOUR_WINDOWS=[[5,8],[14,16]]; // 5-8am, 2-4pm
+const OPERATING_HOURS=18; // ~6am to midnight
+let hourlyMode="count"; // "count" or "pct"
+
+// Day of week data (0=Sun, 1=Mon...6=Sat) — Sun slowest
+const DOW_LABELS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const DOW_DATA=[18,52,61,68,72,65,48]; // Sun slowest, Thu peak
+
+// 30-day daily data with realistic weekend dips
+function makeDayData(){
+  const days=[];
+  const labels=[];
+  for(let i=29;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const dow=d.getDay();
+    const base=DOW_DATA[dow];
+    const noise=Math.round((Math.random()-0.5)*8);
+    days.push(Math.max(0,base+noise));
+    labels.push(d.toLocaleDateString("en-US",{month:"short",day:"numeric"}));
+  }
+  return {days,labels};
+}
+const DAY30=makeDayData();
+const TREND_ORDERS=DAY30.days;
+const TREND_LABELS=DAY30.labels;
+const TREND_REVENUE=TREND_ORDERS.map(o=>+(o*7).toFixed(0));
+
+// Month over month (last month was ~80% of current)
+const LAST_MONTH_ORDERS=Math.round(1315*0.82);
+const LAST_MONTH_GROSS=Math.round(9205*0.82);
+const LAST_MONTH_HOST=Math.round(1841*0.82);
+const MOM_ORDERS=Math.round((1315-LAST_MONTH_ORDERS)/LAST_MONTH_ORDERS*100);
+const MOM_GROSS=Math.round((9205-LAST_MONTH_GROSS)/LAST_MONTH_GROSS*100);
+const MOM_HOST=Math.round((1841-LAST_MONTH_HOST)/LAST_MONTH_HOST*100);
+
+// Member stats
+const AVG_RATING=4.7;
+const REPEAT_RATE=68; // % of first-time customers who ordered again
+const OUTAGES_30D=1;
+const OUTAGE_AVG_MIN=6;
+
+// Payout info
+const NEXT_PAYOUT_DATE="May 1, 2026";
+const DAYS_IN_MONTH=30;
+const DAYS_ELAPSED=16;
+const PROJECTED_HOST=Math.round(1841/DAYS_ELAPSED*DAYS_IN_MONTH);
+function hourlyTotal(){return HOURLY.reduce((s,v)=>s+v,0);}
+function hourlyPct(){return HOURLY.map(v=>+(v/hourlyTotal()*100).toFixed(1));}
+function isHappyHour(h){return HAPPY_HOUR_WINDOWS.some(([s,e])=>h>=s&&h<e);}
+function isPeak(h,data){const max=Math.max(...data);return data[h]>=max*0.8;}
+
+// Trend data generated dynamically above with realistic day-of-week patterns
+
+const M1={
+  id:"BLN-001",name:"SmartFit Rancho",location:"San Diego, CA",status:"green",uptime:"99.7%",
+  orders:{today:44,week:308,month:1315,quarter:3945,year:15768},
+  customers:{today:29,week:98,month:263,quarter:789,year:3156},
+  aov:{today:7.00,week:7.00,month:7.00,quarter:7.00,year:7.00},
+  gross:{today:308,week:2156,month:9205,quarter:27615,year:110376},
+  host:{today:61.6,week:431.2,month:1841,quarter:5523,year:22075},
+  ingredients:[
+    {name:"Whole Milk Powder",cat:"base",level:72},{name:"Oat Milk Powder",cat:"base",level:45},{name:"Coconut Milk Powder",cat:"base",level:88},
+    {name:"Vanilla Whey",cat:"protein",level:31},{name:"Chocolate Whey",cat:"protein",level:58},{name:"Mixed Berry Plant",cat:"protein",level:67},{name:"Rotating Flavor",cat:"protein",level:12},
+    {name:"Creatine",cat:"supp",level:84},{name:"Amino Acids",cat:"supp",level:55},{name:"Collagen",cat:"supp",level:91},{name:"Caffeine",cat:"supp",level:23}
+  ],
+  co2:68,cups:142,cupsMax:200,tds:42,faults:[],
+  drinks:[
+    {name:"Choc Whey + Oat Milk",n:187,t:"up"},{name:"Vanilla + Whole Milk",n:154,t:"up"},{name:"Mixed Berry + Coconut",n:98,t:"up"},
+    {name:"Choc + Creatine + Oat",n:87,t:"stable"},{name:"Vanilla + Caffeine",n:76,t:"up"},{name:"Berry + Amino Acids",n:61,t:"stable"},
+    {name:"Choc + Collagen + Oat",n:54,t:"down"},{name:"Rotating + Coconut",n:43,t:"down"},{name:"Vanilla + Creatine",n:38,t:"stable"},{name:"Oat + Collagen Only",n:31,t:"down"}
+  ],
+  recent:[
+    {time:"11:48 AM",drink:"Choc Whey + Oat Milk",amt:8.50},{time:"11:32 AM",drink:"Vanilla + Caffeine + Whole",amt:9.25},
+    {time:"11:19 AM",drink:"Mixed Berry + Coconut",amt:7.75},{time:"11:04 AM",drink:"Choc + Creatine + Oat",amt:7.00},{time:"10:51 AM",drink:"Vanilla Whey + Whole",amt:7.00}
+  ]
+};
+
+const M2={
+  id:"BLN-002",name:"SmartFit Scottsdale North",location:"Scottsdale, AZ",status:"yellow",uptime:"98.2%",
+  orders:{today:22,week:134,month:521,quarter:1560,year:0},
+  customers:{today:19,week:108,month:412,quarter:1230,year:0},
+  aov:{today:9.09,week:9.10,month:9.10,quarter:9.10,year:0},
+  gross:{today:200,week:1219,month:4741,quarter:14196,year:0},
+  host:{today:40,week:243.8,month:948.2,quarter:2839.2,year:0},
+  ingredients:[
+    {name:"Whole Milk Powder",cat:"base",level:88},{name:"Oat Milk Powder",cat:"base",level:91},{name:"Coconut Milk Powder",cat:"base",level:76},
+    {name:"Vanilla Whey",cat:"protein",level:62},{name:"Chocolate Whey",cat:"protein",level:44},{name:"Mixed Berry Plant",cat:"protein",level:33},{name:"Rotating Flavor",cat:"protein",level:8},
+    {name:"Creatine",cat:"supp",level:71},{name:"Amino Acids",cat:"supp",level:39},{name:"Collagen",cat:"supp",level:82},{name:"Caffeine",cat:"supp",level:14}
+  ],
+  co2:22,cups:87,cupsMax:200,tds:48,
+  faults:[{level:"L1",msg:"Rotating Flavor hopper low — restock on next visit",time:"9:12 AM"}],
+  drinks:[
+    {name:"Vanilla + Whole Milk",n:121,t:"up"},{name:"Choc Whey + Oat Milk",n:98,t:"stable"},{name:"Vanilla + Creatine",n:67,t:"up"},
+    {name:"Mixed Berry + Coconut",n:54,t:"stable"},{name:"Choc + Collagen + Oat",n:43,t:"down"},{name:"Vanilla + Caffeine",n:38,t:"up"},
+    {name:"Rotating + Creatine",n:31,t:"down"},{name:"Oat + Amino Only",n:22,t:"stable"}
+  ],
+  recent:[
+    {time:"11:41 AM",drink:"Vanilla + Whole Milk",amt:8.45},{time:"11:28 AM",drink:"Choc Whey + Oat Milk",amt:9.75},{time:"11:15 AM",drink:"Vanilla + Creatine",amt:10.50}
+  ]
+};
+
+const M3={
+  id:"BLN-003",name:"SmartFit Scottsdale South",location:"Scottsdale, AZ",status:"orange",uptime:"96.8%",
+  orders:{today:18,week:98,month:389,quarter:1100,year:0},
+  customers:{today:15,week:82,month:310,quarter:890,year:0},
+  aov:{today:9.11,week:9.10,month:9.10,quarter:9.10,year:0},
+  gross:{today:164,week:892,month:3540,quarter:10010,year:0},
+  host:{today:32.8,week:178.4,month:708,quarter:2002,year:0},
+  ingredients:[
+    {name:"Whole Milk Powder",cat:"base",level:91},{name:"Oat Milk Powder",cat:"base",level:78},{name:"Coconut Milk Powder",cat:"base",level:65},
+    {name:"Vanilla Whey",cat:"protein",level:55},{name:"Chocolate Whey",cat:"protein",level:38},{name:"Mixed Berry Plant",cat:"protein",level:72},{name:"Rotating Flavor",cat:"protein",level:5},
+    {name:"Creatine",cat:"supp",level:63},{name:"Amino Acids",cat:"supp",level:28},{name:"Collagen",cat:"supp",level:74},{name:"Caffeine",cat:"supp",level:9}
+  ],
+  co2:11,cups:43,cupsMax:200,tds:51,
+  faults:[
+    {level:"L2",msg:"CO2 below 15% — replacement needed within 48 hours",time:"8:44 AM"},
+    {level:"L1",msg:"Cup stack below 25% — restock on next visit",time:"10:21 AM"}
+  ],
+  drinks:[
+    {name:"Mixed Berry + Coconut",n:89,t:"up"},{name:"Vanilla + Whole Milk",n:74,t:"stable"},{name:"Choc Whey + Oat Milk",n:61,t:"stable"},
+    {name:"Berry + Amino Acids",n:48,t:"up"},{name:"Vanilla + Caffeine",n:32,t:"down"},{name:"Rotating + Coconut",n:28,t:"down"},
+    {name:"Choc + Creatine + Oat",n:21,t:"stable"},{name:"Oat + Collagen Only",n:18,t:"down"}
+  ],
+  recent:[
+    {time:"11:38 AM",drink:"Mixed Berry + Coconut",amt:9.10},{time:"11:22 AM",drink:"Vanilla + Whole Milk",amt:8.45}
+  ]
+};
+
+let dark=true,enterprise=false,selId="BLN-001",period="month";
+let chartHourly=null,chartTrend=null,chartDow=null;
+
+function t(){return dark?DARK:LIGHT;}
+function machines(){return enterprise?[M1,M2,M3]:[M1];}
+function sel(){return machines().find(m=>m.id===selId)||M1;}
+function fmt(n,pre="$"){return pre+n.toLocaleString("en-US",{minimumFractionDigits:n%1!==0?2:0,maximumFractionDigits:2});}
+function lc(p){if(p<=15)return t().red;if(p<=30)return t().orange;if(p<=50)return t().yellow;return t().green;}
+function agg(key,sub){return machines().reduce((s,m)=>s+(m[key][sub]||0),0);}
+function aggAov(){const ms=machines();const to=ms.reduce((s,m)=>s+(m.orders[period]||0),0);const tg=ms.reduce((s,m)=>s+(m.gross[period]||0),0);return to>0?(tg/to):0;}
+function catC(cat){return{base:t().cyan,protein:"#A78BFA",supp:"#34D399"}[cat]||t().sub;}
+
+function destroyCharts(){
+  if(chartHourly){chartHourly.destroy();chartHourly=null;}
+  if(chartTrend){chartTrend.destroy();chartTrend=null;}
+  if(chartDow){chartDow.destroy();chartDow=null;}
+}
+
+function buildCharts(){
+  const c=t();
+  const gridColor=dark?"rgba(30,45,66,0.8)":"rgba(216,227,240,0.8)";
+  const tickColor=c.muted;
+
+  // Hourly chart
+  const hCtx=document.getElementById("chartHourly");
+  if(hCtx){
+    const data=hourlyMode==="pct"?hourlyPct():HOURLY;
+    const total=hourlyTotal();
+    const evenLine=hourlyMode==="pct"?(100/OPERATING_HOURS):Math.round(total/OPERATING_HOURS);
+    const barColors=data.map((_,h)=>{
+      if(isHappyHour(h))return dark?"rgba(0,229,255,0.85)":"rgba(0,119,187,0.85)";
+      if(isPeak(h,data))return dark?"rgba(0,208,132,0.85)":"rgba(0,153,85,0.85)";
+      if(data[h]===0)return dark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.08)";
+      return dark?"rgba(255,255,255,0.22)":"rgba(0,0,0,0.18)";
+    });
+    chartHourly=new Chart(hCtx,{
+      type:"bar",
+      data:{
+        labels:HOURLY_LABELS,
+        datasets:[
+          {
+            label:hourlyMode==="pct"?"% of daily orders":"orders",
+            data:data,
+            backgroundColor:barColors,
+            borderRadius:4,
+            borderSkipped:false,
+            order:2
+          },
+          {
+            label:"even distribution",
+            data:Array(24).fill(evenLine),
+            type:"line",
+            borderColor:dark?"rgba(255,184,0,0.6)":"rgba(187,119,0,0.6)",
+            borderWidth:1.5,
+            borderDash:[4,4],
+            pointRadius:0,
+            fill:false,
+            order:1
+          }
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{
+          legend:{display:false},
+          tooltip:{
+            backgroundColor:dark?"#0F1520":"#FFFFFF",
+            borderColor:c.border,borderWidth:1,
+            titleColor:c.text,bodyColor:c.sub,
+            callbacks:{
+              title:items=>HOURLY_LABELS[items[0].dataIndex]+" — "+["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"][items[0].dataIndex],
+              label:ctx=>{
+                if(ctx.datasetIndex===1)return "Even dist: "+(hourlyMode==="pct"?ctx.raw.toFixed(1)+"%":ctx.raw+" orders");
+                const h=ctx.dataIndex;
+                const lines=[hourlyMode==="pct"?ctx.raw.toFixed(1)+"% of daily orders":ctx.raw+" orders"];
+                if(isHappyHour(h))lines.push("⚡ Happy Hour window");
+                if(isPeak(h,data))lines.push("📈 Peak demand");
+                if(data[h]>0&&data[h]<evenLine)lines.push("💡 Promo opportunity");
+                return lines;
+              }
+            }
+          },
+          annotation:{} 
+        },
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10,family:"DM Mono, Courier New, monospace"}}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10,family:"DM Mono, Courier New, monospace"},callback:v=>hourlyMode==="pct"?v+"%":v},beginAtZero:true}
+        }
+      }
+    });
+  }
+
+  // Day of week chart
+  const dowCtx=document.getElementById("chartDow");
+  if(dowCtx){
+    const maxVal=Math.max(...DOW_DATA);
+    chartDow=new Chart(dowCtx,{
+      type:"bar",
+      data:{
+        labels:DOW_LABELS,
+        datasets:[{
+          data:DOW_DATA,
+          backgroundColor:DOW_DATA.map((v,i)=>{
+            if(v===maxVal)return c.green;
+            if(i===0)return dark?"rgba(255,59,92,0.6)":"rgba(187,17,51,0.6)";
+            if(v>=maxVal*0.85)return dark?"rgba(0,208,132,0.65)":"rgba(0,153,85,0.65)";
+            return dark?"rgba(255,255,255,0.2)":"rgba(0,0,0,0.15)";
+          }),
+          borderRadius:4,borderSkipped:false,
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{
+          backgroundColor:dark?"#0F1520":"#FFFFFF",
+          borderColor:c.border,borderWidth:1,
+          titleColor:c.text,bodyColor:c.sub,
+          callbacks:{label:ctx=>`${ctx.raw} avg orders`}
+        }},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:11,family:"DM Mono, Courier New, monospace"}}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10,family:"DM Mono, Courier New, monospace"}},beginAtZero:true}
+        }
+      }
+    });
+  }
+
+  // Trend chart — dual axis orders + revenue
+  const tCtx=document.getElementById("chartTrend");
+  if(tCtx){
+    chartTrend=new Chart(tCtx,{
+      type:"line",
+      data:{
+        labels:TREND_LABELS,
+        datasets:[
+          {
+            label:"Orders",
+            data:TREND_ORDERS,
+            borderColor:c.cyan,
+            backgroundColor:dark?"rgba(0,229,255,0.08)":"rgba(0,119,187,0.08)",
+            borderWidth:2,pointRadius:0,pointHoverRadius:4,
+            fill:true,tension:0.4,yAxisID:"y"
+          },
+          {
+            label:"Revenue ($)",
+            data:TREND_REVENUE,
+            borderColor:c.green,
+            backgroundColor:"transparent",
+            borderWidth:2,pointRadius:0,pointHoverRadius:4,
+            fill:false,tension:0.4,yAxisID:"y2",
+            borderDash:[4,3]
+          }
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        interaction:{mode:"index",intersect:false},
+        plugins:{
+          legend:{
+            display:true,position:"top",align:"end",
+            labels:{color:c.sub,font:{size:11,family:"DM Mono, Courier New, monospace"},boxWidth:12,padding:16}
+          },
+          tooltip:{
+            backgroundColor:dark?"#0F1520":"#FFFFFF",
+            borderColor:c.border,borderWidth:1,
+            titleColor:c.text,bodyColor:c.sub,
+            callbacks:{label:ctx=>ctx.dataset.label==="Revenue ($)"?`Revenue: $${ctx.raw}`:`Orders: ${ctx.raw}`}
+          }
+        },
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10,family:"DM Mono, Courier New, monospace"},maxTicksLimit:8}},
+          y:{grid:{color:gridColor},ticks:{color:c.cyan,font:{size:10,family:"DM Mono, Courier New, monospace"}},beginAtZero:false,title:{display:true,text:"Orders",color:c.cyan,font:{size:10}}},
+          y2:{position:"right",grid:{display:false},ticks:{color:c.green,font:{size:10,family:"DM Mono, Courier New, monospace"},callback:v=>"$"+v},beginAtZero:false,title:{display:true,text:"Revenue",color:c.green,font:{size:10}}}
+        }
+      }
+    });
+  }
+}
+
+function render(){
+  const c=t(),m=sel(),st=STATUS[m.status];
+  const o=enterprise?agg("orders",period):m.orders[period];
+  const cu=enterprise?agg("customers",period):m.customers[period];
+  const g=enterprise?agg("gross",period):m.gross[period];
+  const h=enterprise?agg("host",period):m.host[period];
+  const av=enterprise?aggAov():m.aov[period];
+  const maxD=m.drinks[0]?.n||1;
+
+  document.body.style.background=c.bg;
+  document.body.style.color=c.text;
+  destroyCharts();
+
+  document.getElementById("app").innerHTML=`
+  <div style="min-height:100vh;background:${c.bg};">
+
+  <!-- HEADER -->
+  <div style="background:${c.surface};border-bottom:1px solid ${c.border};padding:0 28px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 24px rgba(0,0,0,0.25);">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <span style="font-size:22px;font-weight:900;color:${c.cyan};letter-spacing:0.06em;">BLEND<span style="color:${c.text};">+</span></span>
+      <span style="width:1px;height:20px;background:${c.border};display:inline-block;"></span>
+      <span style="font-size:11px;color:${c.muted};letter-spacing:0.12em;text-transform:uppercase;">Operator Dashboard</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:11px;color:${c.muted};text-align:right;line-height:1.6;">
+        <div>${new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})}</div>
+        <div style="color:${c.cyan};font-weight:700;">${new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",hour12:true})}</div>
+      </div>
+      <button class="tab-btn" onclick="toggleEnterprise()" style="border:1px solid ${enterprise?c.cyan:c.border};background:${enterprise?c.cyanDim:"transparent"};color:${enterprise?c.cyan:c.muted};">${enterprise?"⚡ Enterprise":"Single Machine"}</button>
+      <button onclick="toggleDark()" style="width:38px;height:38px;border-radius:8px;cursor:pointer;border:1px solid ${c.border};background:transparent;font-size:16px;color:${c.sub};display:flex;align-items:center;justify-content:center;">${dark?"☀️":"🌙"}</button>
+    </div>
+  </div>
+
+  <div style="display:flex;min-height:calc(100vh - 62px);">
+
+  <!-- SIDEBAR (enterprise) -->
+  ${enterprise?`<div style="width:290px;background:${c.surface};border-right:1px solid ${c.border};padding:20px 14px;flex-shrink:0;overflow-y:auto;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.15em;color:${c.muted};text-transform:uppercase;margin-bottom:14px;">Fleet — ${machines().length} Machines</div>
+    ${machines().map(mc=>`
+    <div class="machine-card" onclick="selectM('${mc.id}')" style="background:${mc.id===selId?c.cyanDim:c.surface};border:1px solid ${mc.id===selId?c.cyan:c.border};">
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+        <div><div style="font-size:13px;font-weight:700;color:${c.text};">${mc.name}</div><div style="font-size:10px;color:${c.muted};margin-top:2px;">${mc.location}</div></div>
+        <span class="dot" style="background:${STATUS[mc.status].color};box-shadow:0 0 8px ${STATUS[mc.status].color}88;margin-top:4px;"></span>
+      </div>
+      <div style="display:flex;gap:16px;">
+        <div><div style="font-size:9px;color:${c.muted};text-transform:uppercase;letter-spacing:0.07em;">Today</div><div style="font-size:16px;font-weight:800;color:${c.cyan};">${mc.orders.today}</div><div style="font-size:9px;color:${c.muted};">orders</div></div>
+        <div><div style="font-size:9px;color:${c.muted};text-transform:uppercase;letter-spacing:0.07em;">Revenue</div><div style="font-size:16px;font-weight:800;color:${c.green};">${fmt(mc.gross.today)}</div><div style="font-size:9px;color:${c.muted};">gross</div></div>
+        <div><div style="font-size:9px;color:${c.muted};text-transform:uppercase;letter-spacing:0.07em;">Status</div><div style="font-size:11px;font-weight:700;color:${STATUS[mc.status].color};margin-top:3px;">${STATUS[mc.status].label}</div></div>
+      </div>
+      ${mc.faults.length>0?`<div style="margin-top:10px;padding:6px 10px;border-radius:6px;background:${mc.status==="orange"?c.orangeDim:c.yellowDim};font-size:10px;color:${mc.status==="orange"?c.orange:c.yellow};">⚠ ${mc.faults[0].msg.split("—")[0].trim()}</div>`:""}
+    </div>`).join("")}
+    <div style="margin-top:16px;padding:14px 16px;background:${c.bg};border-radius:10px;border:1px solid ${c.border};">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:${c.cyan};text-transform:uppercase;margin-bottom:12px;">Fleet Totals · ${PLABEL[period]}</div>
+      ${[["Orders",agg("orders",period).toLocaleString()],["Customers",agg("customers",period).toLocaleString()],["Gross Revenue",fmt(agg("gross",period))],["Host Share",fmt(agg("host",period))]].map(([l,v])=>`
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid ${c.border};">
+        <span style="font-size:11px;color:${c.muted};">${l}</span>
+        <span style="font-size:13px;font-weight:700;color:${c.text};">${v}</span>
+      </div>`).join("")}
+    </div>
+  </div>`:""}
+
+  <!-- MAIN -->
+  <div style="flex:1;padding:26px 30px;overflow-y:auto;background:${c.bg};">
+
+    <!-- Machine header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:5px;">
+          <span class="dot" style="width:12px;height:12px;background:${st.color};box-shadow:0 0 10px ${st.color}88;"></span>
+          <span style="font-size:24px;font-weight:900;color:${c.text};letter-spacing:-0.02em;">${m.name}</span>
+          <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${st.color};background:${st.color}22;border-radius:20px;padding:4px 12px;">${st.label}</span>
+        </div>
+        <div style="font-size:12px;color:${c.muted};display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <span>${m.id} · ${m.location}</span>
+          <span>Uptime: <span style="color:${c.green};font-weight:700;">${m.uptime}</span></span>
+          <span style="color:${OUTAGES_30D===0?c.green:c.yellow};">⬤ ${OUTAGES_30D===0?"No outages":""+OUTAGES_30D+" outage"+(OUTAGES_30D>1?"s":"")} in 30 days${OUTAGES_30D>0?" · avg "+OUTAGE_AVG_MIN+" min":""}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:2px;background:${c.surface};border:1px solid ${c.border};border-radius:8px;padding:4px;">
+        ${PERIODS.map(p=>`<button class="period-btn" onclick="setPeriod('${p}')" style="background:${period===p?c.cyan:"transparent"};color:${period===p?c.bg:c.muted};">${p==="today"?"1D":p==="week"?"1W":p==="month"?"1M":p==="quarter"?"3M":"1Y"}</button>`).join("")}
+      </div>
+    </div>
+
+    <!-- Faults -->
+    ${m.faults.map(f=>`
+    <div class="fault-bar" style="background:${f.level==="L2"?c.orangeDim:c.yellowDim};border:1px solid ${f.level==="L2"?c.orange:c.yellow}44;">
+      <span style="font-size:16px;">${f.level==="L2"?"⚠️":"ℹ️"}</span>
+      <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:${f.level==="L2"?c.orange:c.yellow};text-transform:uppercase;margin-right:6px;">${f.level}</span>
+      <span style="flex:1;color:${c.text};">${f.msg}</span>
+      <span style="font-size:11px;color:${c.muted};">${f.time}</span>
+    </div>`).join("")}
+
+    <!-- KPI Row -->
+    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+      ${[
+        {l:"Orders",v:o.toLocaleString(),s:"total tranx",ac:c.cyan,mom:MOM_ORDERS},
+        {l:"Customers",v:cu.toLocaleString(),s:"this period",ac:c.text,mom:null},
+        {l:"Avg Order",v:fmt(av),s:"per tranx",ac:c.yellow,mom:null},
+        {l:"Revenue",v:fmt(g),s:"total sales",ac:c.green,mom:MOM_GROSS},
+        {l:"Your Share",v:fmt(h),s:"next payout "+NEXT_PAYOUT_DATE,ac:c.cyan,mom:MOM_HOST,proj:"Projected: "+fmt(PROJECTED_HOST)},
+      ].map(({l,v,s,ac,mom,proj})=>`
+      <div class="stat-card" style="background:${c.surface};border:1px solid ${c.border};">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+          <div style="font-size:10px;color:${c.muted};font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;">${l}</div>
+          ${mom!==null?`<span style="font-size:10px;font-weight:700;color:${mom>=0?c.green:c.red};background:${mom>=0?c.greenDim:c.redDim};border-radius:4px;padding:2px 6px;white-space:nowrap;">${mom>=0?"+":""}${mom}% vs last mo</span>`:""}
+        </div>
+        <div style="font-size:26px;font-weight:800;color:${ac};letter-spacing:-0.02em;line-height:1;">${v}</div>
+        <div style="font-size:11px;color:${c.sub};margin-top:6px;">${s}</div>
+        ${proj?`<div style="font-size:11px;color:${c.cyan};margin-top:4px;font-weight:600;">${proj}</div>`:""}
+      </div>`).join("")}
+    </div>
+
+    <!-- HOST SECTION DIVIDER -->
+    <div class="section-divider" style="color:${c.cyan};"><span style="color:${c.cyan};">Performance</span><div style="flex:1;height:1px;background:${c.border};margin-left:14px;"></div></div>
+
+    <!-- Hourly distribution -->
+    <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">Orders by Hour of Day</div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.cyan};"></div><span style="font-size:10px;color:${c.sub};">Happy Hour</span></div>
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.green};"></div><span style="font-size:10px;color:${c.sub};">Peak</span></div>
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:20px;height:2px;background:${c.yellow};border-top:2px dashed ${c.yellow};"></div><span style="font-size:10px;color:${c.sub};">Even dist.</span></div>
+          </div>
+          <div style="display:flex;gap:2px;background:${c.bg};border:1px solid ${c.border};border-radius:6px;padding:3px;">
+            <button onclick="setHourlyMode('count')" style="padding:4px 10px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border:none;background:${hourlyMode==='count'?c.cyan:'transparent'};color:${hourlyMode==='count'?c.bg:c.muted};font-family:inherit;">Count</button>
+            <button onclick="setHourlyMode('pct')" style="padding:4px 10px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border:none;background:${hourlyMode==='pct'?c.cyan:'transparent'};color:${hourlyMode==='pct'?c.bg:c.muted};font-family:inherit;">%</button>
+          </div>
+        </div>
+      </div>
+      <div style="height:180px;"><canvas id="chartHourly"></canvas></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid ${c.border};display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        ${(()=>{
+          const window=HOURLY.map((v,h)=>({h,v})).filter(({h})=>h>=5&&h<=22);
+          const sorted=[...window].sort((a,b)=>b.v-a.v);
+          const top4=sorted.slice(0,4);
+          const bottom4=[...sorted].reverse().slice(0,4).sort((a,b)=>a.h-b.h);
+          const top4sorted=top4.sort((a,b)=>a.h-b.h);
+          return [
+            {label:"4 Strongest Hours",items:top4sorted,color:c.green},
+            {label:"4 Weakest Hours",items:bottom4,color:c.red},
+          ].map(({label,items,color})=>`
+          <div style="background:${color}10;border:1px solid ${color}33;border-radius:10px;padding:14px 16px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${color};margin-bottom:12px;">${label}</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              ${items.map(({h,v})=>`
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;font-weight:700;color:${c.text};">${HOURLY_LABELS[h]}</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:80px;height:4px;border-radius:2px;background:${c.border};overflow:hidden;">
+                    <div style="height:100%;width:${Math.round(v/Math.max(...HOURLY)*100)}%;background:${color};border-radius:2px;"></div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:${color};min-width:28px;text-align:right;">${v}</span>
+                </div>
+              </div>`).join("")}
+            </div>
+          </div>`).join("");
+        })()}
+      </div>
+    </div>
+
+    <!-- Day of week chart -->
+    <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">Orders by Day of Week</div>
+        <span style="font-size:11px;color:${c.muted};">avg daily orders</span>
+      </div>
+      <div style="height:160px;"><canvas id="chartDow"></canvas></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid ${c.border};display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        ${(()=>{
+          const maxDay=DOW_DATA.indexOf(Math.max(...DOW_DATA));
+          const minDay=DOW_DATA.indexOf(Math.min(...DOW_DATA));
+          const weekdayAvg=Math.round(DOW_DATA.slice(1,6).reduce((s,v)=>s+v,0)/5);
+          const weekendAvg=Math.round((DOW_DATA[0]+DOW_DATA[6])/2);
+          return [
+            {label:"Best Day",value:DOW_LABELS[maxDay],sub:DOW_DATA[maxDay]+" orders avg",color:c.green},
+            {label:"Slowest Day",value:DOW_LABELS[minDay],sub:DOW_DATA[minDay]+" orders avg",color:c.red},
+            {label:"Weekday vs Weekend",value:weekdayAvg+" vs "+weekendAvg,sub:"avg orders per day",color:c.cyan},
+          ].map(({label,value,sub,color})=>`
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${c.muted};margin-bottom:6px;">${label}</div>
+            <div style="font-size:18px;font-weight:800;color:${color};">${value}</div>
+            <div style="font-size:11px;color:${c.sub};margin-top:3px;">${sub}</div>
+          </div>`).join("");
+        })()}
+      </div>
+    </div>
+
+    <!-- Trend chart — 30 days -->
+    <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">30-Day Trend — Orders & Revenue</div>
+        <div style="display:flex;gap:16px;align-items:center;">
+          <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:2px;background:${c.cyan};border-radius:1px;"></div><span style="font-size:11px;color:${c.sub};">Orders</span></div>
+          <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:2px;background:${c.green};border-radius:1px;border-top:2px dashed ${c.green};"></div><span style="font-size:11px;color:${c.sub};">Revenue</span></div>
+        </div>
+      </div>
+      <div style="height:200px;"><canvas id="chartTrend"></canvas></div>
+    </div>
+
+    <!-- Top 5 drinks -->
+    <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">Top 5 Drinks · All Time</div>
+        <span style="font-size:11px;color:${c.muted};">${m.drinks.length} total combinations</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+        ${m.drinks.slice(0,5).map((d,i)=>`
+        <div style="background:${c.bg};border:1px solid ${i===0?c.cyan:c.border};border-radius:10px;padding:14px 16px;position:relative;${i===0?`box-shadow:0 0 16px ${c.cyan}18;`:""}">
+          <div style="font-size:18px;margin-bottom:6px;">${["🥇","🥈","🥉","4","5"][i]}</div>
+          <div style="font-size:12px;font-weight:700;color:${c.text};margin-bottom:4px;line-height:1.3;">${d.name}</div>
+          <div style="font-size:22px;font-weight:900;color:${i===0?c.cyan:c.text};letter-spacing:-0.02em;">${d.n}</div>
+          <div style="font-size:10px;color:${c.muted};margin-bottom:8px;">orders</div>
+          <div style="height:4px;border-radius:2px;background:${c.border};overflow:hidden;"><div style="height:100%;width:${Math.round(d.n/maxD*100)}%;background:${i===0?c.cyan:i<3?c.green:c.borderStrong};border-radius:2px;"></div></div>
+          <div style="position:absolute;top:12px;right:12px;font-size:12px;color:${d.t==="up"?c.green:d.t==="down"?c.red:c.muted};font-weight:700;">${d.t==="up"?"↑":d.t==="down"?"↓":"→"}</div>
+        </div>`).join("")}
+      </div>
+    </div>
+
+    <!-- Member stats -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+      <div class="card" style="background:${c.surface};border:1px solid ${c.border};text-align:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${c.muted};margin-bottom:10px;">Avg Member Rating</div>
+        <div style="font-size:36px;font-weight:900;color:${c.yellow};letter-spacing:-0.02em;">${AVG_RATING}</div>
+        <div style="font-size:18px;margin-top:4px;">★★★★★</div>
+        <div style="font-size:11px;color:${c.sub};margin-top:6px;">out of 5.0</div>
+      </div>
+      <div class="card" style="background:${c.surface};border:1px solid ${c.border};text-align:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${c.muted};margin-bottom:10px;">First-Time → Repeat</div>
+        <div style="font-size:36px;font-weight:900;color:${c.green};letter-spacing:-0.02em;">${REPEAT_RATE}%</div>
+        <div style="font-size:11px;color:${c.sub};margin-top:6px;">of new customers returned</div>
+        <div style="height:6px;border-radius:3px;background:${c.border};overflow:hidden;margin-top:10px;">
+          <div style="height:100%;width:${REPEAT_RATE}%;background:${c.green};border-radius:3px;"></div>
+        </div>
+      </div>
+      <div class="card" style="background:${c.surface};border:1px solid ${c.border};text-align:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:${c.muted};margin-bottom:10px;">Avg Orders / Customer</div>
+        <div style="font-size:36px;font-weight:900;color:${c.cyan};letter-spacing:-0.02em;">5.0x</div>
+        <div style="font-size:11px;color:${c.sub};margin-top:6px;">per month · 1.25x per week</div>
+      </div>
+    </div>
+
+    <!-- Recent orders -->
+    <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};margin-bottom:16px;">Recent Orders</div>
+      ${m.recent.map((o,i)=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:${i<m.recent.length-1?`1px solid ${c.border}`:"none"};">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <span style="font-size:11px;color:${c.muted};min-width:60px;">${o.time}</span>
+          <span style="font-size:13px;color:${c.text};">${o.drink}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:${c.green};">${fmt(o.amt)}</span>
+          <span style="font-size:9px;font-weight:700;text-transform:uppercase;color:${c.green};background:${c.greenDim};border-radius:4px;padding:2px 7px;">✓ done</span>
+        </div>
+      </div>`).join("")}
+    </div>
+
+    <!-- OPERATOR SECTION DIVIDER -->
+    <div class="section-divider" style="margin-top:32px;">
+      <span style="color:${c.muted};">Machine Operations</span>
+      <div style="flex:1;height:1px;background:${c.border};margin-left:14px;"></div>
+      <span style="font-size:10px;color:${c.muted};font-style:italic;white-space:nowrap;margin-left:14px;">BLEND+ operator view</span>
+    </div>
+
+    <!-- 2 col: ingredients + system status -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;">
+
+      <!-- Ingredients — compact -->
+      <div class="card" style="background:${c.surface};border:1px solid ${c.border};">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};margin-bottom:14px;">Ingredient Levels</div>
+        ${m.ingredients.map(ing=>`
+        <div style="margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:8px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${catC(ing.cat)};background:${catC(ing.cat)}22;border-radius:3px;padding:1px 5px;">${ing.cat}</span>
+              <span style="font-size:12px;color:${c.text};">${ing.name}</span>
+            </div>
+            <span style="font-size:12px;font-weight:700;color:${lc(ing.level)};">${ing.level}%</span>
+          </div>
+          <div class="bar-bg" style="background:${c.border};height:4px;"><div style="height:100%;border-radius:2px;width:${ing.level}%;background:${lc(ing.level)};"></div></div>
+        </div>`).join("")}
+      </div>
+
+      <!-- System status -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card" style="background:${c.surface};border:1px solid ${c.border};">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};margin-bottom:16px;">System Status</div>
+          <div style="display:flex;gap:10px;justify-content:space-around;">
+            ${[["CO₂ Canister",m.co2+"%",m.co2,m.co2<=15?"Replace Soon":m.co2<=30?"Monitor":"Good"],["Cup Stack",m.cups+"/"+m.cupsMax,Math.round(m.cups/m.cupsMax*100),Math.round(m.cups/m.cupsMax*100)<=25?"Restock Soon":"Good"],["Water TDS",m.tds+" ppm",Math.min(Math.round(m.tds/150*100),100),m.tds<60?"Excellent":"Acceptable"]].map(([label,val,pct,stat])=>`
+            <div style="text-align:center;flex:1;">
+              <div style="font-size:9px;color:${c.muted};text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">${label}</div>
+              <div style="position:relative;width:68px;height:68px;margin:0 auto 8px;">
+                <svg viewBox="0 0 68 68" style="transform:rotate(-90deg);">
+                  <circle cx="34" cy="34" r="26" fill="none" stroke="${c.border}" stroke-width="5"/>
+                  <circle cx="34" cy="34" r="26" fill="none" stroke="${lc(pct)}" stroke-width="5"
+                    stroke-dasharray="${2*Math.PI*26}" stroke-dashoffset="${2*Math.PI*26*(1-pct/100)}" stroke-linecap="round"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                  <span style="font-size:12px;font-weight:800;color:${lc(pct)};">${val}</span>
+                </div>
+              </div>
+              <div style="font-size:11px;color:${lc(pct)};font-weight:700;">${stat}</div>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="card" style="background:${c.surface};border:1px solid ${c.border};flex:1;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};margin-bottom:12px;">Machine Info</div>
+          ${[["Machine ID",m.id],["Location",m.location],["Uptime",m.uptime],["Last Seen","Just now"],["Firmware","v2.4.1"]].map(([l,v])=>`
+          <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid ${c.border};">
+            <span style="font-size:11px;color:${c.muted};">${l}</span>
+            <span style="font-size:12px;font-weight:600;color:${c.text};">${v}</span>
+          </div>`).join("")}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>`;
+
+  // Build charts after DOM is ready
+  setTimeout(buildCharts, 50);
+}
+
+function setHourlyMode(mode){hourlyMode=mode;render();}
+function toggleDark(){dark=!dark;render();}
+function toggleEnterprise(){enterprise=!enterprise;selId="BLN-001";render();}
+function selectM(id){selId=id;render();}
+function setPeriod(p){period=p;render();}
+
+render();
+setInterval(render,60000);
+</script>
+</body>
+</html>
