@@ -22,7 +22,10 @@
 
   <!-- SIDEBAR -->
   <div id="sidebar">
-    <div class="sidebar-logo">BLEND+<span>Company Portal</span></div>
+    <div class="sidebar-header-row">
+      <div class="sidebar-logo">BLEND+<span>Company Portal</span></div>
+      <button type="button" class="sidebar-close" onclick="toggleSidebar()" aria-label="Close menu">×</button>
+    </div>
 
     <div class="audience-toggle">
       <div class="audience-label">Viewing as</div>
@@ -33,36 +36,71 @@
     </div>
 
     <div class="nav-section">
-      <div class="nav-group-label">Overview</div>
-      <button class="nav-item active" onclick="nav('overview',this)"><span class="nav-dot"></span>Overview</button>
+      <div class="nav-group-label insider-only">Portal</div>
+      <button class="nav-item insider-only" onclick="nav('overview',this)"><span class="nav-dot"></span>Overview</button>
+      <div class="nav-group-sep insider-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label host-only">Start Here</div>
+      <button class="nav-item host-only active" onclick="nav('overview',this)"><span class="nav-dot"></span>Overview</button>
       <button class="nav-item" onclick="nav('experience',this)"><span class="nav-dot"></span>The Experience</button>
+      <button class="nav-item host-only" onclick="nav('why-it-works',this)"><span class="nav-dot"></span>Why It Works</button>
+
+      <div class="nav-group-sep host-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label investor-only">The Vision</div>
+      <button class="nav-item investor-only" onclick="nav('overview',this)"><span class="nav-dot"></span>Overview</button>
+      <button class="nav-item investor-only" onclick="nav('experience',this)"><span class="nav-dot"></span>The Experience</button>
       <button class="nav-item investor-only" onclick="nav('why-now',this)"><span class="nav-dot"></span>Why Now</button>
-      <button class="nav-item" onclick="nav('team',this)"><span class="nav-dot"></span>Team</button>
 
-      <div class="nav-group-label investor-only">Investment</div>
-      <button class="nav-item investor-only" onclick="nav('raise',this)"><span class="nav-dot"></span>The Raise</button>
-      <button class="nav-item investor-only" onclick="nav('economics',this)"><span class="nav-dot"></span>Unit Economics</button>
-      <button class="nav-item investor-only" onclick="nav('trajectory',this)"><span class="nav-dot"></span>Manufacturing</button>
-      <button class="nav-item investor-only" onclick="nav('acquisition',this)"><span class="nav-dot"></span>Exit Thesis</button>
-      <button class="nav-item investor-only" onclick="nav('roadmap',this)"><span class="nav-dot"></span>5-Year Roadmap</button>
-      <button class="nav-item investor-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
-      <button class="nav-item investor-only" onclick="nav('tam',this)"><span class="nav-dot"></span>Market Size · TAM</button>
-      <button class="nav-item investor-only" onclick="nav('projections',this)"><span class="nav-dot"></span>TAM Penetration</button>
-      <button class="nav-item investor-only faq-nav-investor" onclick="nav('faq',this)"><span class="nav-dot"></span>FAQ</button>
+      <div class="nav-group-sep investor-only" aria-hidden="true"></div>
 
-      <div class="nav-group-label">Product</div>
+      <div class="nav-group-label">The Product</div>
       <button class="nav-item" onclick="nav('machine',this)"><span class="nav-dot"></span>The Machine</button>
-      <button class="nav-item host-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
       <button class="nav-item" onclick="nav('app',this)"><span class="nav-dot"></span>Consumer App</button>
       <button class="nav-item" onclick="nav('dashboard',this)"><span class="nav-dot"></span>Operator Dashboard</button>
       <button class="nav-item" onclick="nav('ingredients',this)"><span class="nav-dot"></span>Ingredients</button>
       <button class="nav-item" onclick="nav('retention',this)"><span class="nav-dot"></span>Growth & Retention</button>
 
-      <div class="nav-group-label host-only">Host Program</div>
-      <button class="nav-item host-only" onclick="nav('host-terms',this)"><span class="nav-dot"></span>Partner Terms</button>
+      <div class="nav-group-sep" aria-hidden="true"></div>
+
+      <div class="nav-group-label host-only">Your Opportunity</div>
       <button class="nav-item host-only" onclick="nav('host-economics',this)"><span class="nav-dot"></span>Your Revenue</button>
-      <button class="nav-item" onclick="nav('submit-interest',this)"><span class="nav-dot"></span>Submit Interest</button>
+      <button class="nav-item host-only" onclick="nav('the-numbers',this)"><span class="nav-dot"></span>The Numbers</button>
+      <button class="nav-item host-only" onclick="nav('host-terms',this)"><span class="nav-dot"></span>Partner Terms</button>
+      <button class="nav-item host-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
+
+      <div class="nav-group-sep investor-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label investor-only">The Business</div>
+      <button class="nav-item investor-only" onclick="nav('economics',this)"><span class="nav-dot"></span>Unit Economics</button>
+      <button class="nav-item investor-only" onclick="nav('the-numbers',this)"><span class="nav-dot"></span>The Numbers</button>
+      <button class="nav-item investor-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
+      <button class="nav-item investor-only" onclick="nav('tam',this)"><span class="nav-dot"></span>Market Size · TAM</button>
+      <button class="nav-item investor-only" onclick="nav('projections',this)"><span class="nav-dot"></span>TAM Penetration</button>
+
+      <div class="nav-group-sep investor-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label nav-group-label--action investor-only">The Investment</div>
+      <button class="nav-item investor-only" onclick="nav('raise',this)"><span class="nav-dot"></span>The Raise</button>
+      <button class="nav-item investor-only" onclick="nav('buyout-calculator',this)"><span class="nav-dot"></span>Buyout Calculator</button>
+      <button class="nav-item investor-only" onclick="nav('trajectory',this)"><span class="nav-dot"></span>Manufacturing</button>
+      <button class="nav-item investor-only" onclick="nav('acquisition',this)"><span class="nav-dot"></span>Exit Thesis</button>
+      <button class="nav-item investor-only" onclick="nav('roadmap',this)"><span class="nav-dot"></span>5-Year Roadmap</button>
+
+      <div class="nav-group-sep host-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label nav-group-label--action host-only">Get Started</div>
+      <button class="nav-item host-only" onclick="nav('submit-interest',this)"><span class="nav-dot"></span>Submit Interest</button>
       <button class="nav-item host-only faq-nav-host" onclick="nav('faq',this)"><span class="nav-dot"></span>FAQ</button>
+
+      <div class="nav-group-sep investor-only" aria-hidden="true"></div>
+
+      <div class="nav-group-label investor-only">Reference</div>
+      <button class="nav-item investor-only" onclick="nav('team',this)"><span class="nav-dot"></span>Team</button>
+      <button class="nav-item investor-only faq-nav-investor" onclick="nav('faq',this)"><span class="nav-dot"></span>FAQ</button>
+      <button class="nav-item investor-only" onclick="nav('submit-interest',this)"><span class="nav-dot"></span>Submit Interest</button>
+
+      <div class="nav-group-sep insider-only" aria-hidden="true"></div>
 
       <div class="nav-group-label insider-only">Engineering</div>
       <button class="nav-item insider-only" onclick="nav('engineering',this)"><span class="nav-dot"></span>Machine Architecture</button>
@@ -253,6 +291,44 @@
       </div>
     </div>
 
+    <!-- ══ WHY IT WORKS (HOST) ══ -->
+    <div class="page host-only" id="page-why-it-works">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Product</div>
+        <div class="page-title">Why It Works</div>
+        <div class="page-sub">The same five reasons members choose BLEND+ every time — presence, customization, clean ingredients, speed, and reliability.</div>
+      </div>
+      <div class="card">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+          <div class="card" style="margin-bottom:0;border:1px solid #E5E7EB;border-top:3px solid #00BFA5;padding-top:20px;">
+            <div style="font-size:32px;line-height:1;margin-bottom:12px;">📍</div>
+            <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">It meets you where you are</div>
+            <div class="exp-muted" style="font-size:14px;line-height:1.7;color:#6B7280;">The machine is not a destination. It is already at the destination you chose — the gym you already go to, on the route you already walk, at the moment you already need it. There is no detour. BLEND+ wins by being present at the exact moment the need exists.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid #E5E7EB;border-top:3px solid #00BFA5;padding-top:20px;">
+            <div style="font-size:32px;line-height:1;margin-bottom:12px;">🎛️</div>
+            <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">It is exactly what you want</div>
+            <div class="exp-muted" style="font-size:14px;line-height:1.7;color:#6B7280;">Your protein. Your base. Your supplements. Your caffeine dose. Your flavor. Not a pre-made option you settle for — your drink, made to your specification, the same way every time. The app remembers your order. The machine executes it perfectly.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid #E5E7EB;border-top:3px solid #00BFA5;padding-top:20px;">
+            <div style="font-size:32px;line-height:1;margin-bottom:12px;">🌿</div>
+            <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">The ingredients are actually clean</div>
+            <div class="exp-muted" style="font-size:14px;line-height:1.7;color:#6B7280;">Organic ingredients. Cold-processed grass-fed whey. No artificial sweeteners — lightly sweetened with organic cane sugar only. You know exactly what went into it because the machine logged every gram of every ingredient on every order. Full nutrition transparency via QR code on every cup.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid #E5E7EB;border-top:3px solid #00BFA5;padding-top:20px;">
+            <div style="font-size:32px;line-height:1;margin-bottom:12px;">⏱️</div>
+            <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">It takes under 60 seconds</div>
+            <div class="exp-muted" style="font-size:14px;line-height:1.7;color:#6B7280;">Order on the app before you finish your last set. Walk to the machine. Pick up your drink. Go. Some drinks are ready in 15 to 30 seconds. The shorter the distance between wanting something and having it, the more often people do it. Sixty seconds is a habit. Ten minutes is a maybe.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid #E5E7EB;border-top:3px solid #00BFA5;padding-top:20px;">
+            <div style="font-size:32px;line-height:1;margin-bottom:12px;">🔒</div>
+            <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">It works every single time</div>
+            <div class="exp-muted" style="font-size:14px;line-height:1.7;color:#6B7280;">The machine runs on an Allen-Bradley CompactLogix PLC — the same industrial control system used in food manufacturing worldwide. It runs a 7-step automated clean cycle after every single order. It verifies every ingredient before dispensing. It does not have an off day. 6am Monday performs identically to 8pm Friday.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ══ TEAM ══ -->
     <div class="page" id="page-team">
       <div class="page-header">
@@ -296,7 +372,7 @@
         <div class="page-sub">The conditions that make BLEND+ possible today did not exist five years ago.</div>
       </div>
       <p style="max-width:720px;margin:0 auto 32px;text-align:center;font-size:18px;line-height:1.8;color:#111827;">Every great business is a product of its moment. The timing has to be right — not just the idea. BLEND+ exists at the intersection of five converging forces that have never aligned like this before.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px;">
+      <div class="why-now-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px;">
         <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
           <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">01</div>
           <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">Gym membership is at an all-time high</div>
@@ -668,6 +744,158 @@
     </div>
     <!-- END SAFE DOCUMENTS -->
 
+    </div>
+
+    <!-- ══ THE NUMBERS ══ -->
+    <div class="page" id="page-the-numbers">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Economics</div>
+        <div class="page-title">The Numbers</div>
+        <div class="page-sub">One machine. One location. Here is the complete picture.</div>
+      </div>
+      <p style="max-width:720px;margin:0 auto 28px;text-align:center;font-size:18px;line-height:1.8;color:#111827;">Every number on this page is falsifiable. Machine 1 will confirm or correct every assumption before Machine 2 ships. This is not a model built to impress — it is a model built to be tested.</p>
+
+      <div class="card">
+        <div class="card-title">What It Costs to Build</div>
+        <div class="stat-row">
+          <div class="stat-card" style="text-align:center;">
+            <div class="stat-value" style="color:#00BFA5;">$18,500</div>
+            <div class="stat-label">Hardware — Machine 1</div>
+            <div class="stat-sub">BOM v1 — all cost reductions applied. Aluminum exterior. Competitive component quotes. Water Innovations cost + 20%.</div>
+          </div>
+          <div class="stat-card" style="text-align:center;">
+            <div class="stat-value" style="color:#00BFA5;">$12,250</div>
+            <div class="stat-label">Certification — one time</div>
+            <div class="stat-sub">NSF/ANSI 25 + ETL via Intertek. Single engagement. Does not repeat on subsequent machines.</div>
+          </div>
+          <div class="stat-card" style="text-align:center;">
+            <div class="stat-value" style="color:#00BFA5;">$30,750</div>
+            <div class="stat-label">Machine 1 all-in</div>
+            <div class="stat-sub">The most expensive machine we will ever build. Every machine after this costs $18,500.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">What One Machine Generates</div>
+        <div class="tn-math" style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div class="tn-math-row" style="background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);"><span style="color:#00BFA5;font-weight:700;">44</span> orders per day × <span style="color:#00BFA5;font-weight:700;">$7.47</span> average order value</div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;">Base case. Conservative. 8.3% of 529 daily gym visitors.</div>
+          </div>
+          <div class="tn-math-row" style="background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">= <span style="color:#00BFA5;font-weight:700;">$328.68</span> daily gross revenue</div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">Every day. 365 days. The gym is always open.</div>
+          </div>
+          <div class="tn-math-row" style="background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">× 30 days = <span style="color:#00BFA5;font-weight:700;">$9,861</span> monthly gross</div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">Before any splits. Raw machine output.</div>
+          </div>
+          <div class="tn-math-row" style="background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">− 20% host revenue share = <span style="color:#00BFA5;font-weight:700;">$1,972</span></div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">Host earns $1,972 per month. Passively. Without touching anything.</div>
+          </div>
+          <div class="tn-math-row" style="background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">= <span style="color:#00BFA5;font-weight:700;">$7,889</span> monthly net to BLEND+</div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">80% of gross. Four revenue streams. No labor. No rent. No royalties.</div>
+          </div>
+          <div class="tn-math-row" style="background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">COGS per drink: <span style="color:#00BFA5;font-weight:700;">$2.33</span> × 44 orders × 30 days = <span style="color:#00BFA5;font-weight:700;">$3,075</span></div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">Ingredients, cup, lid, co-packing, chemicals, service overhead.</div>
+          </div>
+          <div class="tn-math-row" style="background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:14px;color:#111827;border-right:1px solid var(--border);border-top:1px solid var(--border);">= <span style="color:#00BFA5;font-weight:700;">$4,814</span> monthly gross profit per machine</div>
+            <div style="padding:12px 16px;font-size:13px;color:#6B7280;border-top:1px solid var(--border);">Before amortization. At base case volume.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">When It Pays For Itself</div>
+        <div style="text-align:center;margin-bottom:12px;">
+          <div class="stat-value" style="font-size:48px;color:#00BFA5;">75 days</div>
+          <div class="stat-label" style="margin-top:8px;">Hardware payback period</div>
+          <div class="stat-sub" style="max-width:520px;margin:8px auto 0;">At 44 orders per day. $18,500 hardware cost ÷ $246 daily net. Under 3 months.</div>
+        </div>
+        <div style="position:relative;margin:28px 0 20px;padding:0 8px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">
+            <span>Month 1</span><span>Month 2</span><span style="color:#00BFA5;font-weight:700;">Paid off</span><span>Month 3</span><span>Month 4 →</span>
+          </div>
+          <div style="height:10px;background:#E5E7EB;border-radius:5px;position:relative;">
+            <div style="position:absolute;left:62.5%;top:-5px;width:14px;height:20px;background:#00BFA5;border-radius:3px;transform:translateX(-50%);box-shadow:0 2px 8px rgba(0,191,165,0.4);" title="~75 days"></div>
+          </div>
+        </div>
+        <p style="font-size:14px;color:#374151;line-height:1.75;text-align:center;max-width:640px;margin:0 auto;">Every dollar generated after day 75 is pure return on a $18,500 investment. The machine does not depreciate in usefulness. It compounds.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">What Happens When You Reinvest</div>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:16px;">No draws for the first 4 to 6 months. Every dollar of net revenue goes into the next machine. Here is what that looks like:</p>
+        <div class="table-scroll-wrap">
+        <table class="data-table">
+          <tr><th>Month</th><th>Machines</th><th>Monthly Net</th><th>Reinvestment</th><th>Running total / notes</th></tr>
+          <tr><td>1</td><td>1</td><td>$7,889</td><td>$7,889</td><td>$7,889</td></tr>
+          <tr><td>2</td><td>1</td><td>$7,889</td><td>$7,889</td><td>$15,778</td></tr>
+          <tr><td>3</td><td>1</td><td>$7,889</td><td>$7,889</td><td style="color:#00BFA5;font-weight:700;">$23,667 — Machine 2 funded</td></tr>
+          <tr><td>4</td><td>2</td><td>$15,778</td><td>$15,778</td><td style="color:#00BFA5;font-weight:700;">$21,556 — Machine 3 funded next month</td></tr>
+          <tr><td>5</td><td>3</td><td>$23,667</td><td>$23,667</td><td style="color:#00BFA5;font-weight:700;">$26,734 — Machine 4 funded in weeks</td></tr>
+          <tr><td>6</td><td>4</td><td>$31,556</td><td>$28,556</td><td style="color:#00BFA5;font-weight:700;">$3,000 draw begins</td></tr>
+          <tr><td>9</td><td>6</td><td>$47,334</td><td>$39,334</td><td>Compounding hard</td></tr>
+          <tr><td>12</td><td>9</td><td>$71,001</td><td>$59,001</td><td style="color:#00BFA5;font-weight:700;">$12,000/month draw</td></tr>
+          <tr><td>18</td><td>15</td><td>$118,335</td><td>$88,335</td><td style="color:#00BFA5;font-weight:700;">$30,000/month draw</td></tr>
+          <tr><td>24</td><td>22</td><td>$173,558</td><td>$113,558</td><td style="color:#00BFA5;font-weight:700;">$60,000/month draw</td></tr>
+        </table>
+        </div>
+        <div style="background:#F0FDFA;border-left:4px solid #00BFA5;border-radius:10px;padding:18px 20px;margin-top:20px;font-size:14px;color:#111827;line-height:1.75;">This model assumes zero outside capital after the initial raise. Every machine after Machine 1 is funded by the machine before it. The investor's $25,000 in Tranche 1 is the seed that starts the chain. Everything after that is self-funded.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Floor, Base Case, and Strong</div>
+        <div class="table-scroll-wrap">
+        <table class="data-table">
+          <tr>
+            <th>Metric</th>
+            <th>Floor</th>
+            <th style="background:#00BFA5;color:#FFFFFF;">Base Case</th>
+            <th>Strong</th>
+          </tr>
+          <tr><td>Orders per day</td><td>18</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">44</td><td>70</td></tr>
+          <tr><td>Monthly gross</td><td>$3,780</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$9,861</td><td>$14,700</td></tr>
+          <tr><td>Host share (20%)</td><td>$756</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$1,972</td><td>$2,940</td></tr>
+          <tr><td>BLEND+ net (80%)</td><td>$3,024</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$7,889</td><td>$11,760</td></tr>
+          <tr><td>Monthly COGS</td><td>$1,188</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$2,904</td><td>$4,620</td></tr>
+          <tr><td>Monthly gross profit</td><td>$1,836</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$4,985</td><td>$7,140</td></tr>
+          <tr><td>Payback period</td><td>~10 months</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">~75 days</td><td>~47 days</td></tr>
+          <tr><td>Annual gross profit/machine</td><td>$22,032</td><td style="background:#F0FDFA;font-weight:700;color:#111827;">$59,820</td><td>$85,680</td></tr>
+        </table>
+        </div>
+        <p style="font-size:13px;color:#6B7280;line-height:1.65;margin-top:14px;">The business is viable above 18 orders per day. The floor is not scary — it is $1,836 per month gross profit on an $18,500 machine.</p>
+      </div>
+
+      <div style="margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;max-width:none;box-sizing:border-box;padding:40px 24px 44px;background:#00BFA5;color:#FFFFFF;text-align:center;">
+        <div style="font-size:clamp(20px,2.8vw,26px);font-weight:800;line-height:1.35;margin:0 auto 16px;max-width:900px;">A $18,500 machine that pays itself off in 75 days and then funds the next machine.</div>
+        <div style="font-size:16px;line-height:1.8;margin:0 auto;max-width:880px;opacity:0.98;">Zero staff. Zero rent. Zero royalties. A host that earns $1,972 per month without lifting a finger. A fleet that compounds from its own cashflow. A business that gets more valuable with every machine deployed and every order logged. If the machine works — and it will — the numbers are not complicated. They are just math.</div>
+      </div>
+    </div>
+
+    <!-- ══ BUYOUT CALCULATOR (INVESTOR) ══ -->
+    <div class="page investor-only" id="page-buyout-calculator">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Exit Modeling</div>
+        <div class="page-title">Buyout Calculator</div>
+        <div class="page-sub">Illustrative acquisition math at fleet scale — not a prediction. Cross-check with Exit Thesis and Unit Economics.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Indicative Range · 25+ Machines</div>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:16px;">At roughly $7,889 monthly net per machine at base case, a 25-machine fleet implies on the order of <strong style="color:#111827;">$197K/month</strong> BLEND+ net before growth. At 3–5× net on a strategic exit, the conversation starts in eight figures — consistent with the minimum acceptable outcome described in Exit Thesis.</p>
+        <table class="data-table">
+          <tr><th>Machines</th><th>Base-case illustrative monthly net</th><th>Annual net (illustrative)</th></tr>
+          <tr><td>25</td><td>~$197,225</td><td>~$2.37M</td></tr>
+          <tr><td>100</td><td>~$788,900</td><td>~$9.47M</td></tr>
+          <tr><td>500</td><td>~$3.94M</td><td>~$47.3M</td></tr>
+        </table>
+        <p style="font-size:13px;color:#6B7280;margin-top:14px;line-height:1.65;">Actual results depend on realized orders, host mix, and reinvestment cadence. Machine 1 data replaces every placeholder.</p>
+      </div>
     </div>
 
     <!-- ══ UNIT ECONOMICS ══ -->
@@ -1104,23 +1332,23 @@
         <div class="page-sub">1,000 machines. Every gym, campus, clinic, and hotel lobby in America that has ever needed this and didn't know it yet.</div>
       </div>
       <p style="max-width:720px;margin:0 auto 28px;text-align:center;font-size:18px;line-height:1.75;color:#111827;">This is not a hockey stick projection built to impress. It is a machine-by-machine deployment plan built on a single constraint: how fast can Water Innovations build them, and how fast can we place them. The answer compounds faster than it looks.</p>
-      <div class="card" style="margin-bottom:24px;">
+      <div class="card roadmap-card" style="margin-bottom:24px;">
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Five-year trajectory</div>
-        <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin-bottom:8px;">
+        <div class="roadmap-phase-bar" style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin-bottom:8px;">
           <div style="flex:1;background:#00BFA5;"></div>
           <div style="flex:1;background:#E5E7EB;"></div>
           <div style="flex:1;background:#E5E7EB;"></div>
           <div style="flex:1;background:#E5E7EB;"></div>
           <div style="flex:1;background:#E5E7EB;"></div>
         </div>
-        <div style="display:flex;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:24px;">
+        <div class="roadmap-phase-labels" style="display:flex;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:24px;">
           <div style="flex:1;text-align:center;color:#00BFA5;font-weight:700;">Y1 · Prove It</div>
           <div style="flex:1;text-align:center;">Y2 · Build</div>
           <div style="flex:1;text-align:center;">Y3 · Scale</div>
           <div style="flex:1;text-align:center;">Y4 · Distribution</div>
           <div style="flex:1;text-align:center;">Y5 · 1K</div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        <div class="roadmap-phase-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
           <div style="border-left:3px solid #00BFA5;padding-left:14px;">
             <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 1 — Year 1 (Months 1–12)</div>
             <div style="font-size:11px;color:#00BFA5;font-weight:600;margin-bottom:10px;">Prove It · 1 → 4 machines</div>

@@ -33,7 +33,11 @@ function nav(pageId, btn) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
   const page = document.getElementById('page-' + pageId);
   if (page) page.classList.add('active');
-  if (btn) btn.classList.add('active');
+  const navBtn = btn || Array.from(document.querySelectorAll('.nav-item')).find((b) => {
+    if (getPageIdFromButton(b) !== pageId) return false;
+    return b.offsetParent !== null;
+  });
+  if (navBtn) navBtn.classList.add('active');
   const main = document.getElementById('main');
   if (main) main.scrollTop = 0;
 }
@@ -87,11 +91,11 @@ function renderNDAScreen() {
   const root = document.getElementById('gate-root');
   root.innerHTML = `
     <div style="min-height:100vh;padding:24px;display:flex;align-items:center;justify-content:center;background:#F8FAFB;">
-      <div style="width:100%;max-width:640px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+      <div id="nda-card" style="width:100%;max-width:640px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
       <div style="font-size:28px;font-weight:900;color:var(--cyan);letter-spacing:-0.02em;margin-bottom:18px;">BLEND+</div>
       <div style="font-size:32px;font-weight:700;color:#111827;margin-bottom:8px;">Before You Continue</div>
       <div style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:18px;">What you are about to see represents thousands of hours of engineering, software development, and strategic planning — and a platform already in motion with five founding partners secured. This information is shared selectively. Please read the agreement below before continuing.</div>
-      <div style="max-height:280px;overflow-y:auto;border:1px solid #E5E7EB;background:#F9FAFB;padding:16px;border-radius:8px;font-size:12px;color:#111827;line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
+      <div id="nda-scroll" style="max-height:280px;overflow-y:auto;border:1px solid #E5E7EB;background:#F9FAFB;padding:16px;border-radius:8px;font-size:12px;color:#111827;line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
 
 By entering your information and clicking 'I Agree & Enter Portal', you agree to the following:
 
@@ -276,12 +280,12 @@ function ensureSubmitInterestNav() {
 
 function configureHostView() {
   document.body.setAttribute('data-audience', 'host');
-  const allowed = new Set(['overview', 'experience', 'team', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'host-terms', 'host-economics', 'submit-interest', 'faq']);
+  const allowed = new Set(['overview', 'experience', 'why-it-works', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'the-numbers', 'host-terms', 'host-economics', 'submit-interest', 'faq']);
   document.querySelectorAll('#sidebar .nav-item').forEach((btn) => {
     const id = getPageIdFromButton(btn);
     if (!allowed.has(id)) btn.remove();
   });
-  ['raise', 'economics', 'trajectory', 'acquisition', 'roadmap', 'why-now', 'tam', 'projections', 'engineering', 'bom', 'ops', 'software'].forEach(removeSectionById);
+  ['raise', 'economics', 'trajectory', 'acquisition', 'roadmap', 'why-now', 'tam', 'projections', 'buyout-calculator', 'engineering', 'bom', 'ops', 'software'].forEach(removeSectionById);
   const safeBlock = Array.from(document.querySelectorAll('div')).find((d) => (d.textContent || '').includes('SAFE Agreements · Full Legal Documents'));
   if (safeBlock) safeBlock.remove();
   if (!document.getElementById('host-welcome-banner')) {
@@ -325,6 +329,101 @@ function renderSubmitSuccess(userName) {
   const shell = document.getElementById('submit-interest-shell');
   if (!shell) return;
   shell.innerHTML = `<div style="padding:8px 0;"><div style="font-size:26px;font-weight:900;color:var(--text);margin-bottom:8px;">We've received your submission.</div><div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px;">Thank you, ${userName}. Conner will review your details and follow up within 48 hours.</div><div style="font-size:12px;color:var(--cyan);letter-spacing:0.04em;">Conner Ward · Founder, BLEND+ · conner@blendplus.co</div></div>`;
+}
+
+function buildSectionCta(cfg, audienceClass) {
+  const wrap = document.createElement('div');
+  wrap.className = 'section-cta ' + (audienceClass || '');
+  const h = document.createElement('h3');
+  h.className = 'section-cta__heading';
+  h.textContent = cfg.heading;
+  const p = document.createElement('p');
+  p.className = 'section-cta__sub';
+  p.textContent = cfg.sub;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'section-cta__btn';
+  btn.textContent = cfg.btn;
+  if (cfg.mailto) {
+    btn.addEventListener('click', () => {
+      window.location.href = 'mailto:' + cfg.mailto;
+    });
+  } else if (cfg.pageId) {
+    btn.addEventListener('click', () => {
+      const b = Array.from(document.querySelectorAll('.nav-item')).find((x) => {
+        if (getPageIdFromButton(x) !== cfg.pageId) return false;
+        return x.offsetParent !== null;
+      });
+      nav(cfg.pageId, b || null);
+    });
+  }
+  wrap.appendChild(h);
+  wrap.appendChild(p);
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+const HOST_CTA_CONFIG = {
+  overview: { heading: 'Ready to see if your facility qualifies?', sub: 'It takes 3 minutes. We\'ll follow up within 48 hours.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  experience: { heading: 'This is what your members are missing.', sub: 'Zero cost to place. Zero risk to host. Revenue from day one.', btn: 'See the Partner Terms', pageId: 'host-terms' },
+  machine: { heading: 'This machine is ready for your facility.', sub: '5 founding partner locations are already committed. A few slots remain.', btn: 'Apply for Placement', pageId: 'submit-interest' },
+  app: { heading: 'Your members already use apps like this.', sub: 'BLEND+ loyalty mechanics drive repeat visits — to your facility.', btn: 'See Your Revenue Potential', pageId: 'host-economics' },
+  dashboard: { heading: 'Full transparency. Real-time.', sub: 'See every transaction as it happens. Your revenue share. Your next payment date.', btn: 'See the Partner Terms', pageId: 'host-terms' },
+  'the-numbers': { heading: 'The math works. The question is timing.', sub: '5 founding partner slots remaining in the Southwest region. Early partners lock in 20% permanently.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  'host-economics': { heading: 'This revenue is available to your facility.', sub: 'Zero capital. Zero staff. Zero risk. Just a machine that earns for you.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  'host-terms': { heading: 'These are the best terms we will ever offer.', sub: 'Early partner rate closes once founding slots are filled. Standard terms apply after.', btn: 'Submit Your Interest Now', pageId: 'submit-interest' },
+  competitive: { heading: 'No one else is offering this in your market.', sub: 'BLEND+ is placing machines in a select group of Southwest locations. This is the window.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  ingredients: { heading: 'Your members deserve better than the shelf.', sub: 'Organic. Personalized. Under 60 seconds. Zero operational burden on your team.', btn: 'See the Partner Terms', pageId: 'host-terms' },
+  retention: { heading: 'Retention mechanics that benefit your facility.', sub: 'Every Blend Buck earned drives a member back to your gym.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  faq: { heading: 'Still have questions?', sub: 'Reach out directly. We respond within 24 hours.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
+  'why-it-works': { heading: 'See how the economics back it up.', sub: 'One view with build cost, revenue, payback, and reinvestment — built to be tested.', btn: 'View The Numbers', pageId: 'the-numbers' },
+  team: { heading: 'The team services every machine.', sub: 'Founding partners work directly with the people building and deploying BLEND+.', btn: 'Apply for a Founding Partner Placement', pageId: 'submit-interest' },
+  'submit-interest': { heading: 'Prefer email first?', sub: 'Tell us about your facility and we will respond within 48 hours.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' }
+};
+
+const INVESTOR_CTA_CONFIG = {
+  overview: { heading: 'The model is ready to be funded.', sub: '$25,000 builds the machine. The machine funds everything else.', btn: 'See The Raise', pageId: 'raise' },
+  experience: { heading: 'This is what 1,000 locations looks like from the ground.', sub: 'The experience scales because the machine scales. People don\'t.', btn: 'See the 5-Year Roadmap', pageId: 'roadmap' },
+  'why-now': { heading: 'Seven forces converging. One company positioned to capture them.', sub: 'The window is open. This round funds the first machine that proves it.', btn: 'See The Raise', pageId: 'raise' },
+  'the-numbers': { heading: '75-day payback. Self-funding fleet. Gate-triggered capital.', sub: 'The numbers are not complicated. They are just math.', btn: 'See The Raise', pageId: 'raise' },
+  economics: { heading: 'Every assumption is falsifiable.', sub: 'Machine 1 confirms or corrects every number before Machine 2 ships.', btn: 'See The Raise', pageId: 'raise' },
+  competitive: { heading: 'The category is proven. The model is right. The timing is now.', sub: 'Everyone who tried this before raised $20M-$55M. BLEND+ gets there for $100K.', btn: 'See The Raise', pageId: 'raise' },
+  acquisition: { heading: '25 machines. Eight figures. The conversation changes.', sub: 'This round funds the first machine. That machine funds the rest.', btn: 'See The Raise', pageId: 'raise' },
+  roadmap: { heading: '1,000 machines. 0.67% market penetration.', sub: 'The market is not the constraint. The machine working is the constraint. That is what this round answers.', btn: 'See The Raise', pageId: 'raise' },
+  raise: { heading: 'Ready to participate?', sub: 'One SAFE. Three scenarios. You decide how much conviction you have.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
+  machine: { heading: 'Hardware built for industrial duty cycles.', sub: 'Gate 3 proves reliability before capital scales.', btn: 'See The Raise', pageId: 'raise' },
+  app: { heading: 'Software is the retention layer.', sub: 'The machine sells the first drink. The app sells every drink after.', btn: 'See The Raise', pageId: 'raise' },
+  dashboard: { heading: 'Operators see everything in real time.', sub: 'Transparency is part of the host value proposition.', btn: 'See The Raise', pageId: 'raise' },
+  ingredients: { heading: 'Formulation meets food-safety discipline.', sub: 'NSF/ANSI 25 pathway aligns product and machine certification.', btn: 'See The Raise', pageId: 'raise' },
+  retention: { heading: 'Loyalty compounds with every order.', sub: 'Behavioral data is an acquisition asset — see Exit Thesis.', btn: 'See The Raise', pageId: 'raise' },
+  tam: { heading: 'The TAM is not the question.', sub: 'Machine 1 answers whether the model holds.', btn: 'See The Raise', pageId: 'raise' },
+  projections: { heading: 'Penetration scenarios are illustrative.', sub: 'Capital follows proof through the tranche structure.', btn: 'See The Raise', pageId: 'raise' },
+  trajectory: { heading: 'Manufacturing cadence follows design lock.', sub: 'Water Innovations at cost + 20% through Machine 100.', btn: 'See The Raise', pageId: 'raise' },
+  'buyout-calculator': { heading: 'Model the exit from real fleet data.', sub: 'Illustrative multiples — diligence replaces every placeholder.', btn: 'See Exit Thesis', pageId: 'acquisition' },
+  team: { heading: 'Questions for the founders?', sub: 'We respond to serious investor inquiries directly.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
+  faq: { heading: 'Still have questions?', sub: 'Reach out directly. We respond within 24 hours.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
+  'submit-interest': { heading: 'Interested in hosting or partnering?', sub: 'We route investor and host inquiries through the same team.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
+  engineering: { heading: 'Machine architecture under NDA.', sub: 'Gate 3 and certification precede scaled deployment.', btn: 'See The Raise', pageId: 'raise' },
+  bom: { heading: '109-line BOM. Fourteen subsystems.', sub: 'Cost discipline is engineered in from day one.', btn: 'See The Raise', pageId: 'raise' },
+  ops: { heading: 'Uptime and PM protocols.', sub: 'Reliability is the product — see competitive lessons.', btn: 'See The Raise', pageId: 'raise' },
+  software: { heading: 'App and dashboard are live.', sub: 'PLC middleware completes the stack.', btn: 'See The Raise', pageId: 'raise' }
+};
+
+function injectSectionCtas() {
+  if (document.body.dataset.ctasInjected === '1') return;
+  document.body.dataset.ctasInjected = '1';
+
+  Object.entries(HOST_CTA_CONFIG).forEach(([pageId, cfg]) => {
+    const page = document.getElementById('page-' + pageId);
+    if (!page || page.querySelector('.section-cta.host-only')) return;
+    page.appendChild(buildSectionCta(cfg, 'host-only'));
+  });
+
+  Object.entries(INVESTOR_CTA_CONFIG).forEach(([pageId, cfg]) => {
+    const page = document.getElementById('page-' + pageId);
+    if (!page || page.querySelector('.section-cta.investor-only')) return;
+    page.appendChild(buildSectionCta(cfg, 'investor-only'));
+  });
 }
 
 function attachSubmitInterestHandler() {
@@ -409,8 +508,12 @@ function showPortal() {
   if (loginScreen) loginScreen.style.display = 'none';
   if (app) app.style.display = 'flex';
   configurePortalForAccess();
+  injectSectionCtas();
   attachSubmitInterestHandler();
-  const overviewBtn = Array.from(document.querySelectorAll('.nav-item')).find((b) => getPageIdFromButton(b) === 'overview');
+  const overviewBtn = Array.from(document.querySelectorAll('.nav-item')).find((b) => {
+    if (getPageIdFromButton(b) !== 'overview') return false;
+    return b.offsetParent !== null;
+  });
   nav('overview', overviewBtn || null);
 }
 
