@@ -242,7 +242,7 @@ function buildCharts(){
                 if(ctx.datasetIndex===1)return "Even dist: "+(hourlyMode==="pct"?ctx.raw.toFixed(1)+"%":ctx.raw+" orders");
                 const h=ctx.dataIndex;
                 const lines=[hourlyMode==="pct"?ctx.raw.toFixed(1)+"% of daily orders":ctx.raw+" orders"];
-                if(isHappyHour(h))lines.push("⚡ Happy Hour — off-peak · $2 off");
+                if(isHappyHour(h))lines.push("⚡ Happy Hour — off-peak · 20% off");
                 if(isPowerHour(h))lines.push("★ Power Hour — peak reward · 2× BB or add-on");
                 if(isPeak(h,data))lines.push("📈 Peak demand");
                 if(data[h]>0&&data[h]<evenLine)lines.push("💡 Promo opportunity");
