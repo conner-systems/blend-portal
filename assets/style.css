@@ -220,6 +220,68 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 img.screenshot{width:100%;border-radius:8px;border:1px solid var(--border);}
 img.phone{width:100%;border-radius:16px;border:1px solid var(--border);}
 
+/* Consumer App — phone mockups (4-up, even grid) */
+.app-phone-showcase {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin: 32px 0;
+}
+.app-phone-showcase__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.app-phone-showcase__bezel {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 10px 10px;
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 36px;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.app-phone-showcase__notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+.app-phone-showcase__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 19;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-radius: 24px;
+}
+#page-app .app-phone-showcase__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280 !important;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .app-phone-showcase {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  .app-phone-showcase {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 table.data-table{width:100%;border-collapse:collapse;font-size:15px;background:#FFFFFF;border:1px solid #E5E7EB;}
 table.data-table th{
   padding:12px 16px;text-align:left;
