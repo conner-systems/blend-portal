@@ -44,7 +44,7 @@ function renderAccessScreen() {
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;">
       <div class="login-box">
         <div class="logo">BLEND+</div>
-        <div class="tagline">Company Portal · Confidential</div>
+        <div class="tagline">Southwest Region · By invitation only · Confidential</div>
         <input type="password" id="access-code-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter')handleAccessCode()"/>
         <button onclick="handleAccessCode()">Enter</button>
         <div class="login-error" id="access-code-error">Incorrect access code.</div>
@@ -74,7 +74,7 @@ function renderNDAScreen() {
     <div style="min-height:100vh;padding:24px;max-width:920px;margin:0 auto;">
       <div style="font-size:28px;font-weight:900;color:var(--cyan);letter-spacing:-0.02em;margin-bottom:18px;">BLEND+</div>
       <div style="font-size:32px;font-weight:900;color:var(--text);margin-bottom:8px;">Before You Continue</div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">This portal contains confidential business information. Please read and agree before proceeding.</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">What you are about to see represents thousands of hours of engineering, software development, and strategic planning — and a platform already in motion with five founding partners secured. This information is shared selectively. Please read the agreement below before continuing.</div>
       <div style="max-height:280px;overflow-y:auto;border:1px solid var(--border);background:var(--surface);padding:16px;border-radius:10px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
 
 By entering your information and clicking 'I Agree & Enter Portal', you agree to the following:
@@ -173,28 +173,28 @@ async function submitNDA(event) {
 function renderFacilitySelector() {
   const root = document.getElementById('gate-root');
   const options = [
-    ['🏋️', 'Gym or Fitness Center'],
-    ['🏨', 'Hotel or Resort'],
-    ['🏢', 'Corporate Campus'],
-    ['🎓', 'College or University'],
-    ['🏥', 'Clinical or Wellness Facility'],
-    ['🔍', 'I want to explore all options']
+    ['🏋️', 'Gym or Fitness Center', 'Post-workout nutrition your members already want — generating passive revenue for you.'],
+    ['🏨', 'Hotel or Resort', 'Premium wellness amenity at zero cost — enhancing guest experience and earning monthly revenue.'],
+    ['🏢', 'Corporate Campus', 'Employee wellness benefit that pays you — not one that costs you.'],
+    ['🎓', 'College or University', 'Built for high-traffic rec centers — zero staff, maximum member engagement.'],
+    ['🏥', 'Clinical or Wellness Facility', 'Precision nutrition that extends your clinical offering — with a revenue share built in.'],
+    ['🔍', 'I want to explore all options', 'See the full picture and decide what model works for you.']
   ];
 
   root.innerHTML = `
     <div style="min-height:100vh;padding:24px;max-width:920px;margin:0 auto;">
       <div style="font-size:32px;font-weight:900;color:var(--text);margin-bottom:8px;">What best describes your facility?</div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">We'll show you the information most relevant to you.</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">BLEND+ is currently deploying across California and Arizona. Tell us what you operate and we will show you exactly how the model works for your facility type.</div>
       <div class="two-col" id="facility-grid"></div>
     </div>
   `;
 
   const grid = document.getElementById('facility-grid');
-  options.forEach(([icon, label]) => {
+  options.forEach(([icon, label, subtext]) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;color:var(--text);font-family:var(--font);text-align:left;transition:border-color .2s;';
-    btn.innerHTML = `<div style="font-size:28px;margin-bottom:10px;">${icon}</div><div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);">${label}</div>`;
+    btn.innerHTML = `<div style="font-size:28px;margin-bottom:10px;">${icon}</div><div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">${label}</div><div style="font-size:11px;color:var(--sub);line-height:1.5;">${subtext}</div>`;
     btn.onmouseenter = () => { btn.style.borderColor = 'var(--cyan)'; };
     btn.onmouseleave = () => { btn.style.borderColor = 'var(--border)'; };
     btn.onclick = () => {
