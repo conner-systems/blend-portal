@@ -8,15 +8,9 @@
 </head>
 <body data-audience="investor">
 
-<!-- LOGIN -->
+<!-- LOGIN / MULTI-STEP GATE -->
 <div id="login-screen">
-  <div class="login-box">
-    <div class="logo">BLEND+</div>
-    <div class="tagline">Company Portal · Confidential</div>
-    <input type="password" id="pw-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter')tryLogin()"/>
-    <button onclick="tryLogin()">Access Portal</button>
-    <div class="login-error" id="pw-error">Incorrect access code.</div>
-  </div>
+  <div id="gate-root" style="width:100%;"></div>
 </div>
 
 <!-- APP -->
@@ -61,6 +55,7 @@
       <div class="nav-group-label host-only">Host Program</div>
       <button class="nav-item host-only" onclick="nav('host-terms',this)"><span class="nav-dot"></span>Partner Terms</button>
       <button class="nav-item host-only" onclick="nav('host-economics',this)"><span class="nav-dot"></span>Your Revenue</button>
+      <button class="nav-item" onclick="nav('submit-interest',this)"><span class="nav-dot"></span>Submit Interest</button>
 
       <div class="nav-group-label insider-only">Engineering</div>
       <button class="nav-item insider-only" onclick="nav('engineering',this)"><span class="nav-dot"></span>Machine Architecture</button>
@@ -167,7 +162,7 @@
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Investment</div>
         <div class="page-title">$100K to prove<br>the model.</div>
-        <div class="page-sub">Round 1 funds three machines, certification, and six months of operating runway. Round 2 is milestone-triggered — it unlocks when the model is proven, not when capital runs out.</div>
+        <div class="page-sub">Round 1 funds four machines, certification, and six months of operating runway. Round 2 is milestone-triggered — it unlocks when the model is proven, not when capital runs out.</div>
       </div>
 
       <div class="stat-row">
@@ -744,37 +739,55 @@
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Exit Thesis</div>
         <div class="page-title">This category resolves<br>through acquisition.</div>
-        <div class="page-sub">f'real was acquired by Rich Products. Chowbotics was acquired by DoorDash. The supplement company acquirer acquires BLEND+ for its distribution network, its behavioral data, and its machine fleet.</div>
+        <div class="page-sub">BLEND+ is not being built to run forever. It is being built to be worth acquiring — by the right buyer, at the right scale, on our terms.</div>
       </div>
+
       <div class="card">
-        <div class="card-title">Most Likely Acquirer Profile</div>
-        <ul class="bullet-list">
-          <li>Supplement company seeking gym-floor distribution — Glanbia (Optimum Nutrition) is the primary candidate</li>
-          <li>Gym chain seeking vertical integration of nutrition revenue</li>
-          <li>Commercial food equipment rollup — Middleby Corporation as reference model</li>
-          <li>Private equity seeking recurring revenue in the wellness infrastructure category</li>
-        </ul>
+        <div class="card-title">The Acquisition Trigger</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">BLEND+ will not entertain acquisition conversations before 25 machines are deployed and operating. Before that threshold, the model is still being proven. After it, the model is proven — and the conversation changes from 'can this work' to 'what is this worth.'</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">25 machines represents a fleet generating roughly $2.5M in annual gross revenue across a defensible host network. At that scale, BLEND+ has real data, real operator relationships, and a repeatable deployment playbook. That is what acquirers pay for.</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;">The minimum acceptable outcome is eight figures. Any offer below that does not reflect the value of what has been built — the machine, the software, the host network, the behavioral data, and the proprietary deployment model.</div>
       </div>
-      <div class="highlight-box">
-        <div class="hl-title">The Glanbia Thesis</div>
-        <div class="hl-body">Glanbia owns Optimum Nutrition — the largest protein supplement brand in the US. At 100 machines with $11M annual gross revenue and an established gym host network, BLEND+ represents a distribution channel Glanbia does not have and cannot build as cheaply as acquiring it. Every purchase order BLEND+ sends to Glanbia Nutritionals for ingredient supply is a data point that says "this company moves product through gyms at scale."</div>
-      </div>
+
       <div class="card">
-        <div class="card-title">What Makes BLEND+ Valuable at Exit</div>
-        <div class="three-col">
-          <div>
-            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Fleet + host network</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.6;">100+ machines deployed in gyms across the country with host relationships that took years to build. Distribution that cannot be bought off a shelf.</div>
+        <div class="card-title">Who Buys a Business Like This</div>
+        <div class="two-col">
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:18px;margin-bottom:8px;">💊</div>
+            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Supplement and Nutrition Companies</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.6;">A manufacturer that sells protein and supplements today has no direct-to-consumer channel at the point of workout. BLEND+ is that channel. Every machine in a gym is a branded touchpoint they cannot build as cheaply as buying. The recurring ingredient volume is a bonus — the distribution network is the prize.</div>
           </div>
-          <div>
-            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Behavioral data</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.6;">Every order logged — what members buy, when, how often, what supplements they add. A dataset no supplement company currently has at the point of consumption.</div>
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:18px;margin-bottom:8px;">🏋️</div>
+            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Gym Chain Operators and Fitness Platforms</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.6;">A gym chain that owns its nutrition revenue stream has a structural advantage over one that doesn't. A BLEND+ fleet embedded across a chain's locations — with member data, loyalty mechanics, and real-time dashboards already integrated — is a retention and revenue asset, not just a machine.</div>
           </div>
-          <div>
-            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Recurring revenue</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.6;">$11M+ annual gross at 100 machines, growing with every deployment. Predictable, recurring, high-margin. Exactly what an acquirer pays a premium multiple for.</div>
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:18px;margin-bottom:8px;">🏦</div>
+            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Private Equity in the Wellness Category</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.6;">PE firms that own fitness or wellness brands look for recurring revenue with low capital requirements and high margin. A deployed BLEND+ fleet checks every box. The host network is a distribution moat that took years to build and cannot be replicated by writing a check.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:18px;margin-bottom:8px;">🔧</div>
+            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Commercial Food Equipment Platforms</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.6;">Companies that aggregate specialized food and beverage equipment businesses look for defensible recurring revenue with managed service components. A BLEND+ fleet with monthly service contracts, software subscriptions, and host revenue share agreements fits this model precisely.</div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">What Makes BLEND+ Valuable at Exit</div>
+        <div class="stat-row" style="margin-bottom:0;">
+          <div class="stat-card"><div class="stat-label">Fleet + Host Network</div><div class="stat-value" style="color:var(--cyan);font-size:20px;">25+ machines</div><div class="stat-sub">Deployed across gyms, clinics, and campuses with signed host agreements. Distribution that took years to build and cannot be bought off a shelf.</div></div>
+          <div class="stat-card"><div class="stat-label">Behavioral Data</div><div class="stat-value" style="color:var(--green);font-size:20px;">Every order logged</div><div class="stat-sub">What members buy, when, how often, what supplements they add. A dataset no acquirer currently has at the point of consumption.</div></div>
+          <div class="stat-card"><div class="stat-label">Minimum Exit Value</div><div class="stat-value" style="color:var(--orange);font-size:20px;">Eight figures</div><div class="stat-sub">The floor below which no acquisition conversation proceeds. The model, the network, and the data are worth more than a distressed sale.</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Pattern This Category Follows</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">f'real was acquired by Rich Products. Chowbotics was acquired by DoorDash. Yo-Kai Express built its model on a revenue-share placement structure specifically designed for acquirer appeal. The automated food and beverage category does not produce many IPOs. It produces acquisitions — by strategic buyers who need the distribution, the data, or the recurring revenue the platform generates.</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;">BLEND+ is being built with that outcome in mind from day one. Every host relationship, every machine deployed, every behavioral data point logged is an asset on the acquisition balance sheet. The goal is not to be the biggest company in the category. The goal is to be the most obviously valuable one to the right buyer at the right time.</div>
       </div>
     </div>
 
@@ -1124,7 +1137,7 @@
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Operations</div>
         <div class="page-title">99% uptime target.<br>155 min/month budget.</div>
-        <div class="page-sub">Operating hours 5am–10pm = 510 hours/month. 99.5% uptime = maximum 155 minutes of downtime per month across all causes.</div>
+        <div class="page-sub">Operating hours 5am–10pm = 510 hours/month. 99% uptime = maximum 155 minutes of downtime per month across all causes.</div>
       </div>
       <div class="card">
         <div class="card-title">Preventive Maintenance Schedule</div>
@@ -1590,6 +1603,68 @@
       </div>
     </div>
 
+
+    <!-- ══ SUBMIT INTEREST ══ -->
+    <div class="page" id="page-submit-interest">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Contact</div>
+        <div class="page-title">Express Interest in BLEND+</div>
+        <div class="page-sub">Tell us about your facility. We'll review your submission and follow up within 48 hours.</div>
+      </div>
+      <div class="card" id="submit-interest-shell">
+        <form id="submit-interest-form">
+          <div class="two-col" style="margin-bottom:12px;">
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">Facility Name</div>
+              <input id="si-facility" type="text" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+            </div>
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">City / Location</div>
+              <input id="si-city" type="text" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+            </div>
+          </div>
+          <div class="two-col" style="margin-bottom:12px;">
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">Approximate daily foot traffic</div>
+              <select id="si-traffic" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+                <option value="">Select</option><option>Under 100</option><option>100–300</option><option>300–500</option><option>500–1,000</option><option>1,000+</option>
+              </select>
+            </div>
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">Do you own or lease the space?</div>
+              <select id="si-own" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+                <option value="">Select</option><option>We own the building</option><option>We lease the space</option><option>Managed building — neither</option>
+              </select>
+            </div>
+          </div>
+          <div class="two-col" style="margin-bottom:12px;">
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">Is there a 208–240V 30A dedicated electrical circuit available or can one be added?</div>
+              <select id="si-electric" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+                <option value="">Select</option><option>Yes</option><option>No</option><option>Not sure</option>
+              </select>
+            </div>
+            <div>
+              <div class="card-title" style="margin-bottom:8px;">Is there floor drain access near the intended machine location?</div>
+              <select id="si-drain" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+                <option value="">Select</option><option>Yes</option><option>No</option><option>Not sure</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div class="card-title" style="margin-bottom:8px;">How would you like to work with BLEND+?</div>
+            <select id="si-model" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+              <option value="">Select</option><option>Host the machine — $0 cost, 20% revenue share</option><option>Purchase the machine outright</option><option>Lease the machine</option><option>I want to explore all options</option>
+            </select>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div class="card-title" style="margin-bottom:8px;">Anything else you'd like us to know?</div>
+            <textarea id="si-message" placeholder="Any details about your facility, timeline, or questions." style="width:100%;min-height:120px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;"></textarea>
+          </div>
+          <button type="submit" style="background:var(--cyan);color:#080C10;font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">Submit Interest</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
