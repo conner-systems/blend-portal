@@ -121,6 +121,7 @@ Your name, email, company, timestamp, and access level will be recorded upon sub
           <span>I have read and agree to the Non-Disclosure Agreement above</span>
         </label>
         <button id="nda-submit" type="submit" disabled style="background:var(--cyan);opacity:.55;color:#080C10;font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">I Agree & Enter Portal</button>
+        <div id="nda-save-error" style="display:none;color:var(--red);font-size:11px;margin-top:8px;">Note: your NDA record could not be saved. Please continue.</div>
       </form>
     </div>
   `;
@@ -156,17 +157,45 @@ async function submitNDA(event) {
     }]
   };
 
+  console.log('NDA Airtable request body:', payload);
+
   try {
-    await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/tblsSZyuLCq2INg8j`, {
+    const ndaErrorEl = document.getElementById('nda-save-error');
+    if (ndaErrorEl) ndaErrorEl.style.display = 'none';
+
+    const missingKey = !AIRTABLE_API_KEY || AIRTABLE_API_KEY === 'YOUR_AIRTABLE_KEY_HERE';
+    if (missingKey) {
+      throw new Error('Airtable API key is missing or placeholder value');
+    }
+
+    const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/tblsSZyuLCq2INg8j`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        Authorization: 'Bearer ' + AIRTABLE_API_KEY,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
+
+    if (res.ok) {
+      console.log('NDA record created successfully');
+    } else {
+      const errText = await res.text();
+      console.error('NDA Airtable POST failed:', {
+        status: res.status,
+        statusText: res.statusText,
+        response: errText,
+        payload
+      });
+      if (ndaErrorEl) ndaErrorEl.style.display = 'block';
+    }
   } catch (error) {
-    console.error('NDA Airtable POST failed:', error);
+    console.error('NDA Airtable POST failed with exception:', {
+      error: String(error),
+      payload
+    });
+    const ndaErrorEl = document.getElementById('nda-save-error');
+    if (ndaErrorEl) ndaErrorEl.style.display = 'block';
   }
 
   sessionStorage.setItem('userName', name);
