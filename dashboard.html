@@ -35,7 +35,8 @@ const PLABEL={today:"Today",week:"This Week",month:"This Month",quarter:"This Qu
 // Hourly order data (orders per hour of day, averaged)
 const HOURLY=[0,0,0,0,2,4,8,14,18,22,19,16,11,9,12,14,18,20,16,12,8,5,3,0];
 const HOURLY_LABELS=["12a","1a","2a","3a","4a","5a","6a","7a","8a","9a","10a","11a","12p","1p","2p","3p","4p","5p","6p","7p","8p","9p","10p","11p"];
-const HAPPY_HOUR_WINDOWS=[[5,8],[14,16]]; // 5-8am, 2-4pm
+const HAPPY_HOUR_WINDOWS=[[9,11],[13,15]]; // e.g. 9:30–11:30am, 1–3pm (hour buckets)
+const POWER_HOUR_WINDOWS=[[7,8],[17,18]]; // e.g. 6:30–7:30am, 5–6pm (hour buckets)
 const OPERATING_HOURS=18; // ~6am to midnight
 let hourlyMode="count"; // "count" or "pct"
 
@@ -84,6 +85,7 @@ const PROJECTED_HOST=Math.round(1841/DAYS_ELAPSED*DAYS_IN_MONTH);
 function hourlyTotal(){return HOURLY.reduce((s,v)=>s+v,0);}
 function hourlyPct(){return HOURLY.map(v=>+(v/hourlyTotal()*100).toFixed(1));}
 function isHappyHour(h){return HAPPY_HOUR_WINDOWS.some(([s,e])=>h>=s&&h<e);}
+function isPowerHour(h){return POWER_HOUR_WINDOWS.some(([s,e])=>h>=s&&h<e);}
 function isPeak(h,data){const max=Math.max(...data);return data[h]>=max*0.8;}
 
 // Trend data generated dynamically above with realistic day-of-week patterns
@@ -194,6 +196,7 @@ function buildCharts(){
     const evenLine=hourlyMode==="pct"?(100/OPERATING_HOURS):Math.round(total/OPERATING_HOURS);
     const barColors=data.map((_,h)=>{
       if(isHappyHour(h))return dark?"rgba(0,229,255,0.85)":"rgba(0,119,187,0.85)";
+      if(isPowerHour(h))return dark?"rgba(99,112,255,0.9)":"rgba(26,39,68,0.88)";
       if(isPeak(h,data))return dark?"rgba(0,208,132,0.85)":"rgba(0,153,85,0.85)";
       if(data[h]===0)return dark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.08)";
       return dark?"rgba(255,255,255,0.22)":"rgba(0,0,0,0.18)";
@@ -238,7 +241,8 @@ function buildCharts(){
                 if(ctx.datasetIndex===1)return "Even dist: "+(hourlyMode==="pct"?ctx.raw.toFixed(1)+"%":ctx.raw+" orders");
                 const h=ctx.dataIndex;
                 const lines=[hourlyMode==="pct"?ctx.raw.toFixed(1)+"% of daily orders":ctx.raw+" orders"];
-                if(isHappyHour(h))lines.push("⚡ Happy Hour window");
+                if(isHappyHour(h))lines.push("⚡ Happy Hour window ($2 off)");
+                if(isPowerHour(h))lines.push("★ Power Hour window (bonus BB / add-on)");
                 if(isPeak(h,data))lines.push("📈 Peak demand");
                 if(data[h]>0&&data[h]<evenLine)lines.push("💡 Promo opportunity");
                 return lines;
@@ -464,6 +468,7 @@ function render(){
         <div style="display:flex;align-items:center;gap:16px;">
           <div style="display:flex;gap:10px;align-items:center;">
             <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.cyan};"></div><span style="font-size:10px;color:${c.sub};">Happy Hour</span></div>
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${dark?"#7B8CFF":"#1A2744"};"></div><span style="font-size:10px;color:${c.sub};">Power Hour</span></div>
             <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.green};"></div><span style="font-size:10px;color:${c.sub};">Peak</span></div>
             <div style="display:flex;align-items:center;gap:5px;"><div style="width:20px;height:2px;background:${c.yellow};border-top:2px dashed ${c.yellow};"></div><span style="font-size:10px;color:${c.sub};">Even dist.</span></div>
           </div>

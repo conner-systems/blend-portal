@@ -276,12 +276,12 @@ function ensureSubmitInterestNav() {
 
 function configureHostView() {
   document.body.setAttribute('data-audience', 'host');
-  const allowed = new Set(['overview', 'experience', 'team', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'host-terms', 'host-economics', 'submit-interest']);
+  const allowed = new Set(['overview', 'experience', 'team', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'host-terms', 'host-economics', 'submit-interest', 'faq']);
   document.querySelectorAll('#sidebar .nav-item').forEach((btn) => {
     const id = getPageIdFromButton(btn);
     if (!allowed.has(id)) btn.remove();
   });
-  ['raise', 'economics', 'trajectory', 'acquisition', 'tam', 'projections', 'engineering', 'bom', 'ops', 'software'].forEach(removeSectionById);
+  ['raise', 'economics', 'trajectory', 'acquisition', 'roadmap', 'why-now', 'tam', 'projections', 'engineering', 'bom', 'ops', 'software'].forEach(removeSectionById);
   const safeBlock = Array.from(document.querySelectorAll('div')).find((d) => (d.textContent || '').includes('SAFE Agreements · Full Legal Documents'));
   if (safeBlock) safeBlock.remove();
   if (!document.getElementById('host-welcome-banner')) {

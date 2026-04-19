@@ -36,6 +36,7 @@
       <div class="nav-group-label">Overview</div>
       <button class="nav-item active" onclick="nav('overview',this)"><span class="nav-dot"></span>Overview</button>
       <button class="nav-item" onclick="nav('experience',this)"><span class="nav-dot"></span>The Experience</button>
+      <button class="nav-item investor-only" onclick="nav('why-now',this)"><span class="nav-dot"></span>Why Now</button>
       <button class="nav-item" onclick="nav('team',this)"><span class="nav-dot"></span>Team</button>
 
       <div class="nav-group-label investor-only">Investment</div>
@@ -43,9 +44,11 @@
       <button class="nav-item investor-only" onclick="nav('economics',this)"><span class="nav-dot"></span>Unit Economics</button>
       <button class="nav-item investor-only" onclick="nav('trajectory',this)"><span class="nav-dot"></span>Manufacturing</button>
       <button class="nav-item investor-only" onclick="nav('acquisition',this)"><span class="nav-dot"></span>Exit Thesis</button>
+      <button class="nav-item investor-only" onclick="nav('roadmap',this)"><span class="nav-dot"></span>5-Year Roadmap</button>
       <button class="nav-item investor-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
       <button class="nav-item investor-only" onclick="nav('tam',this)"><span class="nav-dot"></span>Market Size · TAM</button>
       <button class="nav-item investor-only" onclick="nav('projections',this)"><span class="nav-dot"></span>TAM Penetration</button>
+      <button class="nav-item investor-only faq-nav-investor" onclick="nav('faq',this)"><span class="nav-dot"></span>FAQ</button>
 
       <div class="nav-group-label">Product</div>
       <button class="nav-item" onclick="nav('machine',this)"><span class="nav-dot"></span>The Machine</button>
@@ -59,6 +62,7 @@
       <button class="nav-item host-only" onclick="nav('host-terms',this)"><span class="nav-dot"></span>Partner Terms</button>
       <button class="nav-item host-only" onclick="nav('host-economics',this)"><span class="nav-dot"></span>Your Revenue</button>
       <button class="nav-item" onclick="nav('submit-interest',this)"><span class="nav-dot"></span>Submit Interest</button>
+      <button class="nav-item host-only faq-nav-host" onclick="nav('faq',this)"><span class="nav-dot"></span>FAQ</button>
 
       <div class="nav-group-label insider-only">Engineering</div>
       <button class="nav-item insider-only" onclick="nav('engineering',this)"><span class="nav-dot"></span>Machine Architecture</button>
@@ -281,6 +285,57 @@
           <div style="font-size:12px;color:var(--muted);line-height:1.7;">17-year industrial automation integrator. Exclusive BLEND+ manufacturing partner through Machine 100. Cost + 20% structure. Shop, equipment, welder, and supplier relationships already in place.</div>
           <div style="margin-top:12px;"><span class="tag tag-green">Manufacturing</span><span class="tag tag-green">Automation</span></div>
         </div>
+      </div>
+    </div>
+
+    <!-- ══ WHY NOW ══ -->
+    <div class="page investor-only" id="page-why-now">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Market Timing</div>
+        <div class="page-title">Why Now</div>
+        <div class="page-sub">The conditions that make BLEND+ possible today did not exist five years ago.</div>
+      </div>
+      <p style="max-width:720px;margin:0 auto 32px;text-align:center;font-size:18px;line-height:1.8;color:#111827;">Every great business is a product of its moment. The timing has to be right — not just the idea. BLEND+ exists at the intersection of five converging forces that have never aligned like this before.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px;">
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">01</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">Gym membership is at an all-time high</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">77 million Americans hold a gym membership — a record. The HFA reports 193,000 annual visits per location at the average HVLP gym. EOS saw 23.4% year-over-year visit growth. Crunch 21.4%. The audience BLEND+ serves is larger, more active, and more nutrition-aware than at any point in history. The foot traffic is already there. The machine just needs to be in the room.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">02</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">The post-workout nutrition market is exploding</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">The global sports nutrition market exceeded $50 billion in 2024 and is growing at 8%+ annually. Protein consumption has become mainstream — not just for athletes, but for the 25-45 health-conscious professional who goes to the gym three times a week and thinks about what they put in their body. This is BLEND+'s core customer. They exist in enormous numbers and they are underserved at the point of workout.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">03</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">Automated food and beverage has proven it scales</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">f'real reached 20,000+ locations. Yo-Kai Express proved the revenue-share placement model works. The category has demonstrated that automated food and beverage can scale — the failures were execution failures, not category failures. The infrastructure, the consumer behavior, and the operator relationships all exist. BLEND+ is the performance nutrition version of a proven model.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">04</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">Industrial automation is now affordable at small scale</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">Allen-Bradley CompactLogix PLCs — the control systems that run food manufacturing facilities — are now accessible to small hardware companies in a way they were not a decade ago. Water Innovations has 17 years of experience with this exact technology. The engineering capability that used to require a $50 million company to access is sitting in a shop in San Diego, available to BLEND+ at cost plus 20%.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">05</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">Mobile ordering has trained the behavior</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">Starbucks mobile order-ahead. DoorDash. Uber Eats. A generation of consumers has been trained to order food from their phone before they arrive, pay without touching a terminal, and pick up without waiting. BLEND+ does not need to teach members a new behavior. The behavior already exists. The app is familiar. The expectation of convenience is already set. BLEND+ just has to meet it.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">06</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">AI makes every experience personal — at scale</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">For the first time in history, artificial intelligence can replace low-skilled repetitive labor with autonomous software that gets smarter over time. BLEND+ is built on this shift. The machine handles the physical execution. AI handles the personalization layer — learning what each member likes, when they order, what they respond to, and what keeps them coming back. Claude AI is integrated directly into the consumer app and operator dashboard, delivering personalized drink recommendations, behavioral insights, and real-time operational intelligence that no human smoothie bar employee could replicate. The result is a business that does not just replace labor — it replaces labor with something better. A system that remembers every customer, never has an off day, and gets more valuable with every order placed.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:52px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:14px;letter-spacing:-0.02em;">07</div>
+          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;">The labor cost curve is broken — autonomous hardware fixes it</div>
+          <div style="font-size:14px;color:#6B7280;line-height:1.75;">The minimum wage is rising in every major market. Labor costs for a traditional smoothie bar — two staff at $20 per hour across a 14-hour operating day — run $20,000 per month before payroll taxes, scheduling overhead, and turnover costs. That number only goes up. BLEND+ sidesteps the labor cost curve entirely. The machine does not get a raise. It does not call in sick. It does not quit after three months. Every dollar that would have gone to staffing a nutrition counter goes directly to the host's bottom line — and to the member experience.</div>
+        </div>
+      </div>
+      <div style="margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;max-width:none;box-sizing:border-box;padding:40px 24px 44px;background:#00BFA5;color:#FFFFFF;text-align:center;">
+        <div style="font-size:clamp(22px,3vw,30px);font-weight:800;line-height:1.3;margin:0 auto 16px;max-width:900px;">The window is open.</div>
+        <div style="font-size:16px;line-height:1.8;margin:0 auto;max-width:880px;opacity:0.98;">Gym membership is at record highs. The category is proven. The technology is accessible. The consumer behavior is trained. The only question is who gets there first with a machine that is actually reliable. That is what this round funds.</div>
       </div>
     </div>
 
@@ -1041,6 +1096,113 @@
       </div>
     </div>
 
+    <!-- ══ 5-YEAR ROADMAP ══ -->
+    <div class="page investor-only" id="page-roadmap">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Deployment Plan</div>
+        <div class="page-title">5-Year Roadmap</div>
+        <div class="page-sub">1,000 machines. Every gym, campus, clinic, and hotel lobby in America that has ever needed this and didn't know it yet.</div>
+      </div>
+      <p style="max-width:720px;margin:0 auto 28px;text-align:center;font-size:18px;line-height:1.75;color:#111827;">This is not a hockey stick projection built to impress. It is a machine-by-machine deployment plan built on a single constraint: how fast can Water Innovations build them, and how fast can we place them. The answer compounds faster than it looks.</p>
+      <div class="card" style="margin-bottom:24px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Five-year trajectory</div>
+        <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin-bottom:8px;">
+          <div style="flex:1;background:#00BFA5;"></div>
+          <div style="flex:1;background:#E5E7EB;"></div>
+          <div style="flex:1;background:#E5E7EB;"></div>
+          <div style="flex:1;background:#E5E7EB;"></div>
+          <div style="flex:1;background:#E5E7EB;"></div>
+        </div>
+        <div style="display:flex;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:24px;">
+          <div style="flex:1;text-align:center;color:#00BFA5;font-weight:700;">Y1 · Prove It</div>
+          <div style="flex:1;text-align:center;">Y2 · Build</div>
+          <div style="flex:1;text-align:center;">Y3 · Scale</div>
+          <div style="flex:1;text-align:center;">Y4 · Distribution</div>
+          <div style="flex:1;text-align:center;">Y5 · 1K</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+          <div style="border-left:3px solid #00BFA5;padding-left:14px;">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 1 — Year 1 (Months 1–12)</div>
+            <div style="font-size:11px;color:#00BFA5;font-weight:600;margin-bottom:10px;">Prove It · 1 → 4 machines</div>
+            <ul style="margin:0;padding-left:18px;font-size:11px;color:#6B7280;line-height:1.65;">
+              <li>Machine 1 built and Gate 3 passed</li>
+              <li>Certification complete — NSF/ANSI 25 + ETL</li>
+              <li>Stage 1 deployment: SmartFit Rancho</li>
+              <li>Stage 2 deployment: Scottsdale SmartFit (October 1)</li>
+              <li>First arms-length LOIs signed</li>
+              <li>$50K–$100K annual fleet gross</li>
+              <li>Reinvestment begins — machines self-fund</li>
+            </ul>
+          </div>
+          <div style="border-left:3px solid #E5E7EB;padding-left:14px;">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 2 — Year 2 (Months 12–24)</div>
+            <div style="font-size:11px;color:#6B7280;font-weight:600;margin-bottom:10px;">Build the Model · 4 → 20 machines</div>
+            <ul style="margin:0;padding-left:18px;font-size:11px;color:#6B7280;line-height:1.65;">
+              <li>Fleet compounds via reinvestment — 1 new machine per month from cashflow</li>
+              <li>Round 2 SAFE activated ($150K · $5M cap) if warranted</li>
+              <li>First college campus deployment</li>
+              <li>First clinical wellness partnership beyond Lumati</li>
+              <li>JL Marketing gym network introductions begin</li>
+              <li>$200K–$500K annual fleet gross</li>
+              <li>First chain HQ conversation (EOS or Chuze)</li>
+            </ul>
+          </div>
+          <div style="border-left:3px solid #E5E7EB;padding-left:14px;">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 3 — Year 3 (Months 24–36)</div>
+            <div style="font-size:11px;color:#6B7280;font-weight:600;margin-bottom:10px;">Prove the Scale · 20 → 100 machines</div>
+            <ul style="margin:0;padding-left:18px;font-size:11px;color:#6B7280;line-height:1.65;">
+              <li>First signed chain agreement — multiple locations from one deal</li>
+              <li>Production cadence: 4–5 machines per month</li>
+              <li>Offshore fabrication evaluation begins (Machine 6+ design locked)</li>
+              <li>Corporate campus vertical opens</li>
+              <li>$1M+ annual fleet gross</li>
+              <li>Acquisition conversations become available — 25 machine threshold crossed</li>
+            </ul>
+          </div>
+          <div style="border-left:3px solid #E5E7EB;padding-left:14px;">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 4 — Year 4 (Months 36–48)</div>
+            <div style="font-size:11px;color:#6B7280;font-weight:600;margin-bottom:10px;">Distribution at Scale · 100 → 400 machines</div>
+            <ul style="margin:0;padding-left:18px;font-size:11px;color:#6B7280;line-height:1.65;">
+              <li>National chain deals — multi-location agreements</li>
+              <li>Airport conversations begin (Phase 3 vertical)</li>
+              <li>MK2 development — 16-hopper expanded format</li>
+              <li>$4M+ annual fleet gross</li>
+              <li>Strategic acquirer conversations active</li>
+            </ul>
+          </div>
+          <div style="border-left:3px solid #E5E7EB;padding-left:14px;">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;">Phase 5 — Year 5 (Months 48–60)</div>
+            <div style="font-size:11px;color:#6B7280;font-weight:600;margin-bottom:10px;">1,000 Machines · 400 → 1,000 machines</div>
+            <ul style="margin:0;padding-left:18px;font-size:11px;color:#6B7280;line-height:1.65;">
+              <li>1,000 machines deployed across gyms, campuses, clinics, hotels, airports</li>
+              <li>$11M+ annual fleet gross</li>
+              <li>Host network of 1,000 signed partner locations — built over years, not buyable</li>
+              <li>Behavioral dataset: millions of orders logged across every demographic</li>
+              <li>Exit or Series A — the conversation happens from a position of proof</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row" style="margin-bottom:28px;">
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-value" style="font-size:42px;color:#00BFA5;letter-spacing:-0.02em;">1,000</div>
+          <div class="stat-label" style="color:#6B7280;text-transform:uppercase;font-size:10px;letter-spacing:0.08em;">Target machines — Year 5</div>
+          <div class="stat-sub" style="color:#9CA3AF;font-size:12px;margin-top:8px;">One machine per location. 1,000 locations. 0.67% of the Phase 1+2 addressable market.</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-value" style="font-size:42px;color:#00BFA5;letter-spacing:-0.02em;">$11M+</div>
+          <div class="stat-label" style="color:#6B7280;text-transform:uppercase;font-size:10px;letter-spacing:0.08em;">Annual fleet gross at 1,000 machines</div>
+          <div class="stat-sub" style="color:#9CA3AF;font-size:12px;margin-top:8px;">At $11,100 average monthly gross per machine — conservative blended average across all verticals.</div>
+        </div>
+        <div class="stat-card" style="text-align:center;">
+          <div class="stat-value" style="font-size:42px;color:#00BFA5;letter-spacing:-0.02em;">8 figures</div>
+          <div class="stat-label" style="color:#6B7280;text-transform:uppercase;font-size:10px;letter-spacing:0.08em;">Minimum acquisition value</div>
+          <div class="stat-sub" style="color:#9CA3AF;font-size:12px;margin-top:8px;">At 25+ machines with proven model. Every machine added after that increases the floor.</div>
+        </div>
+      </div>
+      <p style="max-width:720px;margin:0 auto;text-align:center;font-size:16px;line-height:1.75;color:#374151;">None of this requires BLEND+ to be the dominant player in any vertical. 1,000 machines is 0.67% of the addressable market across gyms, campuses, wellness centers, and hotels in the US alone. The market size is not the question. The machine working is the question. That is what Tranche 1 answers.</p>
+    </div>
+
     <div class="page" id="page-competitive">
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Competitive Advantage</div>
@@ -1100,6 +1262,59 @@
       </div>
 
       <div class="card">
+        <div class="card-title">The Retail Shelf Comparison</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:20px;max-width:900px;">What it actually takes to generate $1,841 per month in retail — and why BLEND+ makes it look effortless.</div>
+        <div style="font-size:16px;color:#111827;line-height:1.75;margin-bottom:24px;max-width:900px;">
+          <p style="margin-bottom:14px;">A BLEND+ machine at 44 orders per day generates $1,841 per month for the host at 20% revenue share. That number feels passive because it is passive — the machine runs, the revenue accumulates, the payment arrives.</p>
+          <p style="margin-bottom:0;">Now consider what it takes to generate the same $1,841 per month selling protein supplements off a retail shelf.</p>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;">
+            <div style="background:#111827;color:#FFFFFF;padding:14px 16px;font-size:14px;font-weight:700;">Retail Shelf — $1,841/month</div>
+            <div style="background:#00BFA5;color:#FFFFFF;padding:14px 16px;font-size:14px;font-weight:700;">BLEND+ — $1,841/month</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);"><strong style="color:#111827;">Revenue needed</strong> (at 20–30% retail margin): $6,000–$9,200 in gross product sales per month</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;"><strong style="color:#111827;">Revenue needed:</strong> $9,205 gross — machine generates it autonomously</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Products</strong> required: Protein powders, pre-workouts, BCAAs, creatine, electrolytes — 15 to 30 SKUs minimum to serve diverse member needs</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Products:</strong> 12 hoppers — thousands of combinations — no shelf space required</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Staff required:</strong> Someone to recommend, sell, and check out each purchase</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Staff required:</strong> Zero</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Inventory management:</strong> Weekly ordering, stock counting, expiry checking, shrinkage tracking</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Inventory management:</strong> BLEND+ handles all restocking on a monthly service visit</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Storage:</strong> Dedicated retail floor space and back-of-house storage</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Storage:</strong> None — ingredients live inside the sealed machine</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Member experience:</strong> Limited to whatever is on the shelf — no customization, no personalization</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Member experience:</strong> Fully personalized — every combination, every supplement dose, every flavor</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#F9FAFB;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Variety:</strong> Fixed. Whatever you ordered last month is what you have this month.</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Variety:</strong> Rotates quarterly based on member demand data — the menu evolves</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF;">
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-right:1px solid var(--border);border-top:1px solid var(--border);"><strong style="color:#111827;">Risk:</strong> Dead stock, expired product, changing member preferences, supplier delays</div>
+            <div style="padding:12px 16px;font-size:13px;color:#374151;line-height:1.65;border-top:1px solid var(--border);"><strong style="color:#111827;">Risk:</strong> Zero to host — guaranteed $300 minimum regardless of volume</div>
+          </div>
+        </div>
+        <div style="background:#F0FDFA;border-left:4px solid #00BFA5;border-radius:10px;padding:18px 20px;margin-bottom:28px;font-size:14px;color:#111827;line-height:1.75;">To match what BLEND+ generates passively at 44 orders per day, a gym would need to sell $6,000 to $9,200 in retail product every month — with staff, inventory, storage, ordering, and stocking — and still be limited to whatever is sitting on the shelf. BLEND+ has thousands of personalized combinations, zero staff involvement, and a menu that evolves with member preferences. It is a smoothie bar without the hundreds of thousands of dollars in upfront capital, without the $20,000 monthly operating costs, and without any of the risk.</div>
+        <div style="text-align:center;padding:40px 24px 36px;max-width:720px;margin:0 auto;">
+          <p style="font-size:22px;font-style:italic;color:#111827;line-height:1.55;margin:0 0 6px;">It is having a smoothie bar without the smoothie bar.<br>The revenue without the overhead.</p>
+          <p style="font-size:22px;font-style:italic;color:#0F766E;line-height:1.55;margin:0 0 16px;">The experience without the labor.<br>The variety without the inventory.</p>
+          <p style="font-size:22px;font-style:normal;color:#00BFA5;font-weight:700;margin:0;">Zero cost. Zero risk. Zero compromise.</p>
+        </div>
+      </div>
+
+      <div class="card">
         <div class="card-title">What the Automated Category Proved — And Where It Failed</div>
         <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px;">BLEND+ is not the first company to attempt automated nutrition. The category has been well-funded and well-documented. The lessons are clear.</div>
         <div class="two-col">
@@ -1146,7 +1361,7 @@
           <div class="stat-card">
             <div style="font-size:28px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:10px;">📱</div>
             <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">Software that creates loyalty, not just transactions</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7;">Every other machine in this category is a point-of-sale terminal. BLEND+ is a loyalty platform. Blend Bucks, streak rewards, tier progression, Happy Hour mechanics, and a referral engine drive repeat behavior that compounds over time. The machine sells the first drink. The software sells every drink after that.</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7;">Every other machine in this category is a point-of-sale terminal. BLEND+ is a loyalty platform. Blend Bucks, streak rewards, tier progression, Happy Hour and Power Hour mechanics, and a referral engine drive repeat behavior that compounds over time. The machine sells the first drink. The software sells every drink after that.</div>
           </div>
           <div class="stat-card">
             <div style="font-size:28px;font-weight:800;color:#00BFA5;line-height:1;margin-bottom:10px;">✅</div>
@@ -1242,18 +1457,22 @@
         </div>
 
       </div>
-      <div class="three-col">
-        <div class="card">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+        <div class="card" style="margin-bottom:0;">
           <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Blend Bucks</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.6;">Earned on every purchase. Redeemable for free drinks, upgrades, and add-ons. The more they spend, the more they earn.</div>
         </div>
-        <div class="card">
+        <div class="card" style="margin-bottom:0;">
           <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Tier System</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.6;">Bronze → Silver → Gold → Platinum. Higher tiers earn faster, unlock free perks, and get exclusive access. Silver trial for every new member.</div>
         </div>
-        <div class="card">
+        <div class="card" style="margin-bottom:0;border-top:3px solid #00BFA5;">
           <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px;">Happy Hour</div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Dynamic pricing windows drive off-peak volume. 20% off during defined windows. Configurable per location from the operator dashboard.</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Runs twice per day for two hours each (four hours total). Fixed $2 off any drink during each window — configured for morning and afternoon off-peak. Push notification 15 minutes before each window opens.</div>
+        </div>
+        <div class="card" style="margin-bottom:0;border-top:3px solid #1A2744;">
+          <div style="font-size:13px;font-weight:700;color:#1A2744;margin-bottom:8px;">Power Hour</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Double Blend Bucks or a free supplement add-on during peak hours — not a discount. Runs twice per day for one hour each. Push notification when Power Hour starts.</div>
         </div>
       </div>
       <div class="card">
@@ -1388,6 +1607,7 @@
           <tr><td style="color:var(--green)">✓ | Zero Operational Labor</td><td>We handle ingredients, restocking, maintenance, and repairs. Your staff is not involved.</td></tr>
           <tr><td style="color:var(--green)">✓ | Real-Time Dashboard</td><td>Every transaction visible as it happens. Your revenue share, projected payout, and next payment date — always up to date.</td></tr>
           <tr><td style="color:var(--green)">✓ | Member Loyalty App</td><td>Built-in rewards, streaks, and tier system that drives your members back to your facility more consistently.</td></tr>
+          <tr><td style="color:var(--green)">✓ | Happy Hour + Power Hour</td><td>6 hours of daily strategic incentivization — configurable per location from your operator dashboard.</td></tr>
           <tr><td style="color:var(--green)">✓ | 90-Day Evaluation Period</td><td>Walk away at any time in the first 90 days. No penalty. No cost. We remove the machine if it's not the right fit.</td></tr>
           <tr><td style="color:var(--red)">✗ | Capital Investment Required</td><td>Nothing from you.</td></tr>
           <tr><td style="color:var(--red)">✗ | Operational Burden</td><td>We handle everything.</td></tr>
@@ -1594,7 +1814,7 @@
             <li>Tier system — Bronze/Silver/Gold/Platinum active</li>
             <li>Silver trial — 7 days free for new members</li>
             <li>8 active rewards — all placeholder redemption</li>
-            <li>Happy Hour — timezone fix deployed</li>
+            <li>Happy Hour + Power Hour — dual-window model and timezone handling deployed</li>
           </ul>
         </div>
         <div class="card">
@@ -1889,7 +2109,7 @@
         <table class="data-table">
           <tr><th>Tier</th><th>Unlock Threshold</th><th>BB Earn Rate</th><th>Perks</th></tr>
           <tr><td style="color:var(--sub)">Bronze</td><td>Default</td><td>1x</td><td>Standard pricing, standard earn rate</td></tr>
-          <tr><td style="color:var(--text)">Silver</td><td>5 purchases or trial</td><td>1.25x</td><td>Priority queue, early Happy Hour access, 7-day free trial for new members</td></tr>
+          <tr><td style="color:var(--text)">Silver</td><td>5 purchases or trial</td><td>1.25x</td><td>Priority queue, early Happy Hour access, Power Hour alerts, 7-day free trial for new members</td></tr>
           <tr><td style="color:var(--orange)">Gold</td><td>20 purchases</td><td>1.5x</td><td>Monthly free drink, exclusive flavor access, referral bonus multiplier</td></tr>
           <tr><td style="color:var(--cyan)">Platinum</td><td>50 purchases</td><td>2x</td><td>Custom blend save slots, early rotating flavor access, Blend Bucks gifting</td></tr>
         </table>
@@ -1914,7 +2134,7 @@
             <ul class="bullet-list">
               <li>Free Supplement Add-On — 150 BB</li>
               <li>Double Scoop Upgrade — 250 BB</li>
-              <li>Happy Hour access — 150 BB</li>
+              <li>Extended Happy Hour window — 150 BB</li>
               <li>Streak Shield — protects streak on a missed day (scaled cost)</li>
               <li>Bonus BB Day — 400 BB</li>
               <li>Surprise Me Blend — 300 BB (machine chooses)</li>
@@ -1926,22 +2146,58 @@
       </div>
 
       <div class="card">
-        <div class="card-title">Happy Hour — Dynamic Pricing That Moves Volume</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;">Happy Hour is a configurable pricing window set per location from the operator dashboard. During Happy Hour, selected drinks are discounted — typically 20%. The mechanic serves two purposes simultaneously: it drives volume during off-peak hours (reducing the gap between the 44 order base case and the 70 order strong case), and it creates urgency — a member who knows Happy Hour ends at 10am is more likely to order before 10am than to skip the gym entirely.</div>
+        <div class="card-title">Happy Hour + Power Hour — Six Hours of Strategic Incentives</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;"><strong style="color:var(--text)">Happy Hour</strong> runs twice per day. Each session is two hours long — four hours total per day. The mechanism is a fixed $2 off any drink during each window. Timing is configured per location based on traffic patterns — typically morning off-peak and afternoon off-peak (for example, 9:30–11:30am and 1:00–3:00pm at a gym). A push notification is sent 15 minutes before each Happy Hour window opens. The purpose is to drive volume during the two slowest periods of the day.</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;"><strong style="color:#1A2744">Power Hour</strong> also runs twice per day. Each session is one hour long — two hours total. This is not a discount: during Power Hour, members earn double Blend Bucks on every purchase, or receive a free supplement add-on with every drink (location-configurable). Windows are set during peak gym traffic (for example, 6:30–7:30am and 5:00–6:00pm). A push notification is sent when Power Hour starts. The purpose is to reward the most engaged members at the highest-traffic moments, deepen loyalty at peak periods, and lift average order value through supplement attachment.</div>
+        <div style="background:#F9FAFB;border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--text);line-height:1.75;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;">Combined daily incentive structure</div>
+          <p style="margin-bottom:10px;">6 hours of every operating day are strategically incentivized:</p>
+          <p style="margin-bottom:6px;">— Happy Hour: 9:30–11:30am · 2 hours · $2 off every drink · drives off-peak volume</p>
+          <p style="margin-bottom:6px;">— Power Hour: 6:30–7:30am · 1 hour · double Blend Bucks · rewards peak morning members</p>
+          <p style="margin-bottom:6px;">— Power Hour: 5:00–6:00pm · 1 hour · double Blend Bucks · rewards peak evening members</p>
+          <p style="margin-bottom:10px;">— Happy Hour: 1:00–3:00pm · 2 hours · $2 off every drink · drives afternoon off-peak volume</p>
+          <p style="margin-bottom:0;color:var(--muted);font-size:12px;">The remaining 8 hours of the operating day run at full price. The 6 incentivized hours are designed around traffic patterns — discount when it is slow to drive volume, bonus when it is busy to drive loyalty. Both mechanics are configurable per location from the operator dashboard.</p>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Example day · 5am–10pm (17 operating hours)</div>
+        <div style="display:flex;height:28px;border-radius:6px;overflow:hidden;margin-bottom:8px;border:1px solid var(--border);">
+          <div title="Standard" style="flex:90;background:#E5E7EB;"></div>
+          <div title="Power Hour" style="flex:60;background:#1A2744;"></div>
+          <div title="Standard" style="flex:120;background:#E5E7EB;"></div>
+          <div title="Happy Hour" style="flex:120;background:#00BFA5;"></div>
+          <div title="Standard" style="flex:90;background:#E5E7EB;"></div>
+          <div title="Happy Hour" style="flex:120;background:#00BFA5;"></div>
+          <div title="Standard" style="flex:120;background:#E5E7EB;"></div>
+          <div title="Power Hour" style="flex:60;background:#1A2744;"></div>
+          <div title="Standard" style="flex:240;background:#E5E7EB;"></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:11px;color:var(--muted);margin-bottom:20px;">
+          <span><span style="display:inline-block;width:10px;height:10px;background:#00BFA5;border-radius:2px;vertical-align:middle;margin-right:6px;"></span>Happy Hour (discounted)</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:#1A2744;border-radius:2px;vertical-align:middle;margin-right:6px;"></span>Power Hour (bonus)</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:#E5E7EB;border-radius:2px;vertical-align:middle;margin-right:6px;"></span>Standard pricing</span>
+        </div>
         <div class="three-col">
-          <div style="background:var(--surface2);border-radius:8px;padding:16px;">
-            <div style="font-size:11px;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Operator control</div>
-            <div style="font-size:12px;color:var(--muted);">Set Happy Hour window and discount from the dashboard. Adjust per day of week. Configurable without a service visit.</div>
+          <div style="background:var(--surface2);border-radius:8px;padding:16px;border-top:3px solid #00BFA5;">
+            <div style="font-size:11px;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Happy Hour · operator control</div>
+            <div style="font-size:12px;color:var(--muted);">Set both two-hour windows and the fixed $2 discount from the dashboard. Adjust per day of week. Configurable without a service visit.</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:16px;border-top:3px solid #1A2744;">
+            <div style="font-size:11px;color:#1A2744;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Power Hour · operator control</div>
+            <div style="font-size:12px;color:var(--muted);">Choose double Blend Bucks or free supplement add-on during each one-hour peak window. Timing follows your busiest blocks.</div>
           </div>
           <div style="background:var(--surface2);border-radius:8px;padding:16px;">
-            <div style="font-size:11px;color:var(--orange);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Member behavior</div>
-            <div style="font-size:12px;color:var(--muted);">Push notification sent 15 minutes before Happy Hour starts. Members who opt in arrive earlier, order more, and visit more consistently.</div>
-          </div>
-          <div style="background:var(--surface2);border-radius:8px;padding:16px;">
-            <div style="font-size:11px;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Revenue impact</div>
-            <div style="font-size:12px;color:var(--muted);">A 20% discount during a 2-hour window that adds 8 incremental orders per day adds $1,680/month at full price equivalent. The volume more than offsets the margin concession.</div>
+            <div style="font-size:11px;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Push cadence</div>
+            <div style="font-size:12px;color:var(--muted);">Happy Hour: 15 minutes before each window. Power Hour: when the window starts. Members see the right incentive at the right time of day.</div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Daily Incentive Mechanics</div>
+        <table class="data-table">
+          <tr><th>Mechanic</th><th>Schedule</th><th>Offer</th><th>Purpose</th><th>Outcome</th></tr>
+          <tr><td style="font-weight:700;color:var(--text)">Happy Hour</td><td>Twice daily · 2 hours each</td><td>Fixed $2 off any drink during off-peak windows</td><td>Drive volume when traffic is slow</td><td>Smooths demand curve; lifts orders toward strong-case scenarios</td></tr>
+          <tr><td style="font-weight:700;color:#1A2744">Power Hour</td><td>Twice daily · 1 hour each</td><td>Double Blend Bucks or free supplement add-on during peak</td><td>Reward highest-engagement members at busiest moments</td><td>Increases loyalty and supplement attachment rate</td></tr>
+        </table>
       </div>
 
       <div class="card">
@@ -1983,7 +2239,8 @@
         <div class="card-title">Push Notification Strategy — Timed Triggers</div>
         <table class="data-table">
           <tr><th>Trigger</th><th>Timing</th><th>Message</th><th>Goal</th></tr>
-          <tr><td>Happy Hour start</td><td>15 min before</td><td>"Happy Hour starts in 15 — 20% off until 10am"</td><td>Drive off-peak volume</td></tr>
+          <tr><td>Happy Hour start</td><td>15 min before each window</td><td>"Happy Hour in 15 — $2 off drinks 9:30–11:30am"</td><td>Drive off-peak volume</td></tr>
+          <tr><td>Power Hour start</td><td>When window opens</td><td>"Power Hour is on — double Blend Bucks until 7:30am"</td><td>Reward peak members; lift AOV</td></tr>
           <tr><td>Streak at risk</td><td>4pm if no order</td><td>"Your 12-day streak ends tonight — grab your blend"</td><td>Prevent churn</td></tr>
           <tr><td>Milestone reached</td><td>Instant</td><td>"30-day streak 🔥 — you've earned 500 bonus BB"</td><td>Drive sharing</td></tr>
           <tr><td>New rotating flavor</td><td>Launch day</td><td>"New flavor just dropped — [Name] is in Hopper 7"</td><td>Re-engage lapsed users</td></tr>
@@ -2009,6 +2266,77 @@
       </div>
     </div>
 
+    <!-- ══ FAQ ══ -->
+    <div class="page" id="page-faq">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Questions</div>
+        <div class="page-title">Frequently Asked Questions</div>
+        <div class="page-sub">The questions we hear most often — answered directly.</div>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">For Host Partners</div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What if the machine breaks down?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">BLEND+ is 100% responsible for machine performance. We carry a 24-hour response commitment for all active locations. We keep spare parts on every service vehicle. The machine is monitored remotely in real time — in many cases we know about a fault before you do. Your operational burden is zero whether the machine is running perfectly or needs a service visit. You never touch it either way.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What if members don't use it?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">
+            <p style="margin-bottom:12px;">You receive a guaranteed minimum of $300 per month regardless of volume. Your downside is literally zero — you host the machine, we carry all the performance risk.</p>
+            <p style="margin-bottom:12px;">In every realistic scenario your 20% revenue share far exceeds the floor. At 44 orders per day — our Stage 1 base case — your monthly share is $1,841.</p>
+            <p style="margin-bottom:12px;">To put that number in context: generating $1,841 per month selling retail supplements off a shelf requires $6,000 to $9,200 in gross product sales at a 20 to 30% margin. That means ordering inventory, staffing someone to sell it, managing stock levels, tracking expiry dates, and being limited to whatever products are sitting on the shelf. BLEND+ generates the same revenue autonomously — with zero staff involvement, thousands of personalized combinations, and a menu that adapts to what your members actually want.</p>
+            <p style="margin-bottom:0;">It is a smoothie bar without the overhead. The revenue without the risk.</p>
+          </div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">How does installation work?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">We coordinate everything. We assess the site, confirm infrastructure requirements (a dedicated 208-240V 30A circuit and floor drain access), schedule installation around your operation, deliver and commission the machine, and handle all setup. You are not involved in the installation process beyond confirming the location and providing site access.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">How do I see my revenue?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">Every transaction is logged in real time and visible on your operator dashboard from any device. You see orders, revenue, your share, projected payout, and next payment date — always current, no monthly reports to wait for. Payments are made monthly.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What does the 90-day evaluation mean?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">During the first 90 days, either party can walk away at no cost and no penalty. If the machine is not a fit for your location for any reason, we remove it. You keep every dollar of revenue share earned during the evaluation period. The evaluation exists to eliminate your risk entirely — there is no scenario where hosting BLEND+ costs you anything.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">Can I customize the machine for my brand?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">Yes. Premium onboarding includes a full custom vinyl wrap designed to your brand brief, software theme customization matching your colors and fonts, and custom drink names. The design fee starts at $1,500 and covers all machines in your deployment. Your logo, your colors, your members — the machine just works inside your brand.</div>
+        </div>
+        <div style="padding:16px 0 0;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What are the infrastructure requirements?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">Two things: a dedicated 208-240V 30A electrical circuit, and floor drain access near the intended machine location. Both are standard in commercial gym and fitness facilities. If either is not already in place, we can advise on what it takes to add them. This is confirmed during the site assessment before any agreement is signed.</div>
+        </div>
+      </div>
+      <div class="card investor-only">
+        <div class="card-title">For Investors</div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What happens if Machine 1 fails Gate 3?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">Gate 3 requires 50 consecutive verified order cycles — all logged by the PLC with timestamps and temperature records. If the machine fails Gate 3, we diagnose, fix, and rerun. Tranche 2 does not release until Gate 3 passes — no exceptions. Your maximum exposure before seeing proof is $25,000. We do not move forward until the machine works.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What is the exit timeline?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">BLEND+ will not entertain acquisition conversations before 25 machines are deployed and operating. Before that threshold the model is still being proven. After it the conversation changes from 'can this work' to 'what is this worth.' The minimum acceptable outcome is eight figures. The timeline to 25 machines depends on how quickly LOIs convert to deployments and how aggressively Tranche 3 is deployed.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">Why a Delaware C-Corp and not an LLC?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">The SAFE converts into preferred stock at the next priced round. Preferred stock only exists in a corporation — not an LLC. Every investor-backed startup uses a Delaware C-Corp for this reason. The Bonars' attorney will expect it and the YC SAFE template requires it.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What if you can't get LOIs?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">If LOIs don't materialize, Tranche 3 does not release. You are not exposed to $100,000 of capital on a machine that hasn't proven market demand. The tranche structure exists specifically to prevent this scenario. Machine 1 and certification proceed on Tranches 1 and 2 — $50,000 total — and Tranche 3 follows demonstrated demand, not projected demand.</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">How is the $3M valuation cap justified?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">The cap reflects what BLEND+ will be worth at the next priced round — not today. By conversion, the fleet will likely be generating $500K-$1M+ ARR from self-funded machine reinvestment. At 5x revenue that is a $2.5M-$5M valuation — the $3M cap gives you a meaningful discount to conversion price. The 20% discount applies on top. Combined these are investor-friendly terms on a business that de-risks itself through the tranche structure.</div>
+        </div>
+        <div style="padding:16px 0 0;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;">What does Water Innovations get out of this?</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.75;">Water Innovations manufactures at cost plus 20% — a standard contract manufacturing margin. They are compensated through fabrication revenue, not equity. Cooper and CJ Ward contribute PLC engineering and BOM ownership as sweat equity with equity stakes in Blend Plus Inc. Water Innovations as an entity holds no equity — the arrangement is a manufacturing partnership, not an investment.</div>
+        </div>
+      </div>
+    </div>
 
     <!-- ══ SUBMIT INTEREST ══ -->
     <div class="page" id="page-submit-interest">
