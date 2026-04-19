@@ -19,7 +19,7 @@
   --font:Inter,system-ui,-apple-system,sans-serif;
   --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
 }
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;min-height:100vh;overflow-x:hidden;background-color:#ffffff !important;color:#111827 !important;}
 
 /* ── LOGIN ── */
 #login-screen{
@@ -102,7 +102,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 }
 
 /* ── MAIN CONTENT ── */
-#main{margin-left:240px;height:100vh;overflow-y:auto;background:#FFFFFF;}
+#main{margin-left:240px;height:100vh;overflow-y:auto;background:#FFFFFF;background-color:#ffffff !important;color:#111827 !important;}
 .page{display:none;padding:40px;max-width:900px;margin:0 auto;}
 .page.active{display:block;}
 
@@ -235,4 +235,35 @@ body[data-audience="founder"] .investor-only { display:block !important; }
   .page-title {
     font-size: 28px;
   }
+}
+
+/* LIGHT THEME OVERRIDE */
+.content-area, .main-content, .portal-content, section, .section, .card, .panel {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+body {
+  background-color: #f8fafb !important;
+  color: #111827 !important;
+  font-family: Inter, system-ui, -apple-system, sans-serif !important;
+}
+#main, .page {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+h1, h2, h3, h4 {
+  color: #111827 !important;
+}
+p, li, td, th, span, label {
+  color: #374151 !important;
+}
+.stat-value, .highlight, .accent {
+  color: #00BFA5 !important;
+}
+table {
+  background: #ffffff !important;
+}
+th {
+  background: #f9fafb !important;
+  color: #374151 !important;
 }

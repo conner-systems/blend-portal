@@ -519,8 +519,8 @@
   const purple = '#7F77DD';
   const orange = '#EF9F27';
   const green = '#1D9E75';
-  const gridColor = 'rgba(255,255,255,0.06)';
-  const tickColor = 'rgba(255,255,255,0.4)';
+  const gridColor = 'rgba(229,231,235,0.9)';
+  const tickColor = '#6B7280';
 
   const baseOpts = {
     responsive: true,
@@ -528,11 +528,11 @@
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: '#0F1520',
-        borderColor: '#1E2D42',
+        backgroundColor: '#FFFFFF',
+        borderColor: '#E5E7EB',
         borderWidth: 1,
-        titleColor: '#E8F0FC',
-        bodyColor: '#7A90B0',
+        titleColor: '#111827',
+        bodyColor: '#374151',
         padding: 12,
       }
     },
@@ -691,10 +691,10 @@
   const yearColors = ['#EF9F27', '#00B8D4', '#1D9E75', '#7F77DD', '#7F77DD'];
   annualData.forEach((row, i) => {
     const tr = document.createElement('tr');
-    tr.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+    tr.style.borderBottom = '1px solid #E5E7EB';
     tr.innerHTML = `
       <td style="padding:10px 14px;font-weight:700;color:${yearColors[i]}">${row.year}</td>
-      <td style="padding:10px 14px;color:#E8F0FC;">${row.newM}</td>
+      <td style="padding:10px 14px;color:#374151;">${row.newM}</td>
       <td style="padding:10px 14px;color:#00B8D4;font-weight:700;">${row.fleet}</td>
       <td style="padding:10px 14px;color:#EF9F27;">${row.cost}</td>
       <td style="padding:10px 14px;color:#1D9E75;">${row.rev}</td>
@@ -1005,7 +1005,7 @@
         <div class="hl-title">The $300 Guarantee</div>
         <div class="hl-body">Even at zero drinks sold, you receive $300/month for hosting the machine. In every realistic scenario your 20% revenue share far exceeds this floor. The guarantee exists to eliminate your risk entirely.</div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--cyan);border-radius:10px;padding:16px 18px;margin-bottom:16px;font-size:12px;color:var(--text);line-height:1.7;">The model is simple. You provide the location. We provide everything else. You earn 20% of every dollar your members spend — without lifting a finger. The first 10 founding partner locations receive this rate permanently. After that, standard terms apply.</div>
+      <div style="background:#F8FAFB;border:1px solid var(--border);border-left:4px solid var(--cyan);border-radius:10px;padding:16px 18px;margin-bottom:16px;font-size:12px;color:var(--text);line-height:1.7;">The model is simple. You provide the location. We provide everything else. You earn 20% of every dollar your members spend — without lifting a finger. The first 10 founding partner locations receive this rate permanently. After that, standard terms apply.</div>
       <div class="card">
         <div class="card-title">What You Get</div>
         <table class="data-table">
