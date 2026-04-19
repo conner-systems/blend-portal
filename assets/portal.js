@@ -3,7 +3,8 @@ const AIRTABLE_BASE = 'apphCfpJ4CFtw9l4d';
 
 const ACCESS_CODES = {
   BLEND2026: 'host',
-  INVESTOR24: 'investor'
+  INVESTOR24: 'investor',
+  FOUNDER: 'investor'
 };
 
 function toggleSidebar() {
@@ -57,6 +58,13 @@ function handleAccessCode() {
   const input = document.getElementById('access-code-input');
   const error = document.getElementById('access-code-error');
   const code = (input.value || '').trim();
+  if (code === 'FOUNDER') {
+    sessionStorage.setItem('accessLevel', 'investor');
+    sessionStorage.setItem('userName', 'Conner');
+    sessionStorage.setItem('userEmail', 'conner@blendplus.co');
+    showPortal();
+    return;
+  }
   const level = ACCESS_CODES[code];
   if (!level) {
     error.style.display = 'block';
