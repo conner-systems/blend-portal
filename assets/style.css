@@ -424,6 +424,52 @@ th {
   gap: 16px;
 }
 
+/* Why Now — 3×3 card grid */
+.why-now-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  align-items: stretch;
+}
+.why-now-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.2s ease;
+}
+.why-now-card:hover {
+  border-color: #00bfa5;
+  box-shadow: 0 4px 12px rgba(0, 191, 165, 0.1);
+}
+.why-now-card__num {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #00bfa5;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.why-now-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 12px;
+}
+.why-now-card__body {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-top: 8px;
+  flex: 1;
+}
+
 /* ── Sidebar header & nav hierarchy ── */
 .sidebar-header-row {
   display: flex;
@@ -622,7 +668,7 @@ th {
     grid-template-columns: 1fr !important;
   }
   .why-now-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   .roadmap-card .roadmap-phase-bar,
   .roadmap-card .roadmap-phase-labels {
@@ -682,6 +728,9 @@ th {
 
 @media (max-width: 480px) {
   .three-col {
+    grid-template-columns: 1fr !important;
+  }
+  .why-now-grid {
     grid-template-columns: 1fr !important;
   }
 }
