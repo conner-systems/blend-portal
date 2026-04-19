@@ -225,11 +225,11 @@ function renderFacilitySelector() {
   const options = [
     ['🏋️', 'Gym or Fitness Center', 'Post-workout nutrition your members already want — generating passive revenue for you.'],
     ['🏥', 'Clinical or Wellness Facility', 'Precision nutrition that extends your clinical offering — with a revenue share and full dispense logging built in.'],
-    ['🎓', 'College or University', 'Built for high-traffic rec centers and student unions — zero staff, maximum member engagement.'],
+    ['🎓', 'College or University', 'Built for high-traffic rec centers — zero staff, maximum member engagement.'],
     ['🏨', 'Hotel or Resort', 'Premium wellness amenity at zero cost — enhancing guest experience and earning monthly revenue.'],
     ['🏢', 'Corporate Campus', 'Employee wellness benefit that pays you — not one that costs you.'],
-    ['🎖️', 'Military Base or Facility', 'Built for high-fitness cultures with captive populations and built-in nutrition awareness.'],
-    ['✈️', 'Airport or Transit Hub', 'Highest order value of any vertical — captive audience, zero alternatives, premium pricing.'],
+    ['🎖️', 'Military Base or Facility', 'Built for high-fitness cultures with captive daily populations and built-in nutrition awareness.'],
+    ['🏡', 'Senior Living Community', 'Collagen, electrolytes, magnesium — exactly what active senior residents need, delivered autonomously.'],
     ['🔍', 'Something Else', 'Tell us about your facility and we will figure out if BLEND+ is a fit.']
   ];
 
