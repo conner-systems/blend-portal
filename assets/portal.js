@@ -1,6 +1,13 @@
 const AIRTABLE_API_KEY = window.AIRTABLE_API_KEY || '';
 const AIRTABLE_BASE = 'apphCfpJ4CFtw9l4d';
 
+sessionStorage.removeItem('accessLevel');
+sessionStorage.removeItem('userName');
+sessionStorage.removeItem('userEmail');
+sessionStorage.removeItem('userCompany');
+sessionStorage.removeItem('userFacilityType');
+sessionStorage.removeItem('selectedFacility');
+
 const ACCESS_CODES = {
   BLEND2026: 'host',
   INVESTOR24: 'investor',
@@ -79,12 +86,12 @@ function handleAccessCode() {
 function renderNDAScreen() {
   const root = document.getElementById('gate-root');
   root.innerHTML = `
-    <div style="min-height:100vh;padding:24px;display:flex;align-items:center;justify-content:center;">
-      <div style="width:100%;max-width:640px;background:#FFFFFF;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 12px 30px rgba(17,24,39,0.10);">
+    <div style="min-height:100vh;padding:24px;display:flex;align-items:center;justify-content:center;background:#F8FAFB;">
+      <div style="width:100%;max-width:640px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
       <div style="font-size:28px;font-weight:900;color:var(--cyan);letter-spacing:-0.02em;margin-bottom:18px;">BLEND+</div>
-      <div style="font-size:32px;font-weight:900;color:var(--text);margin-bottom:8px;">Before You Continue</div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">What you are about to see represents thousands of hours of engineering, software development, and strategic planning — and a platform already in motion with five founding partners secured. This information is shared selectively. Please read the agreement below before continuing.</div>
-      <div style="max-height:280px;overflow-y:auto;border:1px solid #E5E7EB;background:#F9FAFB;padding:16px;border-radius:8px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
+      <div style="font-size:32px;font-weight:700;color:#111827;margin-bottom:8px;">Before You Continue</div>
+      <div style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:18px;">What you are about to see represents thousands of hours of engineering, software development, and strategic planning — and a platform already in motion with five founding partners secured. This information is shared selectively. Please read the agreement below before continuing.</div>
+      <div style="max-height:280px;overflow-y:auto;border:1px solid #E5E7EB;background:#F9FAFB;padding:16px;border-radius:8px;font-size:12px;color:#111827;line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
 
 By entering your information and clicking 'I Agree & Enter Portal', you agree to the following:
 
@@ -117,11 +124,11 @@ Your name, email, company, timestamp, and access level will be recorded upon sub
             <option>Other</option>
           </select>
         </div>
-        <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--muted);margin-bottom:14px;">
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#374151;margin-bottom:14px;">
           <input id="nda-agree" type="checkbox" style="margin-top:2px;">
           <span>I have read and agree to the Non-Disclosure Agreement above</span>
         </label>
-        <button id="nda-submit" type="submit" disabled style="background:var(--cyan);opacity:.55;color:#FFFFFF;font-family:var(--font);font-size:14px;font-weight:600;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">I Agree & Enter Portal</button>
+        <button id="nda-submit" type="submit" disabled style="background:#00BFA5;opacity:.55;color:#FFFFFF;font-family:var(--font);font-size:14px;font-weight:600;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">I Agree & Enter Portal</button>
         <div id="nda-save-error" style="display:none;color:var(--red);font-size:11px;margin-top:8px;">Note: your NDA record could not be saved. Please continue.</div>
       </form>
     </div>
@@ -408,21 +415,7 @@ function showPortal() {
 }
 
 function bootFlow() {
-  const level = sessionStorage.getItem('accessLevel');
-  if (!level) {
-    renderAccessScreen();
-    return;
-  }
-  const hasNdaData = sessionStorage.getItem('userName') && sessionStorage.getItem('userEmail') && sessionStorage.getItem('userCompany');
-  if (!hasNdaData) {
-    renderNDAScreen();
-    return;
-  }
-  if (level === 'host' && !sessionStorage.getItem('selectedFacility')) {
-    renderFacilitySelector();
-    return;
-  }
-  showPortal();
+  renderAccessScreen();
 }
 
 window.handleAccessCode = handleAccessCode;
