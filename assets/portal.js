@@ -79,11 +79,12 @@ function handleAccessCode() {
 function renderNDAScreen() {
   const root = document.getElementById('gate-root');
   root.innerHTML = `
-    <div style="min-height:100vh;padding:24px;max-width:920px;margin:0 auto;">
+    <div style="min-height:100vh;padding:24px;display:flex;align-items:center;justify-content:center;">
+      <div style="width:100%;max-width:640px;background:#FFFFFF;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 12px 30px rgba(17,24,39,0.10);">
       <div style="font-size:28px;font-weight:900;color:var(--cyan);letter-spacing:-0.02em;margin-bottom:18px;">BLEND+</div>
       <div style="font-size:32px;font-weight:900;color:var(--text);margin-bottom:8px;">Before You Continue</div>
       <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">What you are about to see represents thousands of hours of engineering, software development, and strategic planning — and a platform already in motion with five founding partners secured. This information is shared selectively. Please read the agreement below before continuing.</div>
-      <div style="max-height:280px;overflow-y:auto;border:1px solid var(--border);background:var(--surface);padding:16px;border-radius:10px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
+      <div style="max-height:280px;overflow-y:auto;border:1px solid #E5E7EB;background:#F9FAFB;padding:16px;border-radius:8px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:18px;white-space:pre-wrap;">NON-DISCLOSURE AGREEMENT — v1.0 — April 2026
 
 By entering your information and clicking 'I Agree & Enter Portal', you agree to the following:
 
@@ -100,12 +101,12 @@ By entering your information and clicking 'I Agree & Enter Portal', you agree to
 Your name, email, company, timestamp, and access level will be recorded upon submission. This NDA is electronically executed upon clicking 'I Agree & Enter Portal'.</div>
       <form id="nda-form">
         <div class="two-col" style="margin-bottom:12px;">
-          <input id="nda-name" type="text" required placeholder="Full Name" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
-          <input id="nda-email" type="email" required placeholder="Email" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+          <input id="nda-name" type="text" required placeholder="Full Name" style="width:100%;background:#FFFFFF;border:1px solid #D1D5DB;color:var(--text);font-family:var(--font);font-size:14px;padding:12px 16px;border-radius:8px;">
+          <input id="nda-email" type="email" required placeholder="Email" style="width:100%;background:#FFFFFF;border:1px solid #D1D5DB;color:var(--text);font-family:var(--font);font-size:14px;padding:12px 16px;border-radius:8px;">
         </div>
         <div class="two-col" style="margin-bottom:12px;">
-          <input id="nda-company" type="text" required placeholder="Company or Facility Name" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
-          <select id="nda-facility-type" required style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 12px;border-radius:8px;">
+          <input id="nda-company" type="text" required placeholder="Company or Facility Name" style="width:100%;background:#FFFFFF;border:1px solid #D1D5DB;color:var(--text);font-family:var(--font);font-size:14px;padding:12px 16px;border-radius:8px;">
+          <select id="nda-facility-type" required style="width:100%;background:#FFFFFF;border:1px solid #D1D5DB;color:var(--text);font-family:var(--font);font-size:14px;padding:12px 16px;border-radius:8px;">
             <option value="">Facility Type</option>
             <option>Gym or Fitness Center</option>
             <option>Hotel or Resort</option>
@@ -120,9 +121,10 @@ Your name, email, company, timestamp, and access level will be recorded upon sub
           <input id="nda-agree" type="checkbox" style="margin-top:2px;">
           <span>I have read and agree to the Non-Disclosure Agreement above</span>
         </label>
-        <button id="nda-submit" type="submit" disabled style="background:var(--cyan);opacity:.55;color:#080C10;font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">I Agree & Enter Portal</button>
+        <button id="nda-submit" type="submit" disabled style="background:var(--cyan);opacity:.55;color:#FFFFFF;font-family:var(--font);font-size:14px;font-weight:600;padding:12px 18px;border:none;border-radius:8px;cursor:pointer;">I Agree & Enter Portal</button>
         <div id="nda-save-error" style="display:none;color:var(--red);font-size:11px;margin-top:8px;">Note: your NDA record could not be saved. Please continue.</div>
       </form>
+    </div>
     </div>
   `;
 
@@ -230,10 +232,10 @@ function renderFacilitySelector() {
   options.forEach(([icon, label, subtext]) => {
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;color:var(--text);font-family:var(--font);text-align:left;transition:border-color .2s;';
-    btn.innerHTML = `<div style="font-size:28px;margin-bottom:10px;">${icon}</div><div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">${label}</div><div style="font-size:11px;color:var(--sub);line-height:1.5;">${subtext}</div>`;
-    btn.onmouseenter = () => { btn.style.borderColor = 'var(--cyan)'; };
-    btn.onmouseleave = () => { btn.style.borderColor = 'var(--border)'; };
+    btn.style.cssText = 'background:#FFFFFF;border:2px solid #E5E7EB;border-radius:12px;padding:24px;cursor:pointer;color:var(--text);font-family:var(--font);text-align:left;transition:border-color .2s, background .2s;';
+    btn.innerHTML = `<div style="font-size:48px;margin-bottom:10px;">${icon}</div><div style="font-size:16px;font-weight:600;letter-spacing:0;color:#111827;margin-bottom:6px;">${label}</div><div style="font-size:13px;color:#6B7280;line-height:1.5;">${subtext}</div>`;
+    btn.onmouseenter = () => { btn.style.borderColor = 'var(--cyan)'; btn.style.background = '#F0FDFA'; };
+    btn.onmouseleave = () => { btn.style.borderColor = '#E5E7EB'; btn.style.background = '#FFFFFF'; };
     btn.onclick = () => {
       sessionStorage.setItem('selectedFacility', label);
       showPortal();
