@@ -506,7 +506,10 @@ function showPortal() {
   const loginScreen = document.getElementById('login-screen');
   const app = document.getElementById('app');
   if (loginScreen) loginScreen.style.display = 'none';
-  if (app) app.style.display = 'flex';
+  if (app) {
+    app.style.display = 'flex';
+    app.style.flexDirection = 'row';
+  }
   configurePortalForAccess();
   injectSectionCtas();
   attachSubmitInterestHandler();

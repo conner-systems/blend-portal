@@ -50,13 +50,49 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 .login-error{color:var(--red);font-size:12px;margin-top:8px;display:none;}
 
 /* ── APP SHELL ── */
-#app{display:none;height:100vh;}
+#app {
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+#app > .hamburger {
+  flex: 0 0 0;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: visible;
+}
+#app > .sidebar-overlay {
+  flex: 0 0 0;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
 
 /* ── SIDEBAR ── */
-#sidebar{
-  position:fixed;left:0;top:0;bottom:0;width:240px;
-  background:var(--surface);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;z-index:100;
+#sidebar {
+  position: relative;
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 240px;
+  flex-shrink: 0;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
 }
 .sidebar-logo{
   padding:24px 20px 16px;
@@ -102,9 +138,33 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 }
 
 /* ── MAIN CONTENT ── */
-#main{margin-left:240px;height:100vh;overflow-y:auto;background:#FFFFFF;background-color:#ffffff !important;color:#111827 !important;}
-.page{display:none;padding:40px;max-width:900px;margin:0 auto;}
-.page.active{display:block;}
+#main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin-left: 0;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 40px 48px;
+  background: #ffffff;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  box-sizing: border-box;
+}
+.page {
+  display: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.page.active {
+  display: block;
+}
 
 /* ── SHARED COMPONENTS ── */
 .page-header{margin-bottom:32px;padding-bottom:18px;border-bottom:1px solid #E5E7EB;}
@@ -209,9 +269,25 @@ body[data-audience="founder"] .nav-item.host-only[onclick*="submit-interest"] { 
   background: rgba(0,0,0,0.6);
   z-index: 99;
 }
+.sidebar-overlay.open {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
+  .hamburger {
+    display: flex;
+  }
   #sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    flex: none;
+    width: 240px;
+    min-width: 240px;
+    height: 100vh;
+    max-height: 100vh;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
     z-index: 100;
@@ -220,13 +296,11 @@ body[data-audience="founder"] .nav-item.host-only[onclick*="submit-interest"] { 
     transform: translateX(0);
   }
   #main {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
     margin-left: 0;
-  }
-  .sidebar-overlay.open {
-    display: block;
-  }
-  .page {
-    padding: 24px 16px;
+    padding: 20px 16px;
   }
   .page-title {
     font-size: 28px;
@@ -780,10 +854,6 @@ th {
   gap: 0;
 }
 
-#app {
-  overflow-x: hidden;
-}
-
 .hamburger {
   width: 48px;
   height: 48px;
@@ -805,9 +875,10 @@ th {
     display: flex;
   }
   #sidebar.open {
-    width: 100%;
-    max-width: 100%;
-    right: 0;
+    width: min(240px, 100vw);
+    min-width: 0;
+    max-width: 100vw;
+    right: auto;
     box-shadow: none;
   }
   .section-cta {
@@ -833,7 +904,7 @@ th {
   .page {
     max-width: none;
     width: 100%;
-    padding: 20px 16px !important;
+    padding: 0;
     box-sizing: border-box;
   }
   #page-experience .moment-band {
