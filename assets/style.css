@@ -267,3 +267,27 @@ th {
   background: #f9fafb !important;
   color: #374151 !important;
 }
+
+/* The Experience — preserve intended prose colors vs global p/span overrides */
+#page-experience p {
+  color: #111827 !important;
+}
+#page-experience .exp-muted,
+#page-experience .exp-muted p {
+  color: #6B7280 !important;
+}
+#page-experience .teal-mark {
+  color: #00BFA5 !important;
+  font-weight: 600;
+}
+#page-experience .wave-proof {
+  color: #6B7280 !important;
+}
+#page-experience .wave-insight {
+  color: #00BFA5 !important;
+  font-weight: 600;
+}
+#page-experience .moment-band,
+#page-experience .moment-band p {
+  color: #ffffff !important;
+}

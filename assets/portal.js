@@ -276,7 +276,7 @@ function ensureSubmitInterestNav() {
 
 function configureHostView() {
   document.body.setAttribute('data-audience', 'host');
-  const allowed = new Set(['overview', 'team', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'host-terms', 'host-economics', 'submit-interest']);
+  const allowed = new Set(['overview', 'experience', 'team', 'machine', 'competitive', 'app', 'dashboard', 'ingredients', 'retention', 'host-terms', 'host-economics', 'submit-interest']);
   document.querySelectorAll('#sidebar .nav-item').forEach((btn) => {
     const id = getPageIdFromButton(btn);
     if (!allowed.has(id)) btn.remove();
