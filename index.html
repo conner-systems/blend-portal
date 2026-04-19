@@ -190,6 +190,66 @@
       </div>
 
       <div class="card">
+        <div class="card-title">Deployment Timeline — Why Procurement Starts at SAFE Close</div>
+        <div style="font-size:14px;color:var(--text);line-height:1.75;margin-bottom:16px;">The single biggest threat to the deployment timeline is not fabrication — it is component lead times. Two items in the BOM have lead times of 8 to 20 weeks. If these are ordered only after gates are passed, the timeline extends by 3 to 5 months. BLEND+ mitigates this by ordering long-lead items speculatively at SAFE close — before gates are passed — accepting a small restocking fee exposure in exchange for a dramatically compressed deployment schedule.</div>
+
+        <div class="two-col" style="margin-bottom:16px;">
+          <div class="stat-card" style="border-color:#99F6E4;background:#F0FDFA;">
+            <div class="stat-value" style="color:#00BFA5;">18–20 weeks</div>
+            <div class="stat-label" style="color:#374151;">SAFE close to certified multi-machine fleet</div>
+            <div class="stat-sub" style="color:#374151;">With speculative procurement starting at SAFE close</div>
+          </div>
+          <div class="card" style="margin-bottom:0;background:#F8FAFB;border-color:#E5E7EB;">
+            <div style="font-family:var(--mono);font-size:36px;font-weight:700;color:#6B7280;line-height:1;margin-bottom:8px;">28–36 weeks</div>
+            <div style="font-size:13px;font-weight:600;color:#374151;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Sequential model — wait for each gate</div>
+            <div style="font-size:14px;color:#374151;line-height:1.6;">Without speculative procurement</div>
+          </div>
+        </div>
+
+        <table class="data-table">
+          <tr><th>Component</th><th>Lead Time</th><th>Order Timing</th><th>Est. Cost</th><th>Restocking Risk if Returned</th></tr>
+          <tr><td>CompactLogix PLC</td><td>8–20 weeks</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>$2,500–$3,500</td><td>~$400–700</td></tr>
+          <tr><td>PowerFlex 525 VFD ×2</td><td>6–14 weeks</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>$800–$1,200 each</td><td>~$150–250 each</td></tr>
+          <tr><td>Scotsman Ice Maker</td><td>4–8 weeks</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>$600–$1,000</td><td>~$100–200</td></tr>
+          <tr><td>Silverson BE275 Blender</td><td>4–6 weeks</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>$800–$1,400</td><td>~$150–280</td></tr>
+          <tr><td>Custom Auger Assemblies</td><td>4–8 weeks</td><td style="color:#6B7280;">WAIT FOR GATE 3</td><td>$800–$1,500</td><td>Non-returnable — custom</td></tr>
+          <tr><td>HDPE Cartridge Pipe Stock</td><td>2–4 weeks</td><td style="color:#6B7280;">WAIT FOR GATE 3</td><td>$300–$600</td><td>Low risk</td></tr>
+        </table>
+
+        <div class="highlight-box" style="margin-top:16px;">
+          <div class="hl-body">Maximum restocking exposure if all speculative orders are returned: approximately $1,000–$1,800. At $9,000+ monthly net per deployed machine, this is less than one day of revenue. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close — not after Gate 3. Every week of delay on closing the round is a week lost on the deployment timeline.</div>
+        </div>
+
+        <div class="card" style="margin-top:16px;margin-bottom:0;background:#FFFFFF;border-color:#E5E7EB;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#00BFA5;margin-bottom:12px;">Procurement starting at SAFE close — all phases overlap</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="min-width:160px;font-size:12px;color:#374151;">Phase 1 — Weeks 0–12</div>
+              <div style="flex:1;height:12px;background:#F0FDFA;border:1px solid #99F6E4;border-radius:999px;overflow:hidden;">
+                <div style="height:100%;width:60%;background:#00BFA5;"></div>
+              </div>
+              <div style="min-width:220px;font-size:12px;color:#374151;">Machine 1 build + Gate 3</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="min-width:160px;font-size:12px;color:#374151;">Phase 2 — Weeks 8–20</div>
+              <div style="flex:1;height:12px;background:#F0FDFA;border:1px solid #99F6E4;border-radius:999px;overflow:hidden;">
+                <div style="height:100%;width:60%;margin-left:40%;background:#00BFA5;"></div>
+              </div>
+              <div style="min-width:220px;font-size:12px;color:#374151;">Certification (runs concurrently)</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="min-width:160px;font-size:12px;color:#374151;">Phase 3 — Weeks 12–20</div>
+              <div style="flex:1;height:12px;background:#F0FDFA;border:1px solid #99F6E4;border-radius:999px;overflow:hidden;">
+                <div style="height:100%;width:40%;margin-left:60%;background:#00BFA5;"></div>
+              </div>
+              <div style="min-width:220px;font-size:12px;color:#374151;">Machines 2–4 build (long-lead items already in hand)</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:#00BFA5;font-weight:600;">Long-lead items ordered Week 0 — no waiting between phases</div>
+        </div>
+      </div>
+
+      <div class="card">
         <div class="card-title">SAFE Structure</div>
         <div style="font-size:14px;color:var(--text);line-height:1.75;margin-bottom:14px;">No interest. No maturity date. No forced conversion event. Converts to equity at the next priced round at the $3 million cap or the round price minus 20% discount — whichever is more favorable to the investor. Based on the Y Combinator post-money SAFE template. The tranche schedule is attached as Exhibit A to the SAFE.</div>
         <table class="data-table">
