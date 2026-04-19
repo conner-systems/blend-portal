@@ -176,6 +176,31 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 .card-title{font-size:18px;font-weight:600;color:#374151;letter-spacing:0;text-transform:none;margin-bottom:16px;}
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;align-items:stretch;}
+
+/* TAM Penetration — scenario stat cards (3×2) */
+.projections-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+  margin-bottom: 0;
+  align-items: stretch;
+}
+.projections-scenario-grid .stat-card {
+  height: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  .projections-scenario-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  .projections-scenario-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 .stat-card{background:#F0FDFA;border:1px solid #99F6E4;border-radius:12px;padding:24px;}
 .stat-label{font-size:13px;font-weight:500;color:#6B7280;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;}
 .stat-value{font-family:var(--mono);font-size:36px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--cyan);}
