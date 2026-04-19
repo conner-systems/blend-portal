@@ -35,8 +35,9 @@ const PLABEL={today:"Today",week:"This Week",month:"This Month",quarter:"This Qu
 // Hourly order data (orders per hour of day, averaged)
 const HOURLY=[0,0,0,0,2,4,8,14,18,22,19,16,11,9,12,14,18,20,16,12,8,5,3,0];
 const HOURLY_LABELS=["12a","1a","2a","3a","4a","5a","6a","7a","8a","9a","10a","11a","12p","1p","2p","3p","4p","5p","6p","7p","8p","9p","10p","11p"];
-const HAPPY_HOUR_WINDOWS=[[9,11],[13,15]]; // e.g. 9:30–11:30am, 1–3pm (hour buckets)
-const POWER_HOUR_WINDOWS=[[7,8],[17,18]]; // e.g. 6:30–7:30am, 5–6pm (hour buckets)
+// Chart hour index h matches HOURLY_LABELS[h] start time (e.g. 11 = 11am hour). Windows are illustrative buckets.
+const HAPPY_HOUR_WINDOWS=[[11,14],[19,21]]; // ~11:30am–1:30pm, 7–9pm (off-peak / weakest traffic)
+const POWER_HOUR_WINDOWS=[[6,8],[17,18]]; // ~6:30–7:30am (spans 6–7am bins), 5–6pm (peak reward)
 const OPERATING_HOURS=18; // ~6am to midnight
 let hourlyMode="count"; // "count" or "pct"
 
@@ -241,8 +242,8 @@ function buildCharts(){
                 if(ctx.datasetIndex===1)return "Even dist: "+(hourlyMode==="pct"?ctx.raw.toFixed(1)+"%":ctx.raw+" orders");
                 const h=ctx.dataIndex;
                 const lines=[hourlyMode==="pct"?ctx.raw.toFixed(1)+"% of daily orders":ctx.raw+" orders"];
-                if(isHappyHour(h))lines.push("⚡ Happy Hour window ($2 off)");
-                if(isPowerHour(h))lines.push("★ Power Hour window (bonus BB / add-on)");
+                if(isHappyHour(h))lines.push("⚡ Happy Hour — off-peak · $2 off");
+                if(isPowerHour(h))lines.push("★ Power Hour — peak reward · 2× BB or add-on");
                 if(isPeak(h,data))lines.push("📈 Peak demand");
                 if(data[h]>0&&data[h]<evenLine)lines.push("💡 Promo opportunity");
                 return lines;
@@ -467,8 +468,8 @@ function render(){
         <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">Orders by Hour of Day</div>
         <div style="display:flex;align-items:center;gap:16px;">
           <div style="display:flex;gap:10px;align-items:center;">
-            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.cyan};"></div><span style="font-size:10px;color:${c.sub};">Happy Hour</span></div>
-            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${dark?"#7B8CFF":"#1A2744"};"></div><span style="font-size:10px;color:${c.sub};">Power Hour</span></div>
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.cyan};"></div><span style="font-size:10px;color:${c.sub};">Happy Hour = off-peak discount</span></div>
+            <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${dark?"#7B8CFF":"#1A2744"};"></div><span style="font-size:10px;color:${c.sub};">Power Hour = peak reward</span></div>
             <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:${c.green};"></div><span style="font-size:10px;color:${c.sub};">Peak</span></div>
             <div style="display:flex;align-items:center;gap:5px;"><div style="width:20px;height:2px;background:${c.yellow};border-top:2px dashed ${c.yellow};"></div><span style="font-size:10px;color:${c.sub};">Even dist.</span></div>
           </div>
