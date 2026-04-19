@@ -1266,6 +1266,36 @@
           <tr><td style="font-weight:700;color:var(--text)">Components total</td><td></td><td style="color:var(--green);font-weight:700;">$20,377</td><td style="color:var(--green);font-weight:700;">$37,777</td><td style="color:var(--sub)">Labor excluded (sweat equity)</td></tr>
         </table>
       </div>
+
+      <div class="card">
+        <div class="card-title">Procurement Strategy</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Two items in the BOM have lead times long enough to threaten the deployment timeline. These are ordered speculatively at SAFE close — before gates are passed — to compress the build timeline by 8–20 weeks.</div>
+
+        <div class="two-col" style="margin-bottom:16px;">
+          <div class="card" style="margin-bottom:0;background:#F0FDFA;border-color:#99F6E4;">
+            <div style="font-size:11px;color:#00BFA5;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">ORDER AT SAFE CLOSE</div>
+            <div style="font-size:13px;color:#374151;line-height:1.6;">Returnable if unused. Restocking fee is the cost of the option.</div>
+          </div>
+          <div class="card" style="margin-bottom:0;background:#F8FAFB;border-color:#E5E7EB;">
+            <div style="font-size:11px;color:#6B7280;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">WAIT FOR GATE 3</div>
+            <div style="font-size:13px;color:#374151;line-height:1.6;">Custom or non-returnable. Order only after machine is proven.</div>
+          </div>
+        </div>
+
+        <table class="data-table">
+          <tr><th>Component</th><th>Lead Time</th><th>Est. Cost</th><th>Strategy</th><th>Restocking Risk</th><th>Supplier</th></tr>
+          <tr><td>CompactLogix PLC</td><td>8–20 weeks</td><td>$2,500–$3,500</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>~$400–700</td><td>Rockwell Automation</td></tr>
+          <tr><td>PowerFlex 525 VFD ×2</td><td>6–14 weeks</td><td>$800–$1,200 each</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>~$150–250 each</td><td>Rockwell Automation</td></tr>
+          <tr><td>Scotsman Ice Maker</td><td>4–8 weeks</td><td>$600–$1,000</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>~$100–200</td><td>Scotsman OEM</td></tr>
+          <tr><td>Silverson BE275 Blender</td><td>4–6 weeks</td><td>$800–$1,400</td><td style="color:#00BFA5;font-weight:700;">ORDER AT SAFE CLOSE</td><td>~$150–280</td><td>Silverson Machines</td></tr>
+          <tr><td>Custom Auger Assemblies</td><td>4–8 weeks</td><td>$800–$1,500</td><td style="color:#6B7280;">WAIT FOR GATE 3</td><td>Non-returnable</td><td>Falcon Industries</td></tr>
+          <tr><td>HDPE Cartridge Pipe Stock</td><td>2–4 weeks</td><td>$300–$600</td><td style="color:#6B7280;">WAIT FOR GATE 3</td><td>Low risk</td><td>HDPE Supply</td></tr>
+        </table>
+
+        <div class="highlight-box" style="margin-top:16px;">
+          <div class="hl-body">Maximum restocking exposure if Machine 1 fails and all speculative orders are returned: approximately $1,000–$1,800. At $9,000+ monthly net per deployed machine, this represents less than one day of revenue. The timeline compression — 8 to 20 weeks saved — is worth multiples of that cost. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close, not after Gate 3.</div>
+        </div>
+      </div>
     </div>
 
     <!-- ══ OPS ══ -->
