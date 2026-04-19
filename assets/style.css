@@ -294,6 +294,136 @@ th {
   color: #ffffff !important;
 }
 
+/* The Experience — manifesto card */
+.experience-manifesto {
+  position: relative;
+  max-width: 800px;
+  margin: 48px auto;
+  padding: 56px 64px;
+  background: #0f172a;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+.experience-manifesto__accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #00bfa5;
+  border-radius: 20px 0 0 20px;
+  pointer-events: none;
+}
+.experience-manifesto__deco {
+  position: absolute;
+  top: -20px;
+  right: 24px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 180px;
+  line-height: 1;
+  color: rgba(0, 191, 165, 0.08);
+  pointer-events: none;
+  user-select: none;
+}
+.experience-manifesto__mark {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(0, 191, 165, 0.5) !important;
+  pointer-events: none;
+  user-select: none;
+}
+.experience-manifesto__inner {
+  position: relative;
+  z-index: 1;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #f1f5f9;
+  line-height: 1.9;
+  padding-bottom: 48px;
+}
+#page-experience .experience-manifesto__inner p {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  margin-left: 0;
+  margin-right: 0;
+}
+#page-experience .experience-manifesto__lead {
+  font-size: 22px;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin: 0 0 32px 0 !important;
+  line-height: 1.6 !important;
+}
+#page-experience .experience-manifesto__transition {
+  font-size: 18px;
+  font-weight: 600 !important;
+  color: #00bfa5 !important;
+  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  padding-top: 32px;
+  margin: 32px 0 !important;
+  line-height: 1.6 !important;
+}
+#page-experience .experience-manifesto__divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 32px 0;
+  height: 0;
+}
+#page-experience .experience-manifesto__subhead {
+  font-size: 20px;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin: 0 0 16px 0 !important;
+}
+#page-experience .experience-manifesto__muted {
+  color: #cbd5e1 !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+  line-height: 1.9 !important;
+}
+#page-experience .experience-manifesto__highlight {
+  font-size: 22px;
+  font-weight: 700 !important;
+  color: #00bfa5 !important;
+  margin: 40px 0 24px 0 !important;
+  line-height: 1.6 !important;
+}
+#page-experience .experience-manifesto__body-strong {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.9 !important;
+}
+#page-experience .experience-manifesto__ten {
+  font-size: 20px;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 32px;
+  margin: 32px 0 0 0 !important;
+  line-height: 1.6 !important;
+}
+#page-experience .experience-manifesto__teal {
+  color: #00bfa5 !important;
+}
+#page-experience .experience-manifesto__finale {
+  font-size: 20px;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  padding-top: 24px;
+  margin: 32px 0 0 0 !important;
+  line-height: 1.6 !important;
+}
+
+.experience-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
 /* ── Sidebar header & nav hierarchy ── */
 .sidebar-header-row {
   display: flex;
@@ -470,6 +600,26 @@ th {
   }
   #page-experience .moment-band p:first-child {
     font-size: 20px !important;
+  }
+  .experience-manifesto {
+    padding: 32px 24px;
+  }
+  .experience-manifesto__inner {
+    padding-bottom: 40px;
+  }
+  .experience-manifesto__deco {
+    font-size: 100px;
+    top: -10px;
+  }
+  .experience-manifesto__mark {
+    bottom: 16px;
+    right: 20px;
+  }
+  #page-experience .experience-manifesto__lead {
+    font-size: 18px !important;
+  }
+  .experience-why-grid {
+    grid-template-columns: 1fr !important;
   }
   .why-now-grid {
     grid-template-columns: 1fr !important;
