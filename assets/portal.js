@@ -278,7 +278,7 @@ function configurePortalForAccess() {
 function renderSubmitSuccess(userName) {
   const shell = document.getElementById('submit-interest-shell');
   if (!shell) return;
-  shell.innerHTML = `<div style="padding:8px 0;"><div style="font-size:26px;font-weight:900;color:var(--text);margin-bottom:8px;">We've received your submission.</div><div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px;">Thank you, ${userName}. Conner will review your details and follow up within 48 hours.</div><div style="font-size:12px;color:var(--cyan);letter-spacing:0.04em;">Conner Ward · Founder, BLEND+ · (858) 442-3171 · connerwardconsulting@gmail.com</div></div>`;
+  shell.innerHTML = `<div style="padding:8px 0;"><div style="font-size:26px;font-weight:900;color:var(--text);margin-bottom:8px;">We've received your submission.</div><div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px;">Thank you, ${userName}. Conner will review your details and follow up within 48 hours.</div><div style="font-size:12px;color:var(--cyan);letter-spacing:0.04em;">Conner Ward · Founder, BLEND+ · conner@blendplus.co</div></div>`;
 }
 
 function attachSubmitInterestHandler() {
@@ -338,7 +338,7 @@ function attachSubmitInterestHandler() {
       `Message: ${message}`,
       `Submitted: ${timestamp}`
     ].join('\n');
-    window.open(`mailto:connerwardconsulting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+    window.open(`mailto:conner@blendplus.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
 
     try {
       await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/tblDVB31XM6YzPv78`, {
