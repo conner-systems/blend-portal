@@ -530,14 +530,15 @@ Month 12 ———————————————————————�
           <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:12px;">Earnings Projection</div>
           <div class="table-scroll-wrap">
             <table class="data-table">
-              <tr><th>Month</th><th>Active Locations</th><th>New (5%) Locations</th><th>Mature (2%) Locations</th><th>Monthly Recurring</th><th>Monthly Hourly</th><th>Total Monthly</th><th>Annual Run Rate</th></tr>
-              <tr><td>Month 6</td><td>12 total</td><td>12 at 5%</td><td>0 at 2%</td><td>$4,975</td><td>$4,333</td><td>$9,308</td><td>$111,696</td></tr>
-              <tr><td>Month 12</td><td>24 total</td><td>12 at 5%</td><td>12 at 2%</td><td>$9,951</td><td>$4,333</td><td>$14,284</td><td>$171,408</td></tr>
-              <tr><td>Month 18</td><td>36 total</td><td>12 at 5%</td><td>24 at 2%</td><td>$13,932</td><td>$4,333</td><td>$18,265</td><td>$219,180</td></tr>
-              <tr><td>Month 24</td><td>48 total</td><td>12 at 5%</td><td>36 at 2%</td><td>$17,913</td><td>$4,333</td><td>$22,246</td><td>$266,952</td></tr>
+              <tr><th>Month</th><th>New Locations (5%)</th><th>Mature Locations (2%)</th><th>Monthly Recurring</th><th>Monthly Hourly</th><th>Total Monthly</th><th>Annual Run Rate</th></tr>
+              <tr><td>Month 6</td><td>12 at 5%</td><td>0 at 2%</td><td>$4,980</td><td>$4,333</td><td>$9,313</td><td>$111,756</td></tr>
+              <tr><td>Month 12</td><td>12 at 5%</td><td>12 at 2%</td><td>$6,972</td><td>$4,333</td><td>$11,305</td><td>$135,660</td></tr>
+              <tr><td>Month 18</td><td>12 at 5%</td><td>24 at 2%</td><td>$8,964</td><td>$4,333</td><td>$13,297</td><td>$159,564</td></tr>
+              <tr><td>Month 24</td><td>12 at 5%</td><td>36 at 2%</td><td>$10,956</td><td>$4,333</td><td>$15,289</td><td>$183,468</td></tr>
             </table>
           </div>
-          <div style="margin-top:12px;font-size:12px;color:#6B7280;line-height:1.7;">Assumes 2 new locations placed per month. Each new location adds $415/month at 5% recurring. Placement commissions ($750 at install + $750 at 90-day review + $500 bonus = $2,000 per qualifying location) are additive and not shown in the table above.</div>
+          <div style="margin-top:12px;font-size:12px;color:#6B7280;line-height:1.7;">5% locations: 12 × $415 = $4,980/month. 2% locations grow by 12 each year: Year 2 = 12 × $166 = $1,992, Year 3 = 24 × $166 = $3,984, Year 4 = 36 × $166 = $5,976. Assumes 2 new locations placed per month continuously.</div>
+          <div style="margin-top:8px;font-size:12px;color:#6B7280;line-height:1.7;">Placement commissions ($750 at install + $750 at 90-day review + $500 bonus = $2,000 per qualifying location) are additive and not shown above.</div>
         </div>
 
         <div class="card" style="margin-bottom:20px;background:#FFFFFF;border:1px solid #E5E7EB;">
@@ -750,7 +751,7 @@ Month 12 ———————————————————————�
         </table>
 
         <div class="highlight-box" style="margin-top:16px;">
-          <div class="hl-body">Maximum restocking exposure if all speculative orders are returned: approximately $1,000–$1,800. At $9,000+ monthly net per deployed machine, this is less than one day of revenue. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close — not after Gate 3. Every week of delay on closing the round is a week lost on the deployment timeline.</div>
+          <div class="hl-body">Maximum restocking exposure if all speculative orders are returned: approximately $1,000–$1,800. At $6,634 monthly net per deployed machine, this is less than one day of revenue. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close — not after Gate 3. Every week of delay on closing the round is a week lost on the deployment timeline.</div>
         </div>
 
         <div class="card" style="margin-top:16px;margin-bottom:0;background:#FFFFFF;border-color:#E5E7EB;">
@@ -1141,7 +1142,8 @@ Month 12 ———————————————————————�
       <div class="stat-row">
         <div class="stat-card"><div class="stat-label">Avg order value</div><div class="stat-value" style="color:var(--cyan)">$7.47</div><div class="stat-sub">Blended across types</div></div>
         <div class="stat-card"><div class="stat-label">COGS per order</div><div class="stat-value" style="color:var(--orange)">$2.33</div><div class="stat-sub">Approaching $1 at scale</div></div>
-        <div class="stat-card"><div class="stat-label">Gross margin</div><div class="stat-value" style="color:var(--green)">73%</div><div class="stat-sub">Rising to 80%+ at scale</div></div>
+        <div class="stat-card"><div class="stat-label">Gross margin per drink</div><div class="stat-value" style="color:var(--green)">68.8%</div><div class="stat-sub">($7.47 ASP − $2.33 COGS) ÷ $7.47 = 68.8% before host revenue share</div></div>
+        <div class="stat-card"><div class="stat-label">Blended gross margin</div><div class="stat-value" style="color:var(--green)">48.8%</div><div class="stat-sub">($6,634 BLEND+ net − $2,586 COGS) ÷ $8,292 gross = 48.8% after 20% host revenue share</div></div>
         <div class="stat-card"><div class="stat-label">Base case orders/day</div><div class="stat-value" style="color:var(--cyan)">37</div><div class="stat-sub">Stage 1 target</div></div>
         <div class="stat-card"><div class="stat-label">Monthly gross/machine</div><div class="stat-value" style="color:var(--green)">$8,292</div><div class="stat-sub">At base case</div></div>
       </div>
@@ -1157,13 +1159,14 @@ Month 12 ———————————————————————�
       <div class="card">
         <div class="card-title">Fleet Revenue at Scale</div>
         <table class="data-table">
-          <tr><th>Year</th><th>New Machines</th><th>Cumulative Fleet</th><th>Avg Build Cost</th><th>Annual Fleet Revenue</th><th>Cumulative Revenue</th></tr>
-          <tr><td style="color:var(--orange)">Year 1</td><td>10</td><td style="color:var(--cyan)">10</td><td style="color:var(--orange)">$28K</td><td style="color:var(--green)">$552K</td><td style="color:var(--green)">$552K</td></tr>
-          <tr><td style="color:var(--cyan)">Year 2</td><td>25</td><td style="color:var(--cyan)">35</td><td style="color:var(--orange)">$22K</td><td style="color:var(--green)">$3.9M</td><td style="color:var(--green)">$4.4M</td></tr>
-          <tr><td style="color:var(--green)">Year 3</td><td>65</td><td style="color:var(--cyan)">100</td><td style="color:var(--orange)">$19K</td><td style="color:var(--green)">$11.0M</td><td style="color:var(--green)">$15.5M</td></tr>
-          <tr><td style="color:var(--purple)">Year 4</td><td>130</td><td style="color:var(--cyan)">230</td><td style="color:var(--orange)">$16K</td><td style="color:var(--green)">$25.4M</td><td style="color:var(--green)">$40.8M</td></tr>
-          <tr><td style="color:var(--purple)">Year 5</td><td>270</td><td style="color:var(--cyan)">500</td><td style="color:var(--orange)">$13K</td><td style="color:var(--green)">$55.2M</td><td style="color:var(--green)">$96.0M</td></tr>
+          <tr><th>Year</th><th>Fleet Size</th><th>Annual Fleet Revenue</th><th>Calculation</th></tr>
+          <tr><td style="color:var(--orange)">Year 1</td><td style="color:var(--cyan)">4 machines</td><td style="color:var(--green)">$398,016 ≈ $398K</td><td>$8,292 × 4 × 12</td></tr>
+          <tr><td style="color:var(--cyan)">Year 2</td><td style="color:var(--cyan)">10 machines</td><td style="color:var(--green)">$994,800 ≈ $995K</td><td>$8,292 × 10 × 12</td></tr>
+          <tr><td style="color:var(--green)">Year 3</td><td style="color:var(--cyan)">25 machines</td><td style="color:var(--green)">$2,487,600 ≈ $2.5M</td><td>$8,292 × 25 × 12</td></tr>
+          <tr><td style="color:var(--purple)">Year 4</td><td style="color:var(--cyan)">100 machines</td><td style="color:var(--green)">$9,950,400 ≈ $9.95M</td><td>$8,292 × 100 × 12</td></tr>
+          <tr><td style="color:var(--purple)">Year 5</td><td style="color:var(--cyan)">1,000 machines</td><td style="color:var(--green)">$99,504,000 ≈ $100M</td><td>$8,292 × 1,000 × 12</td></tr>
         </table>
+        <p style="font-size:12px;color:#6B7280;margin-top:12px;line-height:1.7;">Projections based on locked base case: 37 orders/day × $7.47 ASP × 30 days = $8,292/month gross per machine.</p>
       </div>
     </div>
 
@@ -1593,7 +1596,7 @@ Month 12 ———————————————————————�
               <li>Machine 1 built and Gate 3 passed</li>
               <li>Certification complete — NSF/ANSI 25 + ETL</li>
               <li>Stage 1 deployment: SmartFit Rancho</li>
-              <li>Stage 2 deployment: Scottsdale SmartFit (October 1)</li>
+              <li>Stage 2 deployment: two SmartFit locations in Scottsdale — October 1</li>
               <li>First arms-length LOIs signed</li>
               <li>$50K–$100K annual fleet gross</li>
               <li>Reinvestment begins — machines self-fund</li>
@@ -1662,7 +1665,7 @@ Month 12 ———————————————————————�
         <div class="stat-card" style="text-align:center;">
           <div class="stat-value" style="font-size:42px;color:#00BFA5;letter-spacing:-0.02em;">~47%</div>
           <div class="stat-label" style="color:#6B7280;text-transform:uppercase;font-size:10px;letter-spacing:0.08em;">EBITDA margin at 1,000 machines</div>
-          <div class="stat-sub" style="color:#9CA3AF;font-size:12px;margin-top:8px;">After host rev share, COGS, regional managers, field technicians, parts, logistics, and corporate overhead. Gross margin on the drink itself: ~73%. EBITDA margin after full operational infrastructure: ~45–50%. Best-in-class for food and beverage at any scale.</div>
+          <div class="stat-sub" style="color:#9CA3AF;font-size:12px;margin-top:8px;">After host rev share, COGS, regional managers, field technicians, parts, logistics, and corporate overhead. Per-drink gross margin of 68.8% — blended gross margin of 48.8% after host revenue share. EBITDA margin after full operational infrastructure: ~45–50%. Best-in-class for food and beverage at any scale.</div>
         </div>
       </div>
       <div class="roadmap-closing-callout" role="region" aria-label="Roadmap closing statement">
@@ -1925,7 +1928,7 @@ Month 12 ———————————————————————�
           </div>
           <div class="stat-card capital-efficiency-stat" style="margin-bottom:0;">
             <div class="stat-value" style="color:var(--cyan);">$0</div>
-            <div class="stat-label">BLEND+ charges host to place</div>
+            <div class="stat-label">Cost to host — BLEND+ placement</div>
             <div class="stat-sub">vs $100,000 (Blendid), $30,000 (Chowbotics), $14,999+ (Smoodi)</div>
           </div>
           <div class="stat-card capital-efficiency-stat" style="margin-bottom:0;">
@@ -2066,7 +2069,7 @@ Month 12 ———————————————————————�
     <div class="page" id="page-app">
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Consumer App</div>
-        <div class="page-title">Built and live.</div>
+        <div class="page-title">In final development.</div>
         <div class="page-sub">Members order from their phone, customize among <strong style="color:var(--text);font-weight:700;">5,000+</strong> drink combinations, pay with Apple Pay or card, and pick up in under 60 seconds. Full loyalty ecosystem built in from day one.</div>
       </div>
       <div class="app-phone-showcase">
@@ -2140,12 +2143,6 @@ Month 12 ———————————————————————�
           <iframe src="dashboard.html" style="width:100%;height:850px;border:none;display:block;" title="BLEND+ Operator Dashboard"></iframe>
         </div>
       </div>
-      <div style="margin-bottom:24px;">
-        <div style="font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Live Operator Dashboard · Updates every 60 seconds</div>
-        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);">
-          <iframe src="dashboard.html" style="width:100%;height:800px;border:none;display:block;" scrolling="yes" title="BLEND+ Operator Dashboard"></iframe>
-        </div>
-      </div>
       <div class="two-col">
         <div class="card">
           <div class="card-title">What Hosts See</div>
@@ -2215,7 +2212,7 @@ Month 12 ———————————————————————�
         <div class="card-title">12-Hopper Configuration</div>
         <table class="data-table">
           <tr><th>Hoppers</th><th>Category</th><th>Contents</th><th>STATUS</th></tr>
-          <tr><td>1–3</td><td style="color:var(--green)">Bases</td><td>Whole Milk · Oat Milk · Coconut Milk</td><td><span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:600;border-radius:4px;padding:3px 8px;white-space:normal;line-height:1.35;">LAUNCH CONFIG · SUBJECT TO DEMAND</span></td></tr>
+          <tr><td>1–3</td><td style="color:var(--green)">Bases</td><td>Whole Milk · Oat Milk · Coconut Milk · Filtered Water</td><td><span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:600;border-radius:4px;padding:3px 8px;white-space:normal;line-height:1.35;">LAUNCH CONFIG · SUBJECT TO DEMAND</span></td></tr>
           <tr><td>4–6</td><td style="color:var(--purple)">Core Proteins</td><td>Vanilla Grass-Fed Whey · Chocolate Grass-Fed Whey · Mixed Berry Plant</td><td><span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:600;border-radius:4px;padding:3px 8px;white-space:normal;line-height:1.35;">LAUNCH CONFIG · SUBJECT TO DEMAND</span></td></tr>
           <tr><td>7</td><td style="color:var(--purple)">Rotating Protein</td><td>Birthday Cake → Mint Choc → Cinnamon Roll → Horchata → Matcha — quarterly rotation determined by demand data. New candidates auditioned in supplement hoppers before earning full protein hopper placement.</td><td><span style="display:inline-block;background:#FFF7ED;color:#C2410C;font-size:11px;font-weight:600;border-radius:4px;padding:3px 8px;white-space:normal;line-height:1.35;">ROTATING · QUARTERLY · DEMAND DRIVEN</span></td></tr>
           <tr><td>8</td><td style="color:var(--cyan)">Supplement</td><td>Caffeine — 50/100/150/200mg member-selected</td><td><span style="display:inline-block;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:600;border-radius:4px;padding:3px 8px;white-space:normal;line-height:1.35;">LAUNCH CONFIG · SUBJECT TO DEMAND</span></td></tr>
@@ -2311,12 +2308,12 @@ Month 12 ———————————————————————�
             <div class="stat-sub">Based on $300/month minimum. More than most commercial tenants pay for retail space in San Diego.</div>
           </div>
           <div class="stat-card" style="margin-bottom:0;">
-            <div class="stat-value" style="color:var(--cyan);">$1,742</div>
+            <div class="stat-value" style="color:var(--cyan);">$1,463</div>
             <div class="stat-label">Per sq ft per year — base case</div>
-            <div class="stat-sub">At 37 orders per day. The most productive real estate in your building — at zero cost to you.</div>
+            <div class="stat-sub">$1,658/month host share × 12 months ÷ 13.6 sq ft machine footprint</div>
           </div>
         </div>
-        <p style="margin:0 auto;text-align:center;font-size:16px;color:#374151;line-height:1.7;max-width:680px;">A gym owner leases their entire facility for $15 to $25 per square foot per year. BLEND+ generates $264 to $1,742 per square foot per year on 13.6 square feet of floor that was previously empty. No tenant. No lease negotiation. No operational involvement. Just a machine that turns idle floor space into the highest-yielding real estate in the building.</p>
+        <p style="margin:0 auto;text-align:center;font-size:16px;color:#374151;line-height:1.7;max-width:680px;">A gym owner leases their entire facility for $15 to $25 per square foot per year. BLEND+ generates $264 to $1,463 per square foot per year on 13.6 square feet of floor that was previously empty. No tenant. No lease negotiation. No operational involvement. Just a machine that turns idle floor space into the highest-yielding real estate in the building.</p>
       </div>
     </div>
 
@@ -2330,11 +2327,12 @@ Month 12 ———————————————————————�
       <div class="card">
         <div class="card-title">Revenue Scenarios</div>
         <table class="data-table">
-          <tr><th>Scenario</th><th>Drinks/Day</th><th>Monthly Gross</th><th>Your Share (20%)</th><th>Annual Earnings</th></tr>
-          <tr><td>Conservative</td><td>10</td><td>$2,100</td><td style="color:var(--green)">$420/mo</td><td style="color:var(--green)">$5,110/yr</td></tr>
-          <tr><td>Moderate</td><td>25</td><td>$5,250</td><td style="color:var(--green)">$1,050/mo</td><td style="color:var(--green)">$12,775/yr</td></tr>
-          <tr><td style="color:var(--green)">Strong</td><td>50</td><td>$10,500</td><td style="color:var(--green)">$2,100/mo</td><td style="color:var(--green)">$25,550/yr</td></tr>
+          <tr><th>Scenario</th><th>Orders/day</th><th>Monthly gross</th><th>Host share (20%)</th><th>Annual host earnings</th></tr>
+          <tr><td>Floor</td><td>15 orders/day</td><td>$3,362</td><td style="color:var(--green)">$672/month</td><td style="color:var(--green)">$8,064/year</td></tr>
+          <tr><td style="color:var(--cyan)">Base Case</td><td>37 orders/day</td><td>$8,292</td><td style="color:var(--green)">$1,658/month</td><td style="color:var(--green)">$19,896/year</td></tr>
+          <tr><td style="color:var(--green)">Strong</td><td>60 orders/day</td><td>$13,446</td><td style="color:var(--green)">$2,689/month</td><td style="color:var(--green)">$32,268/year</td></tr>
         </table>
+        <div style="font-size:12px;color:var(--sub);line-height:1.7;margin-top:10px;">All scenarios calculated at $7.47 blended average order value × 30 days.</div>
       </div>
       <div style="font-size:12px;color:var(--sub);line-height:1.7;margin-bottom:16px;">The 20% revenue share is available exclusively to the first 10 founding partner locations in the Southwest region. Once those slots are filled, the rate moves to 15% for all subsequent partners. Founding partners lock in 20% for the lifetime of their placement.</div>
       <div class="card">
@@ -2454,7 +2452,7 @@ Month 12 ———————————————————————�
         </table>
 
         <div class="highlight-box" style="margin-top:16px;">
-          <div class="hl-body">Maximum restocking exposure if Machine 1 fails and all speculative orders are returned: approximately $1,000–$1,800. At $9,000+ monthly net per deployed machine, this represents less than one day of revenue. The timeline compression — 8 to 20 weeks saved — is worth multiples of that cost. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close, not after Gate 3.</div>
+          <div class="hl-body">Maximum restocking exposure if Machine 1 fails and all speculative orders are returned: approximately $1,000–$1,800. At $6,634 monthly net per deployed machine, this represents less than one day of revenue. The timeline compression — 8 to 20 weeks saved — is worth multiples of that cost. The Scottsdale October 1 deployment window depends on this decision being made at SAFE close, not after Gate 3.</div>
         </div>
       </div>
     </div>
@@ -2505,12 +2503,12 @@ Month 12 ———————————————————————�
     <div class="page insider-only" id="page-software">
       <div class="page-header">
         <div class="page-eyebrow">BLEND+ · Software Stack</div>
-        <div class="page-title">App built. Dashboard built.<br>Machine integration next.</div>
-        <div class="page-sub">Consumer app and operator dashboard are live. PLC middleware and kiosk interface are the remaining build items. Water Innovations handles the full machine-side stack including cloud connectivity.</div>
+        <div class="page-title">App is in final development — launching alongside Machine 1.<br>Dashboard built. Machine integration next.</div>
+        <div class="page-sub">Consumer app is in final development, launching with Machine 1 deployment. PLC middleware and kiosk interface are the remaining build items. Water Innovations handles the full machine-side stack including cloud connectivity.</div>
       </div>
       <div class="two-col">
         <div class="card">
-          <div class="card-title">Consumer App — Live</div>
+          <div class="card-title">Consumer app — in development, launching with Machine 1 deployment</div>
           <ul class="bullet-list">
             <li>React Native / Expo — iOS first</li>
             <li>Supabase backend — auth, database, real-time</li>
@@ -2573,7 +2571,7 @@ Month 12 ———————————————————————�
 
       <div class="highlight-box">
         <div class="hl-title">Total Addressable Market — US Only</div>
-        <div class="hl-body">Gyms + College Campuses + Clinical Wellness + Corporate + Airports + Sporting Facilities + Senior Living + Sports Teams = <strong style="color:var(--cyan)">500,000+ viable placement locations</strong> in the United States alone. At one machine per location and $9,200/month gross per machine, the US TAM exceeds $55 billion in annual gross revenue at full penetration. BLEND+ does not need to capture 1% of this to be a meaningful acquisition target.</div>
+        <div class="hl-body">BLEND+ models a conservative serviceable market of <strong style="color:var(--cyan)">74,200 viable US locations</strong> across priority verticals. At one machine per location and $8,292/month gross per machine: 74,200 locations × $8,292/month × 12 = $7,387,497,600 ≈ $7.4B in annual gross revenue potential. BLEND+ does not need to capture 1% of this to be a meaningful acquisition target.</div>
       </div>
 
       <div class="card">
@@ -2584,7 +2582,7 @@ Month 12 ———————————————————————�
           <div class="stat-card"><div class="stat-label">Industry revenue</div><div class="stat-value" style="color:var(--orange)">$46B</div><div class="stat-sub">2025 estimate</div></div>
           <div class="stat-card"><div class="stat-label">BLEND+ target</div><div class="stat-value" style="color:var(--green)">~40K</div><div class="stat-sub">Mid-to-large facilities</div></div>
         </div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.7;">The primary and immediate market. Gyms have the highest member density, the strongest nutritional motivation (members are actively working out), and existing comfort with premium wellness products. Planet Fitness (2,732 locations), Anytime Fitness (2,328), CrossFit (3,806), Orangetheory (1,269), LA Fitness (639), F45 (730) are all individually significant chains. Mid-size and independent gyms represent the long tail. The SmartFit relationship (Scottsdale Stage 2) demonstrates that multi-location gym investors are ready buyers of the model. JL Marketing's network of hundreds of gym clients is a warm introduction pipeline into this vertical.</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;">The primary and immediate market. Gyms have the highest member density, the strongest nutritional motivation (members are actively working out), and existing comfort with premium wellness products. Planet Fitness (2,732 locations), Anytime Fitness (2,328), CrossFit (3,806), Orangetheory (1,269), LA Fitness (639), F45 (730) are all individually significant chains. Mid-size and independent gyms represent the long tail. The SmartFit relationship (Stage 2: two SmartFit locations in Scottsdale — October 1) demonstrates that multi-location gym investors are ready buyers of the model. JL Marketing's network of hundreds of gym clients is a warm introduction pipeline into this vertical.</div>
       </div>
 
       <div class="card">
@@ -2670,7 +2668,7 @@ Month 12 ———————————————————————�
 
       <div class="highlight-box">
         <div class="hl-title">The Penetration Math</div>
-        <div class="hl-body">BLEND+ needs to reach 500 locations — 0.67% of the Phase 1+2 target alone — to hit $55M in annual fleet gross revenue at Year 5. This is not a market size problem. It is a distribution and trust problem. JL Marketing's gym network, the SmartFit anchor, and the Lumati clinical partnership are all distribution solutions, not marketing solutions. The machine sells itself when operators see the dashboard.</div>
+        <div class="hl-body">BLEND+ needs to reach 500 locations generating $8,292/month = $49,752,000 annually — approximately $50M in annual fleet gross revenue at Year 5. This is not a market size problem. It is a distribution and trust problem. JL Marketing's gym network, the SmartFit anchor, and the Lumati clinical partnership are all distribution solutions, not marketing solutions. The machine sells itself when operators see the dashboard.</div>
       </div>
     </div>
 

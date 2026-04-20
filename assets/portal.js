@@ -405,7 +405,7 @@ const INVESTOR_CTA_CONFIG = {
   engineering: { heading: 'Machine architecture under NDA.', sub: 'Gate 3 and certification precede scaled deployment.', btn: 'See The Raise', pageId: 'raise' },
   bom: { heading: '109-line BOM. Fourteen subsystems.', sub: 'Cost discipline is engineered in from day one.', btn: 'See The Raise', pageId: 'raise' },
   ops: { heading: 'Uptime and PM protocols.', sub: 'Reliability is the product — see competitive lessons.', btn: 'See The Raise', pageId: 'raise' },
-  software: { heading: 'App and dashboard are live.', sub: 'PLC middleware completes the stack.', btn: 'See The Raise', pageId: 'raise' }
+  software: { heading: 'App is in final development — launching alongside Machine 1.', sub: 'PLC middleware completes the stack.', btn: 'See The Raise', pageId: 'raise' }
 };
 
 function injectSectionCtas() {
