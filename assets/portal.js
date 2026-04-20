@@ -385,7 +385,7 @@ const INVESTOR_CTA_CONFIG = {
   overview: { heading: 'The model is ready to be funded.', sub: '$25,000 builds the machine. The machine funds everything else.', btn: 'See The Raise', pageId: 'raise' },
   experience: { heading: 'This is what 1,000 locations looks like from the ground.', sub: 'The experience scales because the machine scales. People don\'t.', btn: 'See the 5-Year Roadmap', pageId: 'roadmap' },
   'why-now': { heading: 'Nine forces converging. One company positioned to capture them.', sub: 'The window is open. This round funds the first machine that proves it.', btn: 'See The Raise', pageId: 'raise' },
-  'the-numbers': { heading: '~90-day payback. Self-funding fleet. Gate-triggered capital.', sub: 'The numbers are not complicated. They are just math.', btn: 'See The Raise', pageId: 'raise' },
+  'the-numbers': { heading: '~5.5-month payback. Self-funding fleet. Gate-triggered capital.', sub: 'The numbers are not complicated. They are just math.', btn: 'See The Raise', pageId: 'raise' },
   economics: { heading: 'Every assumption is falsifiable.', sub: 'Machine 1 confirms or corrects every number before Machine 2 ships.', btn: 'See The Raise', pageId: 'raise' },
   competitive: { heading: 'The category is proven. The model is right. The timing is now.', sub: 'Blendid raised $20M+ across venture capital, strategic investors, and crowdfunding. BLEND+ gets there for $100K.', btn: 'See The Raise', pageId: 'raise' },
   acquisition: { heading: '25 machines. Eight figures. The conversation changes.', sub: 'This round funds the first machine. That machine funds the rest.', btn: 'See The Raise', pageId: 'raise' },
