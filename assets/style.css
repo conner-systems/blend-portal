@@ -316,7 +316,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   border-top: 1px solid rgba(45, 212, 191, 0.35);
   font-size: 20px;
   font-weight: 700;
-  color: #2dd4bf;
+  color: #ffffff;
   line-height: 1.5;
 }
 .competitive-navy-callout__mark {
@@ -417,7 +417,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   border-top: 1px solid rgba(45, 212, 191, 0.35);
   font-size: 20px;
   font-weight: 700;
-  color: #2dd4bf !important;
+  color: #ffffff !important;
   line-height: 1.6;
 }
 
