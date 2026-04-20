@@ -1544,6 +1544,14 @@ th {
   margin-bottom: 0;
 }
 
+/* Team — related party disclosure: force full-width text (override any inherited prose caps) */
+#page-team .investor-only.related-party-disclosure,
+#page-team .investor-only.related-party-disclosure .related-party-disclosure__body,
+#page-team .investor-only.related-party-disclosure .related-party-disclosure__body p {
+  width: 100%;
+  max-width: none !important;
+}
+
 /* Target deployment states table (override .data-table striping) */
 table.data-table.deployment-states-table tr.deployment-states-table__primary td,
 table.data-table.deployment-states-table tr.deployment-states-table__primary:hover td {
