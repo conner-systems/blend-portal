@@ -1494,6 +1494,67 @@ th {
   }
 }
 
+/* Forward-looking disclaimer (financial sections) */
+.forward-looking-disclaimer {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  font-size: 13px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  line-height: 1.55;
+  margin: 0 0 20px 0;
+  box-sizing: border-box;
+}
+
+/* Team — related party disclosure */
+.related-party-disclosure {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 24px 28px;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+.related-party-disclosure__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b45309;
+  margin-bottom: 12px;
+}
+.related-party-disclosure__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+.related-party-disclosure__body {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.7;
+  max-width: 720px;
+}
+.related-party-disclosure__body p {
+  margin: 0 0 14px 0;
+}
+.related-party-disclosure__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Target deployment states table (override .data-table striping) */
+table.data-table.deployment-states-table tr.deployment-states-table__primary td,
+table.data-table.deployment-states-table tr.deployment-states-table__primary:hover td {
+  background: #f0fdfa;
+}
+table.data-table.deployment-states-table tr.deployment-states-table__primary td:first-child {
+  border-left: 4px solid #00bfa5;
+}
+table.data-table.deployment-states-table tr.deployment-states-table__phase2 td,
+table.data-table.deployment-states-table tr.deployment-states-table__phase2:hover td {
+  background: #f9fafb;
+}
+
 /* The Raise — scenario comparison: cumulative max exposure (amber disclosure row) */
 table.data-table.raise-scenario-compare-table tr.raise-max-exposure-row--underperf td,
 table.data-table.raise-scenario-compare-table tr.raise-max-exposure-row--underperf:hover td {
