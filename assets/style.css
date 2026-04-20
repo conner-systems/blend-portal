@@ -186,6 +186,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   font-weight: 700 !important;
 }
 
+/* Competitive — Category By The Numbers (BLEND+ row) */
+.category-by-numbers-table tr.category-by-numbers__blend td {
+  background: #00bfa5 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  border-top: 2px solid #0d9488 !important;
+}
+.category-by-numbers-table tr.category-by-numbers__blend:hover td {
+  background: #00a896 !important;
+  color: #ffffff !important;
+}
+
 /* Overview hero — 4×2 metrics (not .stat-row: avoids global single-column collapse) */
 .overview-stat-grid {
   display: grid;
