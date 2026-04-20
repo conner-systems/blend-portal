@@ -177,6 +177,31 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;align-items:stretch;}
 
+/* Overview hero — 3×2 metrics (not .stat-row: avoids global single-column collapse) */
+.overview-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: stretch;
+}
+.overview-stat-grid .stat-card {
+  margin-bottom: 0;
+}
+.overview-stat-grid .stat-value {
+  margin-bottom: 4px;
+}
+@media (max-width: 900px) {
+  .overview-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .overview-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* TAM Penetration — scenario stat cards (3×2) */
 .projections-scenario-grid {
   display: grid;
