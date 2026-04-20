@@ -480,6 +480,97 @@
           <div style="margin-top:12px;"><span class="tag tag-green">Manufacturing</span><span class="tag tag-green">Automation</span></div>
         </div>
       </div>
+
+      <div class="card" style="margin-top:24px;">
+        <div class="card-title">Sales and Distribution</div>
+        <p style="font-size:14px;color:#6B7280;line-height:1.75;margin-bottom:16px;">Locked final compensation structure for placement reps and recurring commissions.</p>
+
+        <div class="card" style="margin-bottom:20px;background:#F9FAFB;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:12px;">Compensation Structure</div>
+          <div class="table-scroll-wrap">
+            <table class="data-table">
+              <tr><th>Component</th><th>Amount</th><th>Notes</th></tr>
+              <tr><td>Hourly rate</td><td>$25/hour</td><td>Up to 40 hours/week — rep chooses their own hours, never more than 40</td></tr>
+              <tr><td>Placement commission — install</td><td>$750 at machine install</td><td>Paid when machine goes live at the location</td></tr>
+              <tr><td>Placement commission — 90-day</td><td>$750 at 90-day review</td><td>Paid when location averages 25+ orders/day for 90 days</td></tr>
+              <tr><td>90-day performance bonus</td><td>$500</td><td>Paid alongside the 90-day commission — $1,250 total at 90-day milestone for qualifying locations</td></tr>
+              <tr><td>Recurring commission — months 1-12</td><td>5% of location gross revenue</td><td>Clock starts at install date — per location, not per rep</td></tr>
+              <tr><td>Recurring commission — month 13+</td><td>2% of location gross revenue</td><td>Rate drops per location after 12 months</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:18px;font-weight:700;color:#111827;margin-bottom:12px;">The 12-Month Clock — How It Works</div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:16px;">
+            The 12-month commission clock is tied to each individual location — not to the rep&apos;s overall tenure. Every machine installed starts its own independent clock.
+          </div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:16px;">
+            A rep who places Location A in January earns 5% on Location A through January of next year. When they place Location B in June, Location B starts its own 5% clock running through June of next year. Location A transitions to 2% in January while Location B is still earning 5%.
+          </div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:18px;">
+            The result: a rep who keeps placing new locations always has a mix of 5% (new) and 2% (mature) accounts. Their blended rate stays strong as long as they keep growing. The model rewards continuous placement — not just an initial burst of activity.
+          </div>
+
+          <div style="background:#F8FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:12px;color:#374151;line-height:1.8;white-space:pre-wrap;">Location A — installed Month 1:
+[████████████ 5% ████████████] [████ 2% ████→]
+Month 1 ————————————— Month 12 — Month 13+
+
+Location B — installed Month 6:
+                [████████████ 5% ████████████] [████ 2%→]
+Month 6 ———————————————————— Month 18 — Month 19+
+
+Location C — installed Month 12:
+                              [████████████ 5% ████████████] [2%→]
+Month 12 ———————————————————————————— Month 24+</div>
+          <div style="margin-top:12px;font-size:12px;font-weight:700;color:#00BFA5;">New placements always restart at 5%. The rep is always incentivized to grow.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:12px;">Earnings Projection</div>
+          <div class="table-scroll-wrap">
+            <table class="data-table">
+              <tr><th>Month</th><th>Active Locations</th><th>New (5%) Locations</th><th>Mature (2%) Locations</th><th>Monthly Recurring</th><th>Monthly Hourly</th><th>Total Monthly</th><th>Annual Run Rate</th></tr>
+              <tr><td>Month 6</td><td>12 total</td><td>12 at 5%</td><td>0 at 2%</td><td>$4,975</td><td>$4,333</td><td>$9,308</td><td>$111,696</td></tr>
+              <tr><td>Month 12</td><td>24 total</td><td>12 at 5%</td><td>12 at 2%</td><td>$9,951</td><td>$4,333</td><td>$14,284</td><td>$171,408</td></tr>
+              <tr><td>Month 18</td><td>36 total</td><td>12 at 5%</td><td>24 at 2%</td><td>$13,932</td><td>$4,333</td><td>$18,265</td><td>$219,180</td></tr>
+              <tr><td>Month 24</td><td>48 total</td><td>12 at 5%</td><td>36 at 2%</td><td>$17,913</td><td>$4,333</td><td>$22,246</td><td>$266,952</td></tr>
+            </table>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:#6B7280;line-height:1.7;">Assumes 2 new locations placed per month. Each new location adds $415/month at 5% recurring. Placement commissions ($750 at install + $750 at 90-day review + $500 bonus = $2,000 per qualifying location) are additive and not shown in the table above.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:12px;">Cost Per Machine</div>
+          <div class="table-scroll-wrap">
+            <table class="data-table">
+              <tr><th>Period</th><th>Commission</th><th>Cost/Machine/Month</th><th>BLEND+ Net After Commission</th></tr>
+              <tr><td>Months 1-12 per location</td><td>5% of gross</td><td>$415/month</td><td>$6,219/month</td></tr>
+              <tr><td>Month 13+ per location</td><td>2% of gross</td><td>$166/month</td><td>$6,468/month</td></tr>
+            </table>
+          </div>
+          <div style="margin-top:12px;background:#F0FDFA;border-left:4px solid #00BFA5;border-radius:8px;padding:14px 16px;font-size:13px;color:#0F172A;line-height:1.75;">Every location automatically becomes more profitable at month 13 — BLEND+&apos;s margin improves by $249/month per mature location with no action required. At 50 mature locations that is $12,450/month in additional margin from the rate step-down alone.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;background:#FFFFFF;border:1px solid #E5E7EB;">
+          <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:12px;">Clawback Structure</div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:14px;">The placement commission is split into two payments — $750 at install and $750 at the 90-day review — for a specific reason. A qualifying 90-day review requires the location to average 25+ orders per day over the 90-day period.</div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:14px;">A rep who earns the full commission only after proving the location performs has every incentive to place the right machine in the right location. A rep who earns everything at signing has an incentive to place machines everywhere and move on regardless of fit.</div>
+          <div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:16px;">The 90-day review also triggers the optional $500 performance bonus — meaning a rep who places a great location earns $2,000 total in placement commissions versus $750 for a location that doesn&apos;t hit the performance threshold. Quality placements are worth 2.67x more than marginal ones.</div>
+
+          <div class="two-col" style="gap:16px;">
+            <div style="background:#F0FDFA;border:1px solid #99F6E4;border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:#0F766E;margin-bottom:6px;">Path A — Strong placement</div>
+              <div style="font-family:var(--mono);font-size:12px;color:#0F172A;line-height:1.7;">$750 at install -> location hits 25+ orders/day -> $750 + $500 at day 90 -> Total: $2,000 + 5% recurring</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:6px;">Path B — Weak placement</div>
+              <div style="font-family:var(--mono);font-size:12px;color:#0F172A;line-height:1.7;">$750 at install -> location misses 25+ orders/day -> $0 at day 90 -> Total: $750 + 5% recurring (lower base)</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;font-size:12px;font-weight:700;color:#00BFA5;">The structure rewards quality. Every time.</div>
+        </div>
+      </div>
     </div>
 
     <!-- ══ WHY NOW ══ -->
