@@ -75,6 +75,7 @@
       <button class="nav-item investor-only" onclick="nav('economics',this)"><span class="nav-dot"></span>Unit Economics</button>
       <button class="nav-item investor-only" onclick="nav('the-numbers',this)"><span class="nav-dot"></span>The Numbers</button>
       <button class="nav-item investor-only" onclick="nav('competitive',this)"><span class="nav-dot"></span>Competitive Advantage</button>
+      <button class="nav-item investor-only" onclick="nav('team',this);setTimeout(function(){var el=document.getElementById('sales-distribution');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},0);"><span class="nav-dot"></span>Sales &amp; Distribution</button>
       <button class="nav-item investor-only" onclick="nav('tam',this)"><span class="nav-dot"></span>Market Size · TAM</button>
       <button class="nav-item investor-only" onclick="nav('projections',this)"><span class="nav-dot"></span>TAM Penetration</button>
 
@@ -481,7 +482,7 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top:24px;">
+      <div class="card" id="sales-distribution" style="margin-top:24px;">
         <div class="card-title">Sales and Distribution</div>
         <p style="font-size:14px;color:#6B7280;line-height:1.75;margin-bottom:16px;">Locked final compensation structure for placement reps and recurring commissions.</p>
 
@@ -2512,7 +2513,7 @@ Month 12 ———————————————————————�
           <ul class="bullet-list">
             <li>React Native / Expo — iOS first</li>
             <li>Supabase backend — auth, database, real-time</li>
-            <li>Stripe — payments, Apple Pay, sandbox → live pending</li>
+            <li>Stripe — payments, Apple Pay, sandbox → production at Machine 1 launch</li>
             <li>Twilio A2P — phone auth pending (2–6 week registration)</li>
             <li>Tier system — Bronze/Silver/Gold/Platinum active</li>
             <li>Silver trial — 7 days free for new members</li>
