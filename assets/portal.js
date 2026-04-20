@@ -56,7 +56,7 @@ function renderAccessScreen() {
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;">
       <div class="login-box">
         <div class="logo">BLEND+</div>
-        <div class="tagline">Southwest Region · By invitation only · Confidential</div>
+        <div class="tagline">By invitation only · Confidential</div>
         <input type="password" id="access-code-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter')handleAccessCode()"/>
         <button onclick="handleAccessCode()">Enter</button>
         <div class="login-error" id="access-code-error">Incorrect access code.</div>
