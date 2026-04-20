@@ -1494,6 +1494,36 @@ th {
   }
 }
 
+/* TAM — revenue matrix by vertical (override .data-table striping + hover) */
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__base td {
+  background: #f0fdfa;
+  color: #374151;
+}
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__base:hover td {
+  background: #e6faf6;
+}
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__base td:first-child {
+  border-left: 4px solid #00bfa5;
+}
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport td,
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport:hover td {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport td strong {
+  color: #ffffff;
+}
+.tam-revenue-matrix__driver {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  max-width: 280px;
+}
+table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport td.tam-revenue-matrix__driver--on-dark {
+  color: #cbd5e1;
+}
+
 /* Machine buyout pricing table (investor) */
 .buyout-pricing-table__row-mature td {
   background: #f0fdfa;
