@@ -1494,6 +1494,12 @@ th {
   }
 }
 
+/* The Raise — scenario comparison: cumulative max exposure (amber disclosure row) */
+table.data-table.raise-scenario-compare-table tr.raise-max-exposure-row--underperf td,
+table.data-table.raise-scenario-compare-table tr.raise-max-exposure-row--underperf:hover td {
+  background: #fffbeb;
+}
+
 /* TAM — revenue matrix by vertical (override .data-table striping + hover) */
 table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__base td {
   background: #f0fdfa;
