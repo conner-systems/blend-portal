@@ -84,6 +84,7 @@
       <button class="nav-item investor-only" onclick="nav('raise',this)"><span class="nav-dot"></span>The Raise</button>
       <button class="nav-item investor-only" onclick="nav('buyout-calculator',this)"><span class="nav-dot"></span>Buyout Calculator</button>
       <button class="nav-item investor-only" onclick="nav('trajectory',this)"><span class="nav-dot"></span>Manufacturing</button>
+      <button class="nav-item investor-only" onclick="nav('fds',this)"><span class="nav-dot"></span>Functional Design Specification</button>
       <button class="nav-item investor-only" onclick="nav('acquisition',this)"><span class="nav-dot"></span>Exit Thesis</button>
       <button class="nav-item investor-only" onclick="nav('roadmap',this)"><span class="nav-dot"></span>5-Year Roadmap</button>
 
@@ -1811,6 +1812,141 @@ Month 12 ———————————————————————�
 })();
 </script>
 
+    </div>
+
+    <!-- ══ FUNCTIONAL DESIGN SPECIFICATION (MK1 FDS v2.1) ══ -->
+    <div class="page investor-only" id="page-fds">
+      <div class="page-header">
+        <div class="page-eyebrow">BLEND+ · Manufacturing</div>
+        <div class="page-title">Functional Design Specification — MK1</div>
+        <div class="page-sub">Version 2.1 · Allen-Bradley CompactLogix · NSF/ANSI 25 · ETL Listed · April 2026</div>
+      </div>
+      <div class="forward-looking-disclaimer investor-only" role="note" style="margin-bottom:24px;">CONFIDENTIAL — Proprietary engineering specification. Authorized investor access only.</div>
+
+      <div class="card">
+        <div class="card-title">Certification &amp; Compliance</div>
+        <div class="stat-row" style="margin-bottom:0;grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">NSF/ANSI 25</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Vending Machines</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">NSF/ANSI 12</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Ice Systems (Scotsman UF0915 — pre-certified)</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">NSF/ANSI 61</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Water Contact Surfaces</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">ETL Listed</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Electrical Safety (Intertek)</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">UL 508A</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Industrial Control Panel</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--cyan);margin-bottom:0;"><div class="stat-label">FDA 21 CFR 177.2600</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">Food Contact Seals</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--orange);margin-bottom:0;"><div class="stat-label">FSMA</div><div class="stat-value" style="font-size:16px;color:var(--text);line-height:1.35;">HACCP Plan Required</div></div>
+          <div class="stat-card" style="border-top:3px solid var(--green);margin-bottom:0;"><div class="stat-label">Target uptime</div><div class="stat-value" style="font-size:16px;color:var(--green);line-height:1.35;">99.5%</div><div class="stat-sub">Max 155 min/month downtime</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Hardware summary</div>
+        <table class="data-table">
+          <tr><th>Component</th><th>Specification</th></tr>
+          <tr><td>PLC</td><td>Allen-Bradley CompactLogix 1769-L19ER/L30ER/L33ER · Studio 5000</td></tr>
+          <tr><td>Blend motor</td><td>2HP IP67 food-grade sealed</td></tr>
+          <tr><td>Rotor-stator</td><td>Silverson BE275 bottom-entry high-shear · 25–45 sec per order</td></tr>
+          <tr><td>Ice maker</td><td>Scotsman UF0915 Flake · 96 lb/day · NSF-12 pre-certified</td></tr>
+          <tr><td>Water filtration</td><td>5-stage RO · NSF/ANSI 61 throughout</td></tr>
+          <tr><td>Powder cartridges</td><td>12 × NSF-61 HDPE · nitrogen-flushed · RFID tracked</td></tr>
+          <tr><td>Augers</td><td>Falcon Industries custom food-grade × 12</td></tr>
+          <tr><td>UV-C lamp</td><td>Germicidal 254nm · current monitored</td></tr>
+          <tr><td>CIP chemicals</td><td>NSF D2 citric acid + peracetic acid · naturally occurring</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Drink complexity tiers &amp; throughput</div>
+        <div class="three-col" style="margin-bottom:20px;">
+          <div class="card" style="margin-bottom:0;border:1px solid var(--border);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">Tier 1 · Simple / Hydration</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.65;"><strong style="color:var(--text);">Blend time:</strong> 15 seconds<br><strong style="color:var(--text);">Full cycle avg:</strong> ~70 seconds<br><strong style="color:var(--text);">Examples:</strong> Water + electrolytes, amino acids, base only</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid var(--border);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">Tier 2 · Standard Protein</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.65;"><strong style="color:var(--text);">Blend time:</strong> 30 seconds<br><strong style="color:var(--text);">Full cycle avg:</strong> ~100 seconds<br><strong style="color:var(--text);">Examples:</strong> Whey + base + 1 supplement, plant protein</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid var(--border);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">Tier 3 · Complex / Performance</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.65;"><strong style="color:var(--text);">Blend time:</strong> 45 seconds<br><strong style="color:var(--text);">Full cycle avg:</strong> ~118 seconds<br><strong style="color:var(--text);">Examples:</strong> Multi-protein + multi-supplement, full 5+ ingredient</div>
+          </div>
+        </div>
+        <div class="stat-row" style="margin-bottom:0;">
+          <div class="stat-card" style="margin-bottom:0;"><div class="stat-label">Weighted avg cycle time</div><div class="stat-value" style="color:var(--cyan);font-size:20px;">~96 sec</div></div>
+          <div class="stat-card" style="margin-bottom:0;"><div class="stat-label">Sustained throughput</div><div class="stat-value" style="color:var(--cyan);font-size:20px;">37–38 drinks/hour</div></div>
+          <div class="stat-card" style="margin-bottom:0;"><div class="stat-label">Two-machine throughput</div><div class="stat-value" style="color:var(--cyan);font-size:20px;">74–76 drinks/hour</div></div>
+          <div class="stat-card" style="margin-bottom:0;"><div class="stat-label">Max queue wait (5 orders)</div><div class="stat-value" style="color:var(--text);font-size:20px;">~8 min</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">12-hopper ingredient configuration</div>
+        <div class="table-scroll-wrap">
+          <table class="data-table">
+            <tr><th>Position</th><th>Category</th><th>Contents</th><th>Type</th></tr>
+            <tr><td>1</td><td>Base</td><td>Whole Milk Powder</td><td>Permanent</td></tr>
+            <tr><td>2</td><td>Base</td><td>Oat Milk Powder</td><td>Permanent</td></tr>
+            <tr><td>3</td><td>Base</td><td>Coconut Milk Powder</td><td>Permanent</td></tr>
+            <tr><td>4</td><td>Core Protein</td><td>Vanilla Grass-Fed Whey</td><td>Permanent</td></tr>
+            <tr><td>5</td><td>Core Protein</td><td>Chocolate Grass-Fed Whey</td><td>Permanent</td></tr>
+            <tr><td>6</td><td>Core Protein</td><td>Mixed Berry Plant Protein</td><td>Permanent</td></tr>
+            <tr><td>7</td><td>Rotating Protein</td><td>Birthday Cake / Mint Choc / Cinnamon Roll / Horchata / Matcha</td><td>Rotating quarterly</td></tr>
+            <tr style="background:#FEF2F2;"><td style="border-left:4px solid #EF4444;font-weight:700;">8</td><td>Supplement (CCP #1)</td><td>Caffeine — 50/100/150/200mg member-selected</td><td>Permanent · <strong style="color:#B91C1C;">Critical Control Point</strong></td></tr>
+            <tr><td>9</td><td>Supplement</td><td>Electrolytes — organic blend</td><td>Permanent</td></tr>
+            <tr><td>10</td><td>Supplement</td><td>Amino Acids (EAAs)</td><td>Permanent</td></tr>
+            <tr><td>11</td><td>Supplement</td><td>Lumati Gold — clinical formula</td><td>Permanent</td></tr>
+            <tr><td>12</td><td>Rotating Supplement</td><td>Creatine HCl / Lion&apos;s Mane / Magnesium Glycinate / Collagen</td><td>Rotating quarterly</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">CIP — Clean-in-place system</div>
+        <div class="two-col" style="gap:16px;">
+          <div class="card" style="margin-bottom:0;border:1px solid var(--border);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;">Protocol A · every order</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7;">Hot water flush 140°F → Steam pulse 212°F → UV-C 254nm → Air purge (desiccant filtered) → Cold cool-down → Second air purge → Bone-dry confirmation (dual humidity sensors)</div>
+            <div style="font-size:13px;color:var(--text);font-weight:600;margin-top:14px;">Duration: ~25–35 seconds added to cycle time</div>
+          </div>
+          <div class="card" style="margin-bottom:0;border:1px solid var(--border);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;">Protocol B · nightly off-hours</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7;">Hot water pre-flush → Citric acid soak (5 min) → Rinse → Peracetic acid contact (2 min) → Rinse → Extended steam 212°F (20 sec) → Extended UV-C → Dual air purge → Cool-down</div>
+            <div style="font-size:13px;color:var(--text);font-weight:600;margin-top:14px;">Duration: 12–14 minutes · Runs at 11:00 PM nightly</div>
+          </div>
+        </div>
+        <div style="margin-top:18px;font-size:13px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);padding-top:16px;">All CIP cycles are logged by the PLC with timestamp and temperature record to Supabase. Food safety is a hardware requirement, not a training program.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Critical control points</div>
+        <div style="margin-top:4px;background:#FFFBEB;border-left:4px solid #F59E0B;border-radius:8px;padding:16px 18px;font-size:14px;color:#92400E;line-height:1.7;margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;margin-bottom:8px;">CCP #1 — Caffeine dispensing accuracy</div>
+          <div>Maximum safe dose: 200mg. Load cell verifies dispensed weight within ±3% of target before sequence proceeds. If outside tolerance after retry: caffeine aborted, member notified, fault F-CAF-01 logged. Caffeine auger calibrated at every monthly service visit.</div>
+        </div>
+        <div style="background:#FFFBEB;border-left:4px solid #F59E0B;border-radius:8px;padding:16px 18px;font-size:14px;color:#92400E;line-height:1.7;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;margin-bottom:8px;">CCP #2 — CIP thermal sanitization</div>
+          <div>Minimum flush temperature: 140°F. Steam pulse minimum: 212°F for 10 seconds contact time. If temperature not met: CIP aborted, machine enters FAULT state, cannot serve until technician validates. Temperature sensor calibrated quarterly to NIST standards.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Pre-shipment validation</div>
+        <table class="data-table">
+          <tr><th>#</th><th>Test</th></tr>
+          <tr><td>1</td><td>Check valve steam integrity — zero moisture in any cartridge after CIP steam</td></tr>
+          <tr><td>2</td><td>Cone surface wetting — complete dye coverage, zero dry spots, zero pooling</td></tr>
+          <tr><td>3</td><td>Powder flow — all 12 types at 60/40/20% fill levels · caffeine ±3%, others ±8%</td></tr>
+          <tr><td>4</td><td>Vibration isolation — load cell stable within ±2g during simultaneous auger operation</td></tr>
+          <tr><td>5</td><td>Drain flow rate — cylinder drains completely within 15 seconds</td></tr>
+          <tr><td>6</td><td>CIP temperature (CCP #2) — continuous logging, all thresholds met</td></tr>
+          <tr><td>7</td><td>Chamber cool-down — below 45°F within 8 seconds of cold flush</td></tr>
+          <tr><td>8</td><td>Dual humidity sensor confirmation — both sensors agree within ±5% RH</td></tr>
+          <tr><td>9</td><td>Mid-dispense cup removal — iris valve closes within 500ms</td></tr>
+          <tr><td>10</td><td>Chemical dosing confirmation — pH verified at correct concentration</td></tr>
+          <tr><td>11</td><td>Caffeine abort logic (CCP #1) — abort sequence confirmed with fault logging</td></tr>
+          <tr><td>12</td><td>Full sequence test — 100 consecutive orders, zero critical faults</td></tr>
+          <tr><td>13</td><td>48-hour burn-in — two full operating day simulations, zero faults</td></tr>
+          <tr><td>14</td><td>Pest exclusion inspection — all penetrations sealed per NSF/ANSI 25</td></tr>
+        </table>
+      </div>
     </div>
 
     <!-- ══ ACQUISITION THESIS ══ -->
