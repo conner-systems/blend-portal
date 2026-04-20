@@ -261,6 +261,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   margin: 48px auto;
   padding: 48px 56px 56px 56px;
   background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   overflow: hidden;
   box-sizing: border-box;
@@ -272,7 +273,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   top: 0;
   bottom: 0;
   width: 4px;
-  background: #00bfa5;
+  background: #2dd4bf;
   border-radius: 16px 0 0 16px;
   pointer-events: none;
 }
@@ -282,7 +283,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   right: 20px;
   font-size: 160px;
   line-height: 1;
-  color: rgba(0, 191, 165, 0.06);
+  color: rgba(255, 255, 255, 0.08);
   font-family: Georgia, 'Times New Roman', Times, serif;
   pointer-events: none;
   user-select: none;
@@ -294,16 +295,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 }
 .competitive-navy-callout__lead {
   margin: 0 0 20px;
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   color: #ffffff;
-  line-height: 1.6;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.5;
 }
 .competitive-navy-callout__body {
   margin: 0 0 18px;
   font-size: 18px;
-  color: #cbd5e1;
-  line-height: 1.9;
+  color: #e2e8f0;
+  line-height: 1.8;
 }
 .competitive-navy-callout__body:has(+ .competitive-navy-callout__fin) {
   margin-bottom: 0;
@@ -311,10 +313,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 .competitive-navy-callout__fin {
   margin: 32px 0 0;
   padding-top: 24px;
-  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  border-top: 1px solid rgba(45, 212, 191, 0.35);
   font-size: 20px;
   font-weight: 700;
-  color: #00bfa5;
+  color: #2dd4bf;
   line-height: 1.5;
 }
 .competitive-navy-callout__mark {
@@ -324,7 +326,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   font-family: var(--font);
   font-size: 11px;
   letter-spacing: 0.15em;
-  color: rgba(0, 191, 165, 0.4);
+  color: rgba(45, 212, 191, 0.5);
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -364,6 +366,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   margin: 48px auto;
   padding: 48px 56px;
   background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   overflow: hidden;
   box-sizing: border-box;
@@ -374,7 +377,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   top: 0;
   bottom: 0;
   width: 4px;
-  background: #00bfa5;
+  background: #2dd4bf;
   border-radius: 16px 0 0 16px;
   pointer-events: none;
 }
@@ -384,7 +387,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   right: 20px;
   font-size: 160px;
   line-height: 1;
-  color: rgba(0, 191, 165, 0.06);
+  color: rgba(255, 255, 255, 0.08);
   font-family: Georgia, "Times New Roman", serif;
   pointer-events: none;
   user-select: none;
@@ -405,16 +408,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 #page-roadmap .roadmap-closing-callout__body {
   margin: 24px 0 0;
   font-size: 18px;
-  color: #cbd5e1 !important;
+  color: #e2e8f0 !important;
   line-height: 1.8;
 }
 #page-roadmap .roadmap-closing-callout__finale {
   margin: 32px 0 0;
   padding-top: 24px;
-  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  border-top: 1px solid rgba(45, 212, 191, 0.35);
   font-size: 20px;
   font-weight: 700;
-  color: #00bfa5 !important;
+  color: #2dd4bf !important;
   line-height: 1.6;
 }
 
@@ -858,6 +861,7 @@ th {
   margin: 48px auto;
   padding: 56px 64px;
   background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
@@ -867,7 +871,7 @@ th {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: #00bfa5;
+  background: #2dd4bf;
   border-radius: 20px 0 0 20px;
   pointer-events: none;
 }
@@ -878,7 +882,7 @@ th {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 180px;
   line-height: 1;
-  color: rgba(0, 191, 165, 0.08);
+  color: rgba(255, 255, 255, 0.08);
   pointer-events: none;
   user-select: none;
 }
@@ -890,7 +894,7 @@ th {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15em;
-  color: rgba(0, 191, 165, 0.5) !important;
+  color: rgba(45, 212, 191, 0.55) !important;
   pointer-events: none;
   user-select: none;
 }
@@ -917,8 +921,8 @@ th {
 #page-experience .experience-manifesto__transition {
   font-size: 18px;
   font-weight: 600 !important;
-  color: #00bfa5 !important;
-  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  color: #2dd4bf !important;
+  border-top: 1px solid rgba(45, 212, 191, 0.35);
   padding-top: 32px;
   margin: 32px 0 !important;
   line-height: 1.6 !important;
@@ -935,7 +939,7 @@ th {
   margin: 0 0 16px 0 !important;
 }
 #page-experience .experience-manifesto__muted {
-  color: #cbd5e1 !important;
+  color: #e2e8f0 !important;
   font-weight: 400 !important;
   margin: 0 !important;
   line-height: 1.9 !important;
@@ -943,12 +947,12 @@ th {
 #page-experience .experience-manifesto__highlight {
   font-size: 22px;
   font-weight: 700 !important;
-  color: #00bfa5 !important;
+  color: #2dd4bf !important;
   margin: 40px 0 24px 0 !important;
   line-height: 1.6 !important;
 }
 #page-experience .experience-manifesto__body-strong {
-  color: #ffffff !important;
+  color: #e2e8f0 !important;
   font-weight: 500 !important;
   margin: 0 !important;
   line-height: 1.9 !important;
@@ -963,13 +967,13 @@ th {
   line-height: 1.6 !important;
 }
 #page-experience .experience-manifesto__teal {
-  color: #00bfa5 !important;
+  color: #2dd4bf !important;
 }
 #page-experience .experience-manifesto__finale {
   font-size: 20px;
   font-weight: 700 !important;
   color: #ffffff !important;
-  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  border-top: 1px solid rgba(45, 212, 191, 0.35);
   padding-top: 24px;
   margin: 32px 0 0 0 !important;
   line-height: 1.6 !important;
