@@ -1493,3 +1493,21 @@ th {
     font-size: 16px !important;
   }
 }
+
+/* Machine buyout pricing table (investor) */
+.buyout-pricing-table__row-mature td {
+  background: #f0fdfa;
+  border-top: 1px solid #99f6e4;
+}
+.buyout-pricing-table__row-mature td:first-child {
+  border-left: 4px solid #00bfa5;
+}
+.buyout-pricing-table__mature-badge {
+  display: inline-block;
+  background: #00bfa5;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 8px;
+}

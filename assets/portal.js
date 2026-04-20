@@ -398,7 +398,7 @@ const INVESTOR_CTA_CONFIG = {
   tam: { heading: 'The TAM is not the question.', sub: 'Machine 1 answers whether the model holds.', btn: 'See The Raise', pageId: 'raise' },
   projections: { heading: 'Penetration scenarios are illustrative.', sub: 'Capital follows proof through the tranche structure.', btn: 'See The Raise', pageId: 'raise' },
   trajectory: { heading: 'Manufacturing cadence follows design lock.', sub: 'Water Innovations at cost + 20% through Machine 100.', btn: 'See The Raise', pageId: 'raise' },
-  'buyout-calculator': { heading: 'Model the exit from real fleet data.', sub: 'Illustrative multiples — diligence replaces every placeholder.', btn: 'See Exit Thesis', pageId: 'acquisition' },
+  'buyout-calculator': { heading: 'Machine buyout pricing by track record.', sub: 'Static schedule — not a calculator. See Exit Thesis for acquisition context.', btn: 'See Exit Thesis', pageId: 'acquisition' },
   team: { heading: 'Questions for the founders?', sub: 'We respond to serious investor inquiries directly.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
   faq: { heading: 'Still have questions?', sub: 'Reach out directly. We respond within 24 hours.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
   'submit-interest': { heading: 'Interested in hosting or partnering?', sub: 'We route investor and host inquiries through the same team.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
