@@ -177,28 +177,39 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;align-items:stretch;}
 
-/* Overview hero — 3×2 metrics (not .stat-row: avoids global single-column collapse) */
+/* Competitive — sq ft vs commercial rent (striping from .data-table; teal base-case column) */
+.sqft-rent-comparison tr:hover .sqft-rent-comparison__blend {
+  color: #00bfa5 !important;
+}
+.sqft-rent-comparison__blend {
+  color: #00bfa5 !important;
+  font-weight: 700 !important;
+}
+
+/* Overview hero — 4×2 metrics (not .stat-row: avoids global single-column collapse) */
 .overview-stat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  margin-top: 32px;
   margin-bottom: 24px;
   align-items: stretch;
 }
 .overview-stat-grid .stat-card {
   margin-bottom: 0;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
 }
 .overview-stat-grid .stat-value {
   margin-bottom: 4px;
 }
-@media (max-width: 900px) {
+/* Slightly tighter numerals so 4-up fits on laptop */
+.overview-stat-grid .stat-value.overview-stat-grid__value {
+  font-size: clamp(26px, 2.4vw, 34px);
+}
+@media (max-width: 768px) {
   .overview-stat-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 560px) {
-  .overview-stat-grid {
-    grid-template-columns: 1fr;
   }
 }
 
