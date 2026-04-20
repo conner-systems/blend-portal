@@ -257,8 +257,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 /* Competitive — navy serif callout (between competitor cards and category table) */
 .competitive-navy-callout {
   position: relative;
-  max-width: 800px;
-  margin: 48px auto;
+  width: 100%;
+  max-width: none;
+  margin: 48px 0;
   padding: 48px 56px 56px 56px;
   background: #0f172a;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -353,7 +354,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   font-style: italic;
   line-height: 1.55;
   margin: 10px 0 0;
-  max-width: 920px;
 }
 .competitive-table-footnotes a {
   color: #6b7280;
@@ -362,8 +362,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 
 .roadmap-closing-callout {
   position: relative;
-  max-width: 800px;
-  margin: 48px auto;
+  width: 100%;
+  max-width: none;
+  margin: 48px 0;
   padding: 48px 56px;
   background: #0f172a;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -835,7 +836,6 @@ th {
   margin-bottom: 32px;
 }
 .experience-detail-body {
-  max-width: 720px;
   font-size: 16px;
   line-height: 1.7;
   color: #374151;
@@ -857,8 +857,9 @@ th {
 /* The Experience — manifesto card */
 .experience-manifesto {
   position: relative;
-  max-width: 800px;
-  margin: 48px auto;
+  width: 100%;
+  max-width: none;
+  margin: 48px 0;
   padding: 56px 64px;
   background: #0f172a;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1098,8 +1099,7 @@ th {
   line-height: 1.5;
 }
 #page-experience .experience-belongs__intro {
-  max-width: 720px;
-  margin: 0 auto 28px;
+  margin: 0 0 28px;
   text-align: center;
   font-size: 16px;
   line-height: 1.75;
@@ -1169,8 +1169,7 @@ th {
   flex: 1;
 }
 #page-experience .experience-belongs-callout {
-  max-width: 720px;
-  margin: 0 auto;
+  margin: 0;
   padding: 16px 20px;
   border-left: 4px solid #00bfa5;
   background: #f0fdfa;
@@ -1181,8 +1180,7 @@ th {
 
 /* Market Size (TAM) — intro follow-on */
 #page-tam .tam-page-lede {
-  max-width: 720px;
-  margin: 20px auto 0;
+  margin: 20px 0 0;
   text-align: center;
   font-size: 16px;
   line-height: 1.75;
@@ -1291,8 +1289,9 @@ th {
 
 /* Section CTAs */
 .section-cta {
-  max-width: 600px;
-  margin: 48px auto 0;
+  width: 100%;
+  max-width: none;
+  margin: 48px 0 0;
   padding: 32px 28px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
