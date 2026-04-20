@@ -753,6 +753,44 @@ th {
   color: #ffffff !important;
 }
 
+/* The Experience — aligned section styling */
+.experience-detail-section {
+  padding-top: 48px;
+}
+.experience-detail-section--divider {
+  border-top: 1px solid #e5e7eb;
+}
+.experience-detail-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+#page-experience .experience-detail-subhead {
+  font-size: 16px;
+  color: #6b7280 !important;
+  margin-bottom: 32px;
+}
+.experience-detail-body {
+  max-width: 720px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 24px;
+}
+#page-experience .experience-detail-body p {
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  color: #374151 !important;
+  margin: 0 0 20px 0;
+}
+#page-experience .experience-detail-body p:last-child {
+  margin-bottom: 0;
+}
+.experience-detail-stats {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 /* The Experience — manifesto card */
 .experience-manifesto {
   position: relative;
