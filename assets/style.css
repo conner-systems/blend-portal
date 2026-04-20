@@ -199,6 +199,170 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   color: #ffffff !important;
 }
 
+/* Competitive — verified competitor cards (2×2) */
+.competitor-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.competitor-card-block {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-sizing: border-box;
+}
+.competitor-card-block__company {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+.competitor-card-block__founded {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.competitor-card-block__section {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 14px 0 8px;
+}
+.competitor-card-block__body {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+.competitor-card-block__lesson {
+  margin-top: 16px;
+  padding: 12px 14px 12px 16px;
+  border-left: 4px solid #00bfa5;
+  border-radius: 0 8px 8px 0;
+  background: #f9fafb;
+  font-size: 13px;
+  color: #0f766e;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .competitor-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.competitive-table-footnotes {
+  font-size: 12px;
+  color: #9ca3af;
+  font-style: italic;
+  line-height: 1.55;
+  margin: 10px 0 0;
+  max-width: 920px;
+}
+.competitive-table-footnotes a {
+  color: #6b7280;
+  text-decoration: underline;
+}
+
+/* Capital efficiency — 2×2 stat grid */
+.capital-efficiency-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+.capital-efficiency-stat.stat-card {
+  margin-bottom: 0;
+}
+@media (max-width: 640px) {
+  .capital-efficiency-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smoodi vs BLEND+ comparison table */
+.smoodi-compare-table th {
+  vertical-align: bottom;
+}
+.smoodi-compare-table__th-smoodi {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+}
+.smoodi-compare-table__th-blend {
+  background: #00bfa5 !important;
+  color: #ffffff !important;
+}
+table.data-table.smoodi-compare-table tr:nth-child(even):not(:first-child) td {
+  background: #f9fafb !important;
+}
+table.data-table.smoodi-compare-table tr:nth-child(odd):not(:first-child) td {
+  background: #ffffff !important;
+}
+.smoodi-compare-table__td-blend {
+  color: #00bfa5 !important;
+  font-weight: 600 !important;
+}
+.smoodi-compare-table tr:hover .smoodi-compare-table__td-blend {
+  color: #00bfa5 !important;
+}
+
+/* f'real channel — side-by-side cards */
+.freal-channel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.freal-channel-card {
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-sizing: border-box;
+}
+.freal-channel-card--gray {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+.freal-channel-card--teal {
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+}
+.freal-channel-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+.freal-channel-card__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.freal-channel-card__row:last-child {
+  margin-bottom: 0;
+}
+.freal-channel-card__k {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+.freal-channel-card__v {
+  color: #374151;
+}
+@media (max-width: 768px) {
+  .freal-channel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Overview hero — 4×2 metrics (not .stat-row: avoids global single-column collapse) */
 .overview-stat-grid {
   display: grid;
