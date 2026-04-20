@@ -389,7 +389,6 @@ const INVESTOR_CTA_CONFIG = {
   economics: { heading: 'Every assumption is falsifiable.', sub: 'Machine 1 confirms or corrects every number before Machine 2 ships.', btn: 'See The Raise', pageId: 'raise' },
   competitive: { heading: 'The category is proven. The model is right. The timing is now.', sub: 'Blendid raised $20M+ across venture capital, strategic investors, and crowdfunding. BLEND+ gets there for $100K.', btn: 'See The Raise', pageId: 'raise' },
   acquisition: { heading: '25 machines. Eight figures. The conversation changes.', sub: 'This round funds the first machine. That machine funds the rest.', btn: 'See The Raise', pageId: 'raise' },
-  roadmap: { heading: '1,000 machines. 0.67% market penetration.', sub: 'The market is not the constraint. The machine working is the constraint. That is what this round answers.', btn: 'See The Raise', pageId: 'raise' },
   raise: { heading: 'Ready to participate?', sub: 'One SAFE. Three scenarios. You decide how much conviction you have.', btn: 'Contact Conner', mailto: 'conner@blendplus.co' },
   machine: { heading: 'Hardware built for industrial duty cycles.', sub: 'Gate 3 proves reliability before capital scales.', btn: 'See The Raise', pageId: 'raise' },
   app: { heading: 'Software is the retention layer.', sub: 'The machine sells the first drink. The app sells every drink after.', btn: 'See The Raise', pageId: 'raise' },
