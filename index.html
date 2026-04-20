@@ -1248,7 +1248,7 @@ Month 12 ———————————————————————�
       </div>
 <div class="card" style="margin-top:24px;padding:0;overflow:hidden;">
   <div style="padding:24px 24px 0 24px;">
-    <div style="font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Interactive Manufacturing Trajectory · 500 Machines · 60 Months</div>
+    <div id="trajectory-chart-eyebrow" style="font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Interactive Manufacturing Trajectory · <span id="trajectory-eyebrow-suffix">500 Machines · 60 Months</span></div>
     <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
       <button onclick="showTab('cumulative')" id="tab-cumulative" style="font-family:var(--font);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;background:var(--cyan);color:#080C10;font-weight:700;">Cumulative Units</button>
       <button onclick="showTab('monthly')" id="tab-monthly" style="font-family:var(--font);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border-radius:6px;border:1px solid var(--border);cursor:pointer;background:transparent;color:var(--muted);">Monthly Production</button>
@@ -1261,6 +1261,11 @@ Month 12 ———————————————————————�
     <div style="position:relative;height:300px;width:100%;"><canvas id="chart-cumulative"></canvas></div>
     <div id="wrap-monthly" style="position:relative;height:300px;width:100%;display:none;"><canvas id="chart-monthly"></canvas></div>
     <div id="wrap-cost" style="position:relative;height:300px;width:100%;display:none;"><canvas id="chart-cost"></canvas></div>
+
+    <div id="trajectory-desc-cost" style="display:none;padding:16px 24px 0;font-size:13px;color:#374151;line-height:1.75;border-top:1px solid var(--border);">
+      <p style="margin:0 0 12px;">Machine 1 carries the full one-time certification cost of $12,250 through Intertek (NSF/ANSI 25 + ETL). This cost does not repeat on any subsequent machine. From Machine 2 onward, the all-in build cost is $22,200 — BOM at $18,500 plus Water Innovations manufacturing margin of 20%. Volume pricing on components, optimized assembly processes, and eventual offshore fabrication evaluation drive the cost curve down progressively as the fleet scales. At 500 machines the estimated all-in cost per unit approaches $13,500 — a 39% reduction from the Machine 2 base cost.</p>
+      <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.65;font-style:italic;">* Machine 1 all-in cost: $18,500 BOM + $3,700 manufacturing margin + $12,250 one-time certification = $34,450. Machine 2+: $18,500 BOM + $3,700 manufacturing margin = $22,200. Volume discounts on BOM components are projected — not guaranteed — and depend on supplier negotiations as fleet scales.</p>
+    </div>
 
     <div id="chart-annual" style="display:none;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
@@ -1305,17 +1310,7 @@ Month 12 ———————————————————————�
   let total = 0;
   monthlyNew.forEach(n => { total += n; cumulative.push(total); });
 
-  // Unit cost curve (scaled to $22,200 true machine cost vs prior $18,500 BOM-only baseline)
-  const hwFactor = 22200 / 18500;
-  const unitCost = cumulative.map(c => {
-    let v;
-    if (c <= 5) v = 25000;
-    else if (c <= 35) v = 25000 - ((c - 5) / 30) * 7000;
-    else if (c <= 100) v = 18000 - ((c - 35) / 65) * 3000;
-    else if (c <= 300) v = 15000 - ((c - 100) / 200) * 4000;
-    else v = 11000 - ((Math.min(c, 500) - 300) / 200) * 1000;
-    return Math.round(v * hwFactor);
-  });
+  // Unit cost curve — machine number (X) vs all-in build cost per unit (Y); see chart-cost below
 
   // Annual summary
   const annualData = [
@@ -1454,48 +1449,228 @@ Month 12 ———————————————————————�
     }
   });
 
-  // ── CHART 3: Unit Cost Curve ──
+  const costCliffData = [{ x: 1, y: 34450 }, { x: 2, y: 22200 }];
+  const costVolumeData = [
+    { x: 2, y: 22200 },
+    { x: 5, y: 22200 },
+    { x: 10, y: 21500 },
+    { x: 20, y: 20800 },
+    { x: 25, y: 20200 },
+    { x: 50, y: 19000 },
+    { x: 75, y: 18000 },
+    { x: 100, y: 17000 },
+    { x: 150, y: 16000 },
+    { x: 200, y: 15500 },
+    { x: 300, y: 14500 },
+    { x: 400, y: 14000 },
+    { x: 500, y: 13500 }
+  ];
+
+  const unitCostRefLinesPlugin = {
+    id: 'unitCostRefLines',
+    beforeDatasetsDraw(chart) {
+      if (chart.canvas.id !== 'chart-cost') return;
+      const { ctx, chartArea, scales } = chart;
+      const yS = scales.y;
+      if (!chartArea || !yS) return;
+      const lines = [
+        { y: 22200, label: 'Machine 2+ base cost' },
+        { y: 34450, label: 'Machine 1 all-in (includes certification)' }
+      ];
+      ctx.save();
+      lines.forEach(({ y, label }) => {
+        const py = yS.getPixelForValue(y);
+        ctx.setLineDash([5, 5]);
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.85)';
+        ctx.lineWidth = 1.25;
+        ctx.beginPath();
+        ctx.moveTo(chartArea.left, py);
+        ctx.lineTo(chartArea.right, py);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.font = '600 10px system-ui, sans-serif';
+        ctx.fillStyle = '#64748B';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(label, chartArea.right - 6, py - 3);
+      });
+      ctx.restore();
+    }
+  };
+
+  const unitCostAnnotationsPlugin = {
+    id: 'unitCostAnnotations',
+    afterDatasetsDraw(chart) {
+      if (chart.canvas.id !== 'chart-cost') return;
+      const { ctx, chartArea, scales } = chart;
+      const xS = scales.x;
+      const yS = scales.y;
+      if (!chartArea || !xS || !yS) return;
+      const x1 = xS.getPixelForValue(1);
+      const y1 = yS.getPixelForValue(34450);
+      const x2 = xS.getPixelForValue(2);
+      const y2 = yS.getPixelForValue(22200);
+      ctx.save();
+      [ [x1, y1, '#F59E0B'], [x2, y2, '#F59E0B'] ].forEach(([px, py, col]) => {
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = col;
+        ctx.stroke();
+      });
+      ctx.font = '600 10px system-ui, sans-serif';
+      ctx.fillStyle = '#E2E8F0';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText('$34,450 — includes $12,250 one-time certification', Math.min(x1 + 8, chartArea.right - 220), y1 - 10);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText('$22,200 — certification complete', x2 + 8, y2 + 10);
+      const midX = (x1 + x2) / 2;
+      const boxW = 280;
+      const boxH = 44;
+      let bx = midX - boxW / 2;
+      bx = Math.max(chartArea.left + 4, Math.min(bx, chartArea.right - boxW - 4));
+      const by = chartArea.top + 8;
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
+      ctx.strokeStyle = 'rgba(45, 212, 191, 0.6)';
+      ctx.lineWidth = 1;
+      const r = 8;
+      ctx.beginPath();
+      ctx.moveTo(bx + r, by);
+      ctx.lineTo(bx + boxW - r, by);
+      ctx.quadraticCurveTo(bx + boxW, by, bx + boxW, by + r);
+      ctx.lineTo(bx + boxW, by + boxH - r);
+      ctx.quadraticCurveTo(bx + boxW, by + boxH, bx + boxW - r, by + boxH);
+      ctx.lineTo(bx + r, by + boxH);
+      ctx.quadraticCurveTo(bx, by + boxH, bx, by + boxH - r);
+      ctx.lineTo(bx, by + r);
+      ctx.quadraticCurveTo(bx, by, bx + r, by);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#E2E8F0';
+      ctx.font = '400 11px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const callout = 'Certification cost ($12,250) — one time only. Every machine after Machine 1 costs $22,200 less to bring to market.';
+      wrapText(ctx, callout, bx + boxW / 2, by + boxH / 2, boxW - 16, 14);
+      ctx.restore();
+    }
+  };
+
+  function wrapText(ctx, text, cx, cy, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    const lines = [];
+    let line = '';
+    words.forEach((w) => {
+      const test = line ? line + ' ' + w : w;
+      if (ctx.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = w;
+      } else {
+        line = test;
+      }
+    });
+    if (line) lines.push(line);
+    const startY = cy - ((lines.length - 1) * lineHeight) / 2;
+    lines.forEach((ln, i) => {
+      ctx.fillText(ln, cx, startY + i * lineHeight);
+    });
+  }
+
+  // ── CHART 3: Unit Cost Curve (machine # vs all-in cost) ──
   new Chart(document.getElementById('chart-cost'), {
     type: 'line',
     data: {
-      labels: months,
-      datasets: [{
-        data: unitCost,
-        borderColor: orange,
-        backgroundColor: 'rgba(239,159,39,0.08)',
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        borderWidth: 2,
-      }]
+      datasets: [
+        {
+          label: 'Certification cliff',
+          data: costCliffData,
+          borderColor: orange,
+          backgroundColor: 'transparent',
+          fill: false,
+          tension: 0,
+          pointRadius: 0,
+          pointHoverRadius: 6,
+          borderWidth: 3,
+          spanGaps: false,
+          order: 2
+        },
+        {
+          label: 'Volume curve',
+          data: costVolumeData,
+          borderColor: orange,
+          backgroundColor: 'rgba(239, 159, 39, 0.1)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 2.5,
+          order: 1
+        }
+      ]
     },
     options: {
       ...baseOpts,
+      interaction: { mode: 'nearest', intersect: false },
       plugins: {
         ...baseOpts.plugins,
         tooltip: {
           ...baseOpts.plugins.tooltip,
           callbacks: {
-            title: ctx => 'Month ' + (ctx[0].dataIndex + 1) + ' · ' + cumulative[ctx[0].dataIndex] + ' machines deployed',
-            label: ctx => 'Build cost: $' + Math.round(ctx.raw).toLocaleString()
+            title: (items) => {
+              const raw = items[0].raw;
+              const x = raw && typeof raw === 'object' ? raw.x : items[0].parsed.x;
+              return 'Machine ' + x;
+            },
+            label: (ctx) => {
+              const raw = ctx.raw;
+              const y = raw && typeof raw === 'object' ? raw.y : ctx.parsed.y;
+              return 'All-in build cost: $' + Math.round(y).toLocaleString();
+            }
           }
         }
       },
       scales: {
-        ...baseOpts.scales,
+        x: {
+          type: 'linear',
+          min: 1,
+          max: 500,
+          title: { display: true, text: 'Machine number', color: tickColor, font: { size: 11 } },
+          ticks: {
+            color: tickColor,
+            font: { size: 10 },
+            maxRotation: 0,
+            autoSkip: false
+          },
+          afterBuildTicks(scale) {
+            const show = [1, 10, 25, 50, 100, 200, 500];
+            scale.ticks = show.map((value) => ({ value, label: String(value) }));
+          },
+          grid: { color: gridColor }
+        },
         y: {
           ...baseOpts.scales.y,
+          min: 12000,
+          max: 37000,
           title: { display: true, text: 'All-In Build Cost (USD)', color: tickColor, font: { size: 11 } },
           ticks: {
             color: tickColor,
             font: { size: 10 },
-            callback: val => '$' + (val / 1000).toFixed(0) + 'K'
+            callback: (val) => {
+              const v = Number(val);
+              const k = v / 1000;
+              const s = Number.isInteger(k) ? String(k) : k.toFixed(1).replace(/\.0$/, '');
+              return '$' + s + 'K';
+            }
           }
         }
       }
     },
-    plugins: [phasePlugin]
+    plugins: [unitCostRefLinesPlugin, unitCostAnnotationsPlugin]
   });
 
   // ── TABLE: Annual Summary ──
@@ -1525,6 +1700,14 @@ Month 12 ———————————————————————�
     });
     const annualEl = document.getElementById('chart-annual');
     if (annualEl) annualEl.style.display = tab === 'annual' ? 'block' : 'none';
+    const costDesc = document.getElementById('trajectory-desc-cost');
+    if (costDesc) costDesc.style.display = tab === 'cost' ? 'block' : 'none';
+    const suffix = document.getElementById('trajectory-eyebrow-suffix');
+    if (suffix) {
+      suffix.textContent = tab === 'cost'
+        ? '500 Machines · All-In Cost Per Unit'
+        : '500 Machines · 60 Months';
+    }
     ['cumulative','monthly','cost','annual'].forEach(t => {
       const btn = document.getElementById('tab-' + t);
       if (!btn) return;
