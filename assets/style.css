@@ -254,6 +254,97 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
   }
 }
 
+/* Competitive — navy serif callout (between competitor cards and category table) */
+.competitive-navy-callout {
+  position: relative;
+  max-width: 800px;
+  margin: 48px auto;
+  padding: 48px 56px 56px 56px;
+  background: #0f172a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.competitive-navy-callout__accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #00bfa5;
+  border-radius: 16px 0 0 16px;
+  pointer-events: none;
+}
+.competitive-navy-callout__deco {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 160px;
+  line-height: 1;
+  color: rgba(0, 191, 165, 0.06);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  pointer-events: none;
+  user-select: none;
+}
+.competitive-navy-callout__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.competitive-navy-callout__lead {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.6;
+}
+.competitive-navy-callout__body {
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.9;
+}
+.competitive-navy-callout__body:has(+ .competitive-navy-callout__fin) {
+  margin-bottom: 0;
+}
+.competitive-navy-callout__fin {
+  margin: 32px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 191, 165, 0.3);
+  font-size: 20px;
+  font-weight: 700;
+  color: #00bfa5;
+  line-height: 1.5;
+}
+.competitive-navy-callout__mark {
+  position: absolute;
+  bottom: 20px;
+  right: 28px;
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(0, 191, 165, 0.4);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+@media (max-width: 640px) {
+  .competitive-navy-callout {
+    margin: 32px auto;
+    padding: 32px 24px 44px 28px;
+  }
+  .competitive-navy-callout__deco {
+    font-size: 100px;
+    right: 8px;
+    top: 0;
+  }
+  .competitive-navy-callout__mark {
+    bottom: 14px;
+    right: 16px;
+  }
+}
+
 .competitive-table-footnotes {
   font-size: 12px;
   color: #9ca3af;
