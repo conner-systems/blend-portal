@@ -553,7 +553,10 @@ function render(){
     <div class="card" style="background:${c.surface};border:1px solid ${c.border};margin-bottom:16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
         <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${c.muted};">Top 5 Drinks · All Time</div>
-        <span style="font-size:11px;color:${c.muted};">${m.drinks.length} total combinations</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;max-width:220px;">
+          <span style="font-size:11px;color:${c.muted};line-height:1.3;"><strong style="color:${c.sub};">5,000+</strong> menu combinations</span>
+          <span style="font-size:9px;color:${c.sub};line-height:1.35;margin-top:4px;">Based on 4 base options, 4+ protein choices, 5 supplement combinations, 5 caffeine doses, and 2 serving sizes — expanding with every quarterly rotation.</span>
+        </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
         ${m.drinks.slice(0,5).map((d,i)=>`
