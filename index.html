@@ -2481,10 +2481,6 @@ Month 12 ———————————————————————�
         <div style="margin-top: 48px;">
           <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 8px;">Design Concept · AI Render · April 2026</p>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px;">Studio render of the MK1 design concept. Matte black 304 stainless steel exterior. 84″H × 52″W × 38″D. Final production design subject to engineering iteration.</p>
-
-          <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 8px;">Custom Wrap Concepts · Illustrative Only</p>
-          <img src="assets/image_11.png" alt="BLEND+ custom wrap concepts" style="width: 100%; border-radius: 8px; display: block; margin-bottom: 12px;">
-          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px;">The panel system supports full custom wraps — host branding, seasonal graphics, or co-branded designs. Panels are removable for service and replaceable without machine downtime.</p>
         </div>
         <div>
           <div class="card" style="margin-bottom:12px;">
@@ -2512,6 +2508,87 @@ Month 12 ———————————————————————�
           </div>
         </div>
       </div>
+
+      <div class="card machine-aesthetics-carousel" style="margin-bottom:16px;">
+        <div class="machine-aesthetics-carousel__head">The machine adapts to its environment</div>
+        <div class="machine-aesthetics-carousel__sub">One machine. Every placement gets its own skin.</div>
+        <div class="machine-aesthetics-carousel__viewport" id="machine-aesthetics-carousel">
+          <div class="machine-aesthetics-carousel__track" id="machine-aesthetics-track">
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/luxury-gym.png" alt="Luxury fitness — premium gym placement"><figcaption>Luxury fitness — premium gym placement</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/luxury-gym-2.png" alt="Matte black — private performance gym"><figcaption>Matte black — private performance gym</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/clinical.png" alt="Clinical — longevity and wellness center"><figcaption>Clinical — longevity and wellness center</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/resort.png" alt="Resort — outdoor wellness destination"><figcaption>Resort — outdoor wellness destination</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/standard-gym.png" alt="Corporate wellness — professional environment"><figcaption>Corporate wellness — professional environment</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/Smartfitmethod.png" alt="SmartFit co-branded — host partner skin"><figcaption>SmartFit co-branded — host partner skin</figcaption></figure>
+            <figure class="machine-aesthetics-carousel__slide"><img src="assets/images/aesthetics/powerlifting.png" alt="High-intensity — powerlifting and strength gym"><figcaption>High-intensity — powerlifting and strength gym</figcaption></figure>
+          </div>
+          <button type="button" class="machine-aesthetics-carousel__nav machine-aesthetics-carousel__nav--prev" id="machine-aesthetics-prev" aria-label="Previous slide">&#10094;</button>
+          <button type="button" class="machine-aesthetics-carousel__nav machine-aesthetics-carousel__nav--next" id="machine-aesthetics-next" aria-label="Next slide">&#10095;</button>
+          <div class="machine-aesthetics-carousel__dots" id="machine-aesthetics-dots" aria-label="Carousel pagination"></div>
+        </div>
+      </div>
+
+      <script>
+      (function () {
+        const viewport = document.getElementById('machine-aesthetics-carousel');
+        const track = document.getElementById('machine-aesthetics-track');
+        const slides = track ? Array.from(track.children) : [];
+        const prev = document.getElementById('machine-aesthetics-prev');
+        const next = document.getElementById('machine-aesthetics-next');
+        const dotsWrap = document.getElementById('machine-aesthetics-dots');
+        if (!viewport || !track || !slides.length || !prev || !next || !dotsWrap) return;
+
+        let idx = 0;
+        let timer = null;
+
+        const dots = slides.map((_, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'machine-aesthetics-carousel__dot';
+          b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          b.addEventListener('click', () => goTo(i, true));
+          dotsWrap.appendChild(b);
+          return b;
+        });
+
+        function render() {
+          track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+        }
+
+        function goTo(i, reset) {
+          idx = (i + slides.length) % slides.length;
+          render();
+          if (reset) restart();
+        }
+
+        function start() {
+          if (timer) return;
+          timer = setInterval(() => goTo(idx + 1, false), 5000);
+        }
+
+        function stop() {
+          if (!timer) return;
+          clearInterval(timer);
+          timer = null;
+        }
+
+        function restart() {
+          stop();
+          start();
+        }
+
+        prev.addEventListener('click', () => goTo(idx - 1, true));
+        next.addEventListener('click', () => goTo(idx + 1, true));
+        viewport.addEventListener('mouseenter', stop);
+        viewport.addEventListener('mouseleave', start);
+        viewport.addEventListener('focusin', stop);
+        viewport.addEventListener('focusout', start);
+
+        render();
+        start();
+      })();
+      </script>
       <div class="card insider-only">
         <div class="card-title">Single Lane Architecture — Why</div>
         <ul class="bullet-list">

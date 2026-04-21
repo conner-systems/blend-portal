@@ -1629,3 +1629,98 @@ table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport td.tam-
   border-radius: 4px;
   padding: 2px 8px;
 }
+
+
+/* Machine — aesthetics carousel */
+.machine-aesthetics-carousel {
+  background: #0f172a;
+  border: 1px solid rgba(45, 212, 191, 0.28);
+}
+.machine-aesthetics-carousel__head {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.machine-aesthetics-carousel__sub {
+  font-size: 14px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+.machine-aesthetics-carousel__viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+.machine-aesthetics-carousel__track {
+  display: flex;
+  transition: transform 320ms ease;
+  will-change: transform;
+}
+.machine-aesthetics-carousel__slide {
+  min-width: 100%;
+  margin: 0;
+}
+.machine-aesthetics-carousel__slide img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.machine-aesthetics-carousel__slide figcaption {
+  padding: 10px 12px 12px;
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.5;
+  background: #0f172a;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+}
+.machine-aesthetics-carousel__nav {
+  position: absolute;
+  top: calc(50% - 28px);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 212, 191, 0.5);
+  background: rgba(15, 23, 42, 0.72);
+  color: #99f6e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.machine-aesthetics-carousel__nav:hover {
+  background: rgba(15, 23, 42, 0.92);
+}
+.machine-aesthetics-carousel__nav--prev { left: 12px; }
+.machine-aesthetics-carousel__nav--next { right: 12px; }
+.machine-aesthetics-carousel__dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 52px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  z-index: 2;
+}
+.machine-aesthetics-carousel__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.65);
+  cursor: pointer;
+}
+.machine-aesthetics-carousel__dot.is-active {
+  background: #00bfa5;
+  border-color: #00bfa5;
+}
+@media (max-width: 768px) {
+  .machine-aesthetics-carousel__slide img { height: 260px; }
+  .machine-aesthetics-carousel__head { font-size: 18px; }
+}
