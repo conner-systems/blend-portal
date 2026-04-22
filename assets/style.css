@@ -1346,17 +1346,6 @@ th {
   gap: 0;
 }
 
-.hamburger {
-  width: 48px;
-  height: 48px;
-  background: #00bfa5;
-  border: none;
-  border-radius: 8px;
-}
-.hamburger span {
-  background: #ffffff;
-}
-
 @media (max-width: 768px) {
   #sidebar .nav-item {
     min-height: 44px;
