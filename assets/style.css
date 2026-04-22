@@ -1655,7 +1655,7 @@ table.data-table.tam-revenue-matrix tbody tr.tam-revenue-matrix__airport td.tam-
 .machine-aesthetics-carousel__slide img {
   width: 100%;
   height: 380px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
 }
