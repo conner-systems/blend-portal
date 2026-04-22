@@ -2577,7 +2577,7 @@ Month 12 ———————————————————————�
 
         function start() {
           if (timer) return;
-          timer = setInterval(() => goTo(idx + 1, false), 5000);
+          timer = setInterval(() => goTo(idx + 1, false), 3000);
         }
 
         function stop() {
@@ -2593,8 +2593,6 @@ Month 12 ———————————————————————�
 
         prev.addEventListener('click', () => goTo(idx - 1, true));
         next.addEventListener('click', () => goTo(idx + 1, true));
-        viewport.addEventListener('mouseenter', stop);
-        viewport.addEventListener('mouseleave', start);
         viewport.addEventListener('focusin', stop);
         viewport.addEventListener('focusout', start);
 
